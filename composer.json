@@ -1,0 +1,16 @@
+{
+    "name": "nadar/page-crawler",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Basil Suter",
+            "email": "git@nadar.io"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Nadar\\PageCrawler\\" : "src/"
+        }
+    }
+}
