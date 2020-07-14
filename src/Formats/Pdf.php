@@ -6,7 +6,7 @@ use Nadar\PageCrawler\FormatInterface;
 use Nadar\PageCrawler\Job;
 use Nadar\PageCrawler\JobResult;
 
-class Html implements FormatInterface
+class Pdf implements FormatInterface
 {
     public function __construct(Job $job)
     {
@@ -15,7 +15,7 @@ class Html implements FormatInterface
 
     public function supportedContentTypes(): array
     {
-        return ['text/html'];
+        return ['application/pdf'];
     }
 
     public function run(): JobResult

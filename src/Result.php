@@ -2,15 +2,25 @@
 
 namespace Nadar\PageCrawler;
 
-class Job
+class Result
 {
     public $url;
 
+    public $uri;
+
     public $title;
 
-    public $content;
+    public $contentType;
 
-    public $followUpUrls = [];
+    public $followUris = [];
 
     public $type; // pdf, html, text ....., image
+
+    public $language;
+
+    public $keywords;
+
+    public $description;
+
+    public $group;
 }
