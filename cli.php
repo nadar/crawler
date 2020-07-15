@@ -1,8 +1,9 @@
 <?php
 
 use Nadar\PageCrawler\Crawler;
-use Nadar\PageCrawler\Formats\Html;
+use Nadar\PageCrawler\Handlers\DebugHandler;
 use Nadar\PageCrawler\Interfaces\HandlerInterface;
+use Nadar\PageCrawler\Parsers\HtmlParser;
 use Nadar\PageCrawler\Result;
 
 include 'vendor/autoload.php';
@@ -38,13 +39,13 @@ class MyHandler implements HandlerInterface
     }
 }
 
-$handler = new MyHandler();
+$handler = new DebugHandler();
 
 $crawler = new Crawler('https://luya.io');
-$crawler->addFormat(new Html);
+$crawler->addParser(new HtmlParser);
 $crawler->addHandler($handler);
 $crawler->run();
 
 echo "==================" . PHP_EOL;
 echo "sites: " . ($handler->counter) . PHP_EOL;
-echo "time: " . (microtime(true) - $handler->start);
+echo "time: " . ($handler->elapsedTime()) . PHP_EOL;
