@@ -12,5 +12,13 @@
         "psr-4": {
             "Nadar\\PageCrawler\\" : "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Nadar\\PageCrawler\\Tests\\" : "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.2"
     }
 }

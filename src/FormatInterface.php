@@ -4,9 +4,9 @@ namespace Nadar\PageCrawler;
 
 interface FormatInterface
 {
-    public function __construct(Job $job);
+    public function run(Job $job, RequestResponse $requestResponse) : JobResult;
 
-    public function supportedContentTypes() : array;
+    public function validateUrl(Url $url) : bool;
 
-    public function run() : JobResult;
+    public function validateRequestResponse(RequestResponse $requestResponse): bool;
 }

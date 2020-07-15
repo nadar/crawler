@@ -4,17 +4,25 @@ namespace Nadar\PageCrawler;
 
 class Result
 {
-    public $url;
+    // assigned by job
 
-    public $uri;
-
-    public $title;
+    public $refererUrl;
 
     public $contentType;
 
-    public $followUris = [];
+    public $format;
 
-    public $type; // pdf, html, text ....., image
+    // custom
+
+
+    
+    public $url;
+
+    public $title;
+
+    public $content;
+
+    public $followUrls = [];
 
     public $language;
 

@@ -11,12 +11,7 @@ Create your custom handler, this is the classes which will interact with the cra
 ```php
 class MyCrawlHandler implements \Nadar\PageCrawler\HandlerInterface
 {
-    public function beforeRun()
-    {
-
-    }
-
-    public function afterRun(\nadar\PageCrawler\Result $result)
+    public function afterRun(\Nadar\PageCrawler\Result $result)
     {
         echo $result->title;
     }
@@ -25,6 +20,6 @@ class MyCrawlHandler implements \Nadar\PageCrawler\HandlerInterface
 
 ```php
 $crawler = new Crawler('https://luya.io');
-$crawler->registerHandler(MyCrawlHandler::class);
+$crawler->registerHandler(new MyCrawlHandler);
 $crawler->run();
 ```
