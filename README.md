@@ -1,6 +1,8 @@
 # Page Crawler
 
 ![Tests](https://github.com/nadar/php-page-crawler/workflows/Tests/badge.svg)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/457045a9df14082dcc75/test_coverage)](https://codeclimate.com/github/nadar/php-page-crawler/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/457045a9df14082dcc75/maintainability)](https://codeclimate.com/github/nadar/php-page-crawler/maintainability)
 
 A simple Page Crawler Implementation written in PHP
 
