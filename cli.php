@@ -2,7 +2,7 @@
 
 use Nadar\PageCrawler\Crawler;
 use Nadar\PageCrawler\Formats\Html;
-use Nadar\PageCrawler\HandlerInterface;
+use Nadar\PageCrawler\Interfaces\HandlerInterface;
 use Nadar\PageCrawler\Result;
 
 include 'vendor/autoload.php';

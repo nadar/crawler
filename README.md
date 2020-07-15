@@ -15,7 +15,7 @@ A simple Page Crawler Implementation written in PHP
 Create your custom handler, this is the classes which will interact with the crawler in order to store your content somwehere.
 
 ```php
-class MyCrawlHandler implements \Nadar\PageCrawler\HandlerInterface
+class MyCrawlHandler implements \Nadar\PageCrawler\Interfaces\HandlerInterface
 {
     public function afterRun(\Nadar\PageCrawler\Result $result)
     {

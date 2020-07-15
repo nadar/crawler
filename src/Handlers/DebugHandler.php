@@ -2,7 +2,7 @@
 
 namespace Nadar\PageCrawler\Handlers;
 
-use Nadar\PageCrawler\HandlerInterface;
+use Nadar\PageCrawler\Interfaces\HandlerInterface;
 use Nadar\PageCrawler\Result;
 
 class DebugHandler implements HandlerInterface

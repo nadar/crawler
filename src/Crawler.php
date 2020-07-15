@@ -2,6 +2,7 @@
 
 namespace Nadar\PageCrawler;
 
+use Nadar\PageCrawler\Interfaces\HandlerInterface;
 use Nadar\PageCrawler\Interfaces\ParserInterface;
 
 class Crawler
