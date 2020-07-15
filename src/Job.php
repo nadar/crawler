@@ -19,7 +19,7 @@ class Job
 
     public function validate() : bool {
 
-        foreach ($this->crawler->getFormats() as $handler) {
+        foreach ($this->crawler->getParsers() as $handler) {
             if (!$handler->validateUrl($this->url)) {
                 return false;
             }
@@ -40,7 +40,7 @@ class Job
 
     public function run(RequestResponse $requestResponse)
     {
-        foreach ($this->crawler->getFormats() as $formatter) {
+        foreach ($this->crawler->getParsers() as $formatter) {
             if ($formatter->validateRequestResponse($requestResponse)) {
                 $jobResult = $formatter->run($this, $requestResponse);
 

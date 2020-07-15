@@ -2,6 +2,8 @@
 
 namespace Nadar\PageCrawler;
 
+use Nadar\PageCrawler\Interfaces\ParserInterface;
+
 class Crawler
 {
     public $concurrentJobs = 15;
@@ -14,7 +16,7 @@ class Crawler
 
     protected $handlers = [];
 
-    protected $formats = [];
+    protected $parsers = [];
 
     public function __construct($baseUrl)
     {
@@ -44,14 +46,14 @@ class Crawler
         return $this->handlers;
     }
 
-    public function addFormat(FormatInterface $format)
+    public function addParser(ParserInterface $parser)
     {
-        $this->formats[] = $format;
+        $this->parsers[] = $parser;
     }
 
-    public function getFormats()
+    public function getParsers()
     {
-        return $this->formats;
+        return $this->parsers;
     }
 
     public function run()

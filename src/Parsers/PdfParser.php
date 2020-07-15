@@ -1,14 +1,14 @@
 <?php
 
-namespace Nadar\PageCrawler\Formats;
+namespace Nadar\PageCrawler\Parsers;
 
-use Nadar\PageCrawler\FormatInterface;
+use Nadar\PageCrawler\Interfaces\ParserInterface;
 use Nadar\PageCrawler\Job;
 use Nadar\PageCrawler\JobResult;
 use Nadar\PageCrawler\RequestResponse;
 use Nadar\PageCrawler\Url;
 
-class Pdf implements FormatInterface
+class PdfParser implements ParserInterface
 {
     public function run(Job $job, RequestResponse $requestResponse) : JobResult
     {

@@ -3,7 +3,7 @@
 namespace Nadar\PageCrawler\Tests;
 
 use Nadar\PageCrawler\Crawler;
-use Nadar\PageCrawler\Formats\Html;
+use Nadar\PageCrawler\Parsers\HtmlParser;
 use Nadar\PageCrawler\Handlers\DebugHandler;
 
 class CrawlerTest extends PageCrawlerTestCase
@@ -13,7 +13,7 @@ class CrawlerTest extends PageCrawlerTestCase
         $debug = new DebugHandler();
 
         $crawler = new Crawler('https://luya.io');
-        $crawler->addFormat(new Html);
+        $crawler->addParser(new HtmlParser);
         $crawler->addHandler($debug);
         $this->assertEmpty($crawler->run());
 

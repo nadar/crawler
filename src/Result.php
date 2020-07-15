@@ -6,6 +6,9 @@ class Result
 {
     // assigned by job
 
+    /**
+     * @var Url $url
+     */
     public $refererUrl;
 
     public $contentType;
@@ -15,7 +18,9 @@ class Result
     // custom
 
 
-    
+    /**
+     * @var Url $url
+     */
     public $url;
 
     public $title;

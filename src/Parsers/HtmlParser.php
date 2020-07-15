@@ -1,16 +1,15 @@
 <?php
 
-namespace Nadar\PageCrawler\Formats;
+namespace Nadar\PageCrawler\Parsers;
 
 use DOMDocument;
-use Nadar\PageCrawler\FormatInterface;
+use Nadar\PageCrawler\Interfaces\ParserInterface;
 use Nadar\PageCrawler\Job;
 use Nadar\PageCrawler\JobResult;
 use Nadar\PageCrawler\RequestResponse;
-use Nadar\PageCrawler\Result;
 use Nadar\PageCrawler\Url;
 
-class Html implements FormatInterface
+class HtmlParser implements ParserInterface
 {
     public function run(Job $job, RequestResponse $requestResponse) : JobResult
     {

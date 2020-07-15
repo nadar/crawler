@@ -1,8 +1,13 @@
 <?php
 
-namespace Nadar\PageCrawler;
+namespace Nadar\PageCrawler\Interfaces;
 
-interface FormatInterface
+use Nadar\PageCrawler\Job;
+use Nadar\PageCrawler\JobResult;
+use Nadar\PageCrawler\RequestResponse;
+use Nadar\PageCrawler\Url;
+
+interface ParserInterface
 {
     public function run(Job $job, RequestResponse $requestResponse) : JobResult;
 
