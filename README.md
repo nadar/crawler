@@ -44,3 +44,11 @@ $crawler->registerHandler(new MyCrawlHandler);
 // start the crawling
 $crawler->run();
 ```
+
+## Benchmark
+
+Of course those benchmarks may vary depending on internet connection, bandwidth, servers but we made all the tests under the same circumstances.
+
+| Index Size     | Concurrent Requests    | Memory Peak    |Time
+|-------------- |-------------------    |-----------    |----
+| 3785          | 10                    | 18MB       | 260 Seconds
