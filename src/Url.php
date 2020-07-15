@@ -16,13 +16,23 @@ class Url
 
     public function getNormalized()
     {
-        $url = $this->getScheme() . '://' . ltrim($this->getHost(), '/') . '/' . ltrim($this->getPath(), '/');
+        $url = $this->getScheme() . '://' . trim($this->getHost(), '/') . '/' . trim($this->getPath(), '/');
 
         if (!empty($this->getQuery())) {
             $url .= '?' . $this->getQuery();
         }
 
         return $url;
+    }
+
+    /**
+     * Generate an "unique" key
+     *
+     * @return void
+     */
+    public function getUniqueKey()
+    {
+        return $this->getHost().trim($this->getPath(), '/').$this->getQuery();
     }
 
     public function getHost()

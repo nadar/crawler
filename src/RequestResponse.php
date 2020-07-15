@@ -18,6 +18,17 @@ class RequestResponse
         return $this->content;
     }
 
+    private $_checksum;
+
+    public function getChecksum()
+    {
+        if ($this->_checksum === null) {
+            $this->_checksum = md5($this->content);
+        }
+
+        return $this->_checksum;
+    }
+
     public function getContentType()
     {
         return current(explode(";", $this->contentType));

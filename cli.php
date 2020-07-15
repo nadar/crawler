@@ -11,7 +11,7 @@ include 'vendor/autoload.php';
 
 $handler = new DebugHandler();
 
-$crawler = new Crawler('https://vertikal.net');
+$crawler = new Crawler('https://zephir.ch');
 $crawler->addParser(new HtmlParser);
 $crawler->addHandler($handler);
 $crawler->run();

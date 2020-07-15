@@ -19,6 +19,8 @@ class Crawler
 
     protected $parsers = [];
 
+    protected $checksums = [];
+
     public function __construct($baseUrl)
     {
         $this->baseUrl = new Url($baseUrl);
@@ -27,14 +29,14 @@ class Crawler
 
     public function push(Job $job)
     {
-        $urlChecksum = md5($job->url->getNormalized());
+        $uniqueUrl = $job->url->getUniqueKey();
 
-        if (!in_array($urlChecksum, $this->done, true)) {
+        if (!in_array($uniqueUrl, $this->done, true)) {
             $this->queue[] = $job;
-            $this->done[] = $urlChecksum;
+            $this->done[] = $uniqueUrl;
         }
 
-        unset ($urlChecksum);
+        unset($uniqueUrl);
     }
 
     public function addHandler(HandlerInterface $handler)
@@ -85,13 +87,19 @@ class Crawler
 
             $requestResponse = new RequestResponse(curl_multi_getcontent($ch), curl_getinfo($ch, CURLINFO_CONTENT_TYPE));
 
-            $queueJob = $jobs[$queueKey];
-            $queueJob->run($requestResponse);
+            if (!in_array($requestResponse->getChecksum(), $this->checksums, true)) {
+                $queueJob = $jobs[$queueKey];
+                $queueJob->run($requestResponse);
+                $this->checksums[] = $requestResponse->getChecksum();
+            } else {
+                echo "ExISISISI!!!";
+            }
+           
             curl_multi_remove_handle($multiCurl, $ch);
         }
 
 
-        unset($requestResponse, $queueJob, $queueKey, $jobs);
+        unset($requestResponse, $queueJob, $queueKey, $jobs, $ch);
         
 
         // close
