@@ -39,9 +39,9 @@ jobs:
         if: matrix.php == '7.4' || matrix.php == '7.3' || matrix.php == '7.2' || matrix.php == '7.0'
 
       ## unit test with coverage
-      - name: PHP Unit tests for PHP 7.1
+      - name: PHP Unit tests for PHP 7.3
         run: vendor/bin/phpunit --verbose --coverage-clover=clover.xml --configuration actions.phpunit.xml
-        if: matrix.php == '7.1'
+        if: matrix.php == '7.3'
 
       ## coverage
       - name: Code coverage
@@ -49,5 +49,5 @@ jobs:
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
           ./cc-test-reporter after-build -t clover
-        if: matrix.php == '7.1'
+        if: matrix.php == '7.3'
         continue-on-error: true # if is fork
