@@ -1,6 +1,10 @@
-# php-page-crawler
+# Page Crawler
+
+![Tests](https://github.com/nadar/php-page-crawler/workflows/Tests/badge.svg)
 
 A simple Page Crawler Implementation written in PHP
+
+
 
 ## Installation
 

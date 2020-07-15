@@ -5,7 +5,7 @@ on: [push, pull_request]
 env:
   DEFAULT_COMPOSER_FLAGS: "--prefer-dist --no-interaction --ignore-platform-reqs"
   PHPUNIT_EXCLUDE_GROUP: mssql,oci,wincache,xcache,zenddata,cubrid
-  CC_TEST_REPORTER_ID: CODECLIMATE_REPORTER_ID
+  CC_TEST_REPORTER_ID: 9ed0bc3e36b01103bfa9ff9049a02fccf7f680fbf603201f17c6d2bfbfada26e
 jobs:
   phpunit:
     name: PHP ${{ matrix.php }} on ${{ matrix.os }}
