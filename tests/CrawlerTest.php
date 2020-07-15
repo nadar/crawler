@@ -9,7 +9,7 @@ class CrawlerTest extends PageCrawlerTestCase
 {
     public function testRunCrawler()
     {
-        $crawler = new Crawler('https://kunstmuseumbasel.ch');
+        $crawler = new Crawler('https://luya.io');
         $crawler->addFormat(new Html);
         $this->assertEmpty($crawler->run());
     }
