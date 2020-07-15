@@ -4,7 +4,7 @@ namespace Nadar\PageCrawler;
 
 class Crawler
 {
-    public $concurrentJobs = 10;
+    public $concurrentJobs = 15;
 
     public $baseUrl;
 
@@ -24,12 +24,14 @@ class Crawler
 
     public function push(Job $job)
     {
-        $url = $job->url->getNormalized();
+        $urlChecksum = md5($job->url->getNormalized());
 
-        if (!in_array($url, $this->done, true)) {
+        if (!in_array($urlChecksum, $this->done, true)) {
             $this->queue[] = $job;
-            $this->done[] = $url;
+            $this->done[] = $urlChecksum;
         }
+
+        unset ($urlChecksum);
     }
 
     public function addHandler(HandlerInterface $handler)
