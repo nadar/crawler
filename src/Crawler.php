@@ -7,7 +7,7 @@ use Nadar\PageCrawler\Interfaces\ParserInterface;
 
 class Crawler
 {
-    public $concurrentJobs = 15;
+    public $concurrentJobs = 30;
 
     public $baseUrl;
 
@@ -62,7 +62,9 @@ class Crawler
         $curlRequests = [];
         $multiCurl = curl_multi_init();
 
-        foreach (array_slice($this->queue, 0, $this->concurrentJobs) as $queueKey => $queueJob) {
+        $jobs = array_splice($this->queue, 0, $this->concurrentJobs);
+
+        foreach ($jobs as $queueKey => $queueJob) {
             if ($queueJob->validate()) {
                 $curlRequests[$queueKey] = $queueJob->generateCurl();
                 curl_multi_add_handle($multiCurl, $curlRequests[$queueKey]);
@@ -73,7 +75,6 @@ class Crawler
 
         unset($queueJob, $queueKey);
 
-        
         $index = null;
         do {
             curl_multi_exec($multiCurl, $index);
@@ -84,19 +85,13 @@ class Crawler
 
             $requestResponse = new RequestResponse(curl_multi_getcontent($ch), curl_getinfo($ch, CURLINFO_CONTENT_TYPE));
 
-            $queueJob = $this->queue[$queueKey];
+            $queueJob = $jobs[$queueKey];
             $queueJob->run($requestResponse);
             curl_multi_remove_handle($multiCurl, $ch);
-
-            /*
-            echo $queueKey . ' - ' . $queueJob->url->getNormalized() . ' | ';
-            */
-            
-            unset ($this->queue[$queueKey]);
         }
 
 
-        unset($requestResponse, $queueJob, $queueKey);
+        unset($requestResponse, $queueJob, $queueKey, $jobs);
         
 
         // close
@@ -106,7 +101,6 @@ class Crawler
         unset($curlRequests, $multiCurl);
 
         if (!empty($this->queue)) {
-            $this->queue = array_values($this->queue);
             $this->run();
         } else {
             $this->end();

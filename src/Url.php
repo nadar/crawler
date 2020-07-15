@@ -14,14 +14,15 @@ class Url
         $this->parsed = parse_url($this->url);    
     }
 
-    public function getOriginal()
-    {
-        return $this->url;
-    }
-
     public function getNormalized()
     {
-        return $this->getScheme() . '://' . ltrim($this->getHost(), '/') . '/' . ltrim($this->getPath(), '/');
+        $url = $this->getScheme() . '://' . ltrim($this->getHost(), '/') . '/' . ltrim($this->getPath(), '/');
+
+        if (!empty($this->getQuery())) {
+            $url .= '?' . $this->getQuery();
+        }
+
+        return $url;
     }
 
     public function getHost()

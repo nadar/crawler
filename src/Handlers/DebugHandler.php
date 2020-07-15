@@ -27,16 +27,26 @@ class DebugHandler implements HandlerInterface
 
         echo $result->url->getNormalized() . " | " . $result->title . " | ";
 
-        $mem_usage = memory_get_usage(true);
+        echo $this->readableMemory(memory_get_usage(true));
 
-    
-        if ($mem_usage < 1024)
-            echo $mem_usage." bytes";
-        elseif ($mem_usage < 1048576)
-            echo round($mem_usage/1024,2)." kilobytes";
-        else
-            echo round($mem_usage/1048576,2)." megabytes";
+        echo PHP_EOL;
+    }
+
+    public function memoryPeak()
+    {
+        return $this->readableMemory(memory_get_peak_usage(true));
+    }
+
+    private function readableMemory($memory)
+    {
+        if ($memory < 1024) {
+
+            return $memory." bytes";
+        } elseif ($memory < 1048576) {
+
+            return round($memory/1024,2)." kilobytes";
+        }
         
-            echo PHP_EOL;
+        return round($memory/1048576,2)." megabytes";
     }
 }
