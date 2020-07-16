@@ -47,9 +47,10 @@ $crawler->run();
 
 ## Benchmark
 
-Of course those benchmarks may vary depending on internet connection, bandwidth, servers but we made all the tests under the same circumstances.
+Of course those benchmarks may vary depending on internet connection, bandwidth, servers but we made all the tests under the same circumstances. The memory peak varys strong when using the PDF parsers.
 
-| Index Size     | Concurrent Requests    | Memory Peak    |Time    | Parsers
-|-------------- |-------------------    |-----------    |----
-| 3785          | 15                    | 18MB       | 260 Seconds  | Html
-| 1509          | 30                    | 97MB          | 225 Seconds   | Html, PDF
+| Index Size     | Concurrent Requests    | Memory Peak     |Time               | Parsers
+|-------------- |-------------------    |-----------        |----
+| 3785          | 15                    | 18 MB             | 260 Seconds       | Html
+| 1509          | 30                    | 97 MB             | 225 Seconds       | Html, PDF
+| 1374          | 30                    | 269 MB            | 87 Seconds        | Html, PDF
