@@ -19,38 +19,42 @@ class HtmlParser implements ParserInterface
             return $job;
         }
         
-        //Create a new DOM document
         $dom = new DOMDocument();
 
-        //Parse the HTML. The @ is used to suppress any parsing errors
-        //that will be thrown if the $html string isn't valid XHTML.
+        // Parse the HTML. The @ is used to suppress any parsing errors
+        // that will be thrown if the $html string isn't valid XHTML.
         @$dom->loadHTML($requestResponse->getContent());
 
-        //Get all links. You could also use any other tag name here,
-        //like 'img' or 'table', to extract other tags.
+        // follow links
         $links = $dom->getElementsByTagName('a');
-
         $refs = [];
-
-        //Iterate over the extracted links and display their URLs
         foreach ($links as $link) {
-            //Extract and show the "href" attribute.
             $refs[] = $link->getAttribute('href');
         }
 
+        // title
         $title = null;
         $list = $dom->getElementsByTagName("title");
         if ($list->length > 0) {
             $title = $list->item(0)->textContent;
         }
-        
+
+        // body content
+        $content = $requestResponse->getContent();
+        $body = $dom->getElementsByTagName('body');
+        if ($body && $body->length > 0) {
+            $node = $body->item(0);
+            $content = $dom->saveHTML($node);
+
+            unset($node);
+        }
 
         $jobResult = new JobResult();
-        $jobResult->content = strip_tags($requestResponse->getContent()); // get only the content between "body" tags
+        $jobResult->content = $content; // get only the content between "body" tags
         $jobResult->title = $title;
         $jobResult->followUrls = $refs;
         
-        unset($dom, $links, $refs, $link, $requestResponse);
+        unset($dom, $links, $refs, $link, $requestResponse, $content, $body);
 
         return $jobResult;
     }
