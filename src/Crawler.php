@@ -91,7 +91,6 @@ class Crawler
                 $queueJob = $jobs[$queueKey];
                 $queueJob->run($requestResponse);
                 $this->checksums[] = $requestResponse->getChecksum();
-            } else {
             }
            
             curl_multi_remove_handle($multiCurl, $ch);

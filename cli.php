@@ -17,6 +17,6 @@ $crawler->addHandler($handler);
 $crawler->run();
 
 echo "==================" . PHP_EOL;
-echo "sites: " . ($handler->counter) . PHP_EOL;
+echo "URLs: " . ($handler->counter) . PHP_EOL;
 echo "time: " . ($handler->elapsedTime()) . PHP_EOL;
 echo "peak: " . $handler->memoryPeak() . PHP_EOL;
