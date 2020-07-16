@@ -24,7 +24,7 @@ class Crawler
     public function __construct($baseUrl)
     {
         $this->baseUrl = new Url($baseUrl);
-        $this->push(new Job($this,$this->baseUrl, $this->baseUrl));
+        $this->push(new Job($this, $this->baseUrl, $this->baseUrl));
     }
 
     public function push(Job $job)
@@ -92,7 +92,6 @@ class Crawler
                 $queueJob->run($requestResponse);
                 $this->checksums[] = $requestResponse->getChecksum();
             } else {
-                echo "ExISISISI!!!";
             }
            
             curl_multi_remove_handle($multiCurl, $ch);

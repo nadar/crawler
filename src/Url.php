@@ -16,7 +16,7 @@ class Url
 
     public function getNormalized()
     {
-        $url = $this->getScheme() . '://' . trim($this->getHost(), '/') . '/' . trim($this->getPath(), '/');
+        $url = $this->getScheme() . '://' . trim($this->getHost(), '/') . '/' . ltrim($this->getPath(), '/');
 
         if (!empty($this->getQuery())) {
             $url .= '?' . $this->getQuery();
@@ -45,9 +45,19 @@ class Url
         return isset($this->parsed['path']) ? $this->parsed['path'] : false;
     }
 
+    /**
+     * Get lower case name of the extension like `png`, `pdf`
+     *
+     * @return void
+     */
     public function getPathExtension()
     {
-        return $this->getPath() ? pathinfo($this->getPath(), PATHINFO_EXTENSION) : false;
+        return $this->getPath() ? strtolower(pathinfo($this->getPath(), PATHINFO_EXTENSION)) : false;
+    }
+
+    public function getPathFileName()
+    {
+        return basename($this->getPath());
     }
 
     public function getQuery()

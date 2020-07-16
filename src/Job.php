@@ -20,12 +20,12 @@ class Job
     public function validate() : bool {
 
         foreach ($this->crawler->getParsers() as $handler) {
-            if (!$handler->validateUrl($this->url)) {
-                return false;
+            if ($handler->validateUrl($this->url)) {
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 
     public function generateCurl()
@@ -40,9 +40,9 @@ class Job
 
     public function run(RequestResponse $requestResponse)
     {
-        foreach ($this->crawler->getParsers() as $formatter) {
-            if ($formatter->validateRequestResponse($requestResponse)) {
-                $jobResult = $formatter->run($this, $requestResponse);
+        foreach ($this->crawler->getParsers() as $parser) {
+            if ($parser->validateRequestResponse($requestResponse)) {
+                $jobResult = $parser->run($this, $requestResponse);
 
                 foreach ($jobResult->followUrls as $url) {
                     $url = new Url($url);
@@ -62,7 +62,7 @@ class Job
                 $result->refererUrl = $this->referrerUrl;
                 $result->contentType = $requestResponse->getContentType();
                 $result->language = $jobResult->language;
-                $result->format = get_class($formatter);
+                $result->format = get_class($parser);
                 $result->title = $jobResult->title;
 
                 // post the result to the handlers
@@ -72,10 +72,8 @@ class Job
 
                 unset($handler, $result, $jobResult);
             }
-
-            unset($formatter);
         }
 
-        unset($requestResponse);
+        unset($parser, $requestResponse);
     }
 }

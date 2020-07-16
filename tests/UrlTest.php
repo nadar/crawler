@@ -11,4 +11,10 @@ class UrlTest extends PageCrawlerTestCase
         $url = new Url('https://luya.io/foobar?bar=1');
         $this->assertSame('https://luya.io/foobar?bar=1', $url->getNormalized());
     }
+
+    public function testPdfFileName()
+    {
+        $url = new Url('https://luya.io/files/thisismysuper.pdf');
+        $this->assertSame('thisismysuper.pdf', $url->getPathFileName());
+    }
 }
