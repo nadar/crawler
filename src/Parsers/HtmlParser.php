@@ -13,6 +13,12 @@ class HtmlParser implements ParserInterface
 {
     public function run(Job $job, RequestResponse $requestResponse) : JobResult
     {
+        if ($this->isCrawlFullIgnore($requestResponse->getContent())) {
+            $job = new JobResult();
+            $job->ignore = true;
+            return $job;
+        }
+        
         //Create a new DOM document
         $dom = new DOMDocument();
 
@@ -57,5 +63,16 @@ class HtmlParser implements ParserInterface
     public function validateRequestResponse(RequestResponse $requestResponse): bool
     {
         return in_array($requestResponse->getContentType(), ['text/html']);
+    }
+
+    public function isCrawlFullIgnore($content)
+    {
+        preg_match("/\[CRAWL_FULL_IGNORE\]/s", $content, $output);
+
+        if (isset($output[0]) && $output[0] == '[CRAWL_FULL_IGNORE]') {
+            return true;
+        }
+
+        return false;
     }
 }

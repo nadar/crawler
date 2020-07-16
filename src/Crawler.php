@@ -11,6 +11,21 @@ class Crawler
 
     public $baseUrl;
 
+    /**
+     * @var array An array with regular expression (including delimiters) which will be applied to found links so you can
+     * filter several urls which should not be followed by the crawler.
+     *
+     * Examples:
+     *
+     * ```php
+     * 'filterRegex' => [
+     *     '/\.\//i',           // filter all links with a dot inside
+     *     '/agenda\//i',       // filter all pages who contains "agenda/"
+     * ],
+     * ```
+     */
+    public $urlFilter = [];
+
     protected $done = [];
 
     protected $queue = [];
@@ -30,6 +45,14 @@ class Crawler
     public function push(Job $job)
     {
         $uniqueUrl = $job->url->getUniqueKey();
+
+        // filter certain pages
+        foreach ($this->urlFilter as $regex) {
+            if (preg_match($regex, $job->url->getNormalized()) === 1) {
+                echo "FILTERERED OUT " . $job->url->getNormalized() . PHP_EOL;
+                return false;
+            }
+        }
 
         if (!in_array($uniqueUrl, $this->done, true)) {
             $this->queue[] = $job;

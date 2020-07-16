@@ -48,13 +48,18 @@ class Job
                     $url = new Url($url);
                     $url->merge($this->crawler->baseUrl);
 
-                    if ($this->crawler->baseUrl->sameHost($url)) {
+                    if ($url->isValid() && $this->crawler->baseUrl->sameHost($url)) {
                         $job = new Job($this->crawler, $url, $this->url);
                         $this->crawler->push($job);
                         unset ($job);
                     }
                     
                     unset ($url);
+                }
+
+                if ($jobResult->ignore) {
+                    // for whatever reason the parser ignores this url
+                    continue;
                 }
 
                 $result = new Result();

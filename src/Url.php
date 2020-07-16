@@ -75,6 +75,13 @@ class Url
         return $this->getHost() == $url->getHost();
     }
 
+    public function isValid()
+    {
+        // filter out: mailto:, tel:
+
+        return true;
+    }
+
     /**
      * If the current URL is missing informations, it cain obtain informations from the to merge url
      *

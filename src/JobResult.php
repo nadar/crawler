@@ -4,6 +4,8 @@ namespace Nadar\PageCrawler;
 
 class JobResult
 {
+    public $ignore = false;
+    
     public $title;
 
     public $content;
