@@ -46,7 +46,7 @@ class HtmlParser implements ParserInterface
         
 
         $jobResult = new JobResult();
-        $jobResult->content = $requestResponse->getContent();
+        $jobResult->content = strip_tags($requestResponse->getContent()); // get only the content between "body" tags
         $jobResult->title = $title;
         $jobResult->followUrls = $refs;
         
