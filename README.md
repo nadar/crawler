@@ -69,11 +69,12 @@ include 'vendor/autoload.php';
 
 $handler = new DebugHandler();
 
-$crawler = new Crawler('.........YOUR_WEBSITE........', new ArrayStack());
+$crawler = new Crawler('.........YOUR_WEBSITE........', new ArrayStorage, new LoopRunner);
 $crawler->addParser(new HtmlParser);
 $crawler->addParser(new PdfParser);
 $crawler->addHandler($handler);
-$crawler->start();
+$crawler->setup();
+$crawler->run();
 
 echo "==================" . PHP_EOL;
 echo "URLs: " . ($handler->counter) . PHP_EOL;
@@ -89,7 +90,7 @@ For a better understanding, here is en explenation of how the classes are capsul
 + Job: The job contains the url logic for the next "CURL"/Download Job
 + Parsers: The parsers will take the job informations in combination with the RequestResponse in order to generate a JobResult
 + JobResult: The Job result represents the result from a Parser.
-+ QueueItem: The queue item is extract from the job and is only used to store those informations with use of RuntimeStackInterface
++ QueueItem: The queue item is extract from the job and is only used to store those informations with use of StorageInterface
 
 
 Crawler -> Job -> RequestResponse -> Parser -> JobResult -> Result

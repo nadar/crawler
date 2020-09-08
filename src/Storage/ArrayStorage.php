@@ -1,18 +1,18 @@
 <?php
 
-namespace Nadar\PageCrawler\Stack;
+namespace Nadar\PageCrawler\Storage;
 
 use Nadar\PageCrawler\Crawler;
-use Nadar\PageCrawler\Interfaces\RuntimeStackInterface;
+use Nadar\PageCrawler\Interfaces\StorageInterface;
 use Nadar\PageCrawler\QueueItem;
 
-class ArrayStack implements RuntimeStackInterface
+class ArrayStorage implements StorageInterface
 {
     protected $done = [];
 
     protected $checksums = [];
 
-    public function onStart(Crawler $crawler)
+    public function onSetup(Crawler $crawler)
     {
         $this->done = [];
         $this->checksums = [];

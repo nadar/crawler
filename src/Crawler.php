@@ -4,13 +4,20 @@ namespace Nadar\PageCrawler;
 
 use Nadar\PageCrawler\Interfaces\HandlerInterface;
 use Nadar\PageCrawler\Interfaces\ParserInterface;
-use Nadar\PageCrawler\Interfaces\RuntimeStackInterface;
+use Nadar\PageCrawler\Interfaces\RunnerInterface;
+use Nadar\PageCrawler\Interfaces\StorageInterface;
 
 class Crawler
 {
     public $concurrentJobs = 30;
 
     public $baseUrl;
+
+    /**
+     * @var string|integer An ID which can be set when the crawler startes in order to re-identifie certain informations in the storage system,
+     * for example when running different projects async.
+     */
+    public $runId;
 
     /**
      * @var array An array with regular expression (including delimiters) which will be applied to found links so you can
@@ -32,21 +39,19 @@ class Crawler
     protected $handlers = [];
 
     /**
-     * @var RuntimeStackInterface
+     * @var StorageInterface
      */
-    protected $runtimeStack;
+    protected $storage;
 
-    // stack
+    /**
+     * @var RunnerInterface
+     */
+    protected $runner;
 
-    protected $done = [];
-
-    protected $queue = [];
-
-    protected $checksums = [];
-
-    public function __construct($baseUrl, RuntimeStackInterface $runtimeSack)
+    public function __construct($baseUrl, StorageInterface $storage, RunnerInterface $runner)
     {
-        $this->runtimeStack = $runtimeSack;
+        $this->storage = $storage;
+        $this->runner  = $runner;
         $this->baseUrl = new Url($baseUrl);
     }
 
@@ -61,10 +66,9 @@ class Crawler
             }
         }
 
-        if (!$this->runtimeStack->isUrlDone($uniqueUrl)) {
-            $this->runtimeStack->pushQueue(new QueueItem($job->url->getNormalized(), $job->referrerUrl->getNormalized()));
-            //$this->queue[] = $job;
-            $this->runtimeStack->markUrlAsDone($uniqueUrl);
+        if (!$this->storage->isUrlDone($uniqueUrl)) {
+            $this->storage->pushQueue(new QueueItem($job->url->getNormalized(), $job->referrerUrl->getNormalized()));
+            $this->storage->markUrlAsDone($uniqueUrl);
         }
 
         unset($uniqueUrl);
@@ -104,7 +108,7 @@ class Crawler
     {
         $jobs = [];
         /** @var QueueItem $queueItem */
-        foreach ($this->runtimeStack->retrieveQueue($this->concurrentJobs) as $queueItem) {
+        foreach ($this->storage->retrieveQueue($this->concurrentJobs) as $queueItem) {
             $jobs[] = new Job(new Url($queueItem->url), new Url($queueItem->referrerUrl));
         }
 
@@ -116,7 +120,6 @@ class Crawler
         $curlRequests = [];
         $multiCurl = curl_multi_init();
 
-        //$jobs = array_splice($this->queue, 0, $this->concurrentJobs);
         $jobs = $this->retrieveQueueJobs();
 
         if (empty($jobs)) {
@@ -143,10 +146,10 @@ class Crawler
             $requestResponse = new RequestResponse(curl_multi_getcontent($ch), curl_getinfo($ch, CURLINFO_CONTENT_TYPE));
 
             $checksum = $requestResponse->getChecksum();
-            if (!$this->runtimeStack->isChecksumDone($checksum)) {
+            if (!$this->storage->isChecksumDone($checksum)) {
                 $queueJob = $jobs[$queueKey];
                 $queueJob->run($requestResponse, $this);
-                $this->runtimeStack->markChecksumAsDone($checksum);
+                $this->storage->markChecksumAsDone($checksum);
             }
             unset($checksum);
            
@@ -161,18 +164,17 @@ class Crawler
         // if the queue is not yet empty, re-run the run method
         unset($curlRequests, $multiCurl);
 
-        $this->run();
+        $this->runner->afterRun($this);
     }
 
-    public function start()
+    public function setup()
     {
-        $this->runtimeStack->onStart($this);
+        $this->storage->onSetup($this);
         $this->push(new Job($this->baseUrl, $this->baseUrl));
-        $this->run();
     }
 
     public function end()
     {
-        $this->runtimeStack->onEnd($this);
+        $this->storage->onEnd($this);
     }
 }

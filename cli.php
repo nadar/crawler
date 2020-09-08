@@ -3,18 +3,19 @@
 use Nadar\PageCrawler\Crawler;
 use Nadar\PageCrawler\Handlers\DebugHandler;
 use Nadar\PageCrawler\Parsers\HtmlParser;
-use Nadar\PageCrawler\Parsers\PdfParser;
-use Nadar\PageCrawler\Stack\ArrayStack;
+use Nadar\PageCrawler\Runners\LoopRunner;
+use Nadar\PageCrawler\Storage\ArrayStorage;
 
 include 'vendor/autoload.php';
 
 
 $handler = new DebugHandler();
 
-$crawler = new Crawler('https://www.ak71.ch', new ArrayStack);
+$crawler = new Crawler('https://www.ak71.ch', new ArrayStorage, new LoopRunner);
 $crawler->addParser(new HtmlParser);
 $crawler->addHandler($handler);
-$crawler->start();
+$crawler->setup();
+$crawler->run();
 
 echo "==================" . PHP_EOL;
 echo "URLs: " . ($handler->counter) . PHP_EOL;

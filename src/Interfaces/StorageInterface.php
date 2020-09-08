@@ -11,9 +11,9 @@ use Nadar\PageCrawler\QueueItem;
  * The runtime stack is a storage system which is required when the parsers run in order to determine whether an 
  * url is already parsed or not.
  */
-interface RuntimeStackInterface
+interface StorageInterface
 {
-    public function onStart(Crawler $crawler);
+    public function onSetup(Crawler $crawler);
 
     public function onEnd(Crawler $crawler);
 
