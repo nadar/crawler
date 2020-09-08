@@ -4,6 +4,7 @@ namespace Nadar\PageCrawler;
 
 use Nadar\PageCrawler\Interfaces\HandlerInterface;
 use Nadar\PageCrawler\Interfaces\ParserInterface;
+use Nadar\PageCrawler\Interfaces\RuntimeStackInterface;
 
 class Crawler
 {
@@ -26,20 +27,27 @@ class Crawler
      */
     public $urlFilter = [];
 
+    protected $parsers = [];
+
+    protected $handlers = [];
+
+    /**
+     * @var RuntimeStackInterface
+     */
+    protected $runtimeStack;
+
+    // stack
+
     protected $done = [];
 
     protected $queue = [];
 
-    protected $handlers = [];
-
-    protected $parsers = [];
-
     protected $checksums = [];
 
-    public function __construct($baseUrl)
+    public function __construct($baseUrl, RuntimeStackInterface $runtimeSack)
     {
+        $this->runtimeStack = $runtimeSack;
         $this->baseUrl = new Url($baseUrl);
-        $this->push(new Job($this, $this->baseUrl, $this->baseUrl));
     }
 
     public function push(Job $job)
@@ -49,14 +57,13 @@ class Crawler
         // filter certain pages
         foreach ($this->urlFilter as $regex) {
             if (preg_match($regex, $job->url->getNormalized()) === 1) {
-                echo "FILTERERED OUT " . $job->url->getNormalized() . PHP_EOL;
                 return false;
             }
         }
 
-        if (!in_array($uniqueUrl, $this->done, true)) {
+        if (!$this->runtimeStack->isUrlDone($uniqueUrl)) {
             $this->queue[] = $job;
-            $this->done[] = $uniqueUrl;
+            $this->runtimeStack->markUrlAsDone($uniqueUrl);
         }
 
         unset($uniqueUrl);
@@ -110,18 +117,18 @@ class Crawler
 
             $requestResponse = new RequestResponse(curl_multi_getcontent($ch), curl_getinfo($ch, CURLINFO_CONTENT_TYPE));
 
-            if (!in_array($requestResponse->getChecksum(), $this->checksums, true)) {
+            $checksum = $requestResponse->getChecksum();
+            if (!$this->runtimeStack->isChecksumDone($checksum)) {
                 $queueJob = $jobs[$queueKey];
                 $queueJob->run($requestResponse);
-                $this->checksums[] = $requestResponse->getChecksum();
+                $this->runtimeStack->markChecksumAsDone($checksum);
             }
+            unset($checksum);
            
             curl_multi_remove_handle($multiCurl, $ch);
         }
 
-
         unset($requestResponse, $queueJob, $queueKey, $jobs, $ch);
-        
 
         // close
         curl_multi_close($multiCurl);
@@ -136,7 +143,15 @@ class Crawler
         }
     }
 
+    public function start()
+    {
+        $this->runtimeStack->onStart($this);
+        $this->push(new Job($this, $this->baseUrl, $this->baseUrl));
+        $this->run();
+    }
+
     public function end()
     {
+        $this->runtimeStack->onEnd($this);
     }
 }

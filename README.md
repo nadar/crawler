@@ -20,7 +20,7 @@ composer require nadar/page-crawler
 
 ## Usage
 
-Create your custom handler, this is the classes which will interact with the crawler in order to store your content somwehere.
+Create your custom handler, this is the classes which will interact with the crawler in order to store your content somwehere. This function will run after each url is crawled:
 
 ```php
 class MyCrawlHandler implements \Nadar\PageCrawler\Interfaces\HandlerInterface
@@ -32,11 +32,13 @@ class MyCrawlHandler implements \Nadar\PageCrawler\Interfaces\HandlerInterface
 }
 ```
 
+The handler class within the full setup:
+
 ```php
 $crawler = new Crawler('https://luya.io');
 
-// what kind of documents would you like to parse?
-$crawler->registerParser(new Nadar\PageCrawler\PArsers\Html);
+// what kind of document types would you like to parse?
+$crawler->registerParser(new Nadar\PageCrawler\Parsers\Html);
 
 // register your handler in order to interact with the results, maybe store them in a database?
 $crawler->registerHandler(new MyCrawlHandler);
@@ -54,3 +56,27 @@ Of course those benchmarks may vary depending on internet connection, bandwidth,
 | 3785          | 15                    | 18 MB             | 260 Seconds       | Html
 | 1509          | 30                    | 97 MB             | 225 Seconds       | Html, PDF
 | 1374          | 30                    | 269 MB            | 87 Seconds        | Html, PDF
+
+This is the example benchmark setup:
+
+```php
+use Nadar\PageCrawler\Crawler;
+use Nadar\PageCrawler\Handlers\DebugHandler;
+use Nadar\PageCrawler\Parsers\HtmlParser;
+use Nadar\PageCrawler\Parsers\PdfParser;
+
+include 'vendor/autoload.php';
+
+$handler = new DebugHandler();
+
+$crawler = new Crawler('.........YOUR_WEBSITE........');
+$crawler->addParser(new HtmlParser);
+$crawler->addParser(new PdfParser);
+$crawler->addHandler($handler);
+$crawler->start();
+
+echo "==================" . PHP_EOL;
+echo "URLs: " . ($handler->counter) . PHP_EOL;
+echo "time: " . ($handler->elapsedTime()) . PHP_EOL;
+echo "peak: " . $handler->memoryPeak() . PHP_EOL;
+```

@@ -4,9 +4,9 @@ namespace Nadar\PageCrawler;
 
 class Job
 {
-    protected $crawler;
-
     public $url;
+
+    protected $crawler;
 
     protected $referrerUrl;
 
