@@ -5,13 +5,14 @@ use Nadar\PageCrawler\Handlers\DebugHandler;
 use Nadar\PageCrawler\Parsers\HtmlParser;
 use Nadar\PageCrawler\Runners\LoopRunner;
 use Nadar\PageCrawler\Storage\ArrayStorage;
+use Nadar\PageCrawler\Storage\FileStorage;
 
 include 'vendor/autoload.php';
 
 
 $handler = new DebugHandler();
 
-$crawler = new Crawler('https://www.ak71.ch', new ArrayStorage, new LoopRunner);
+$crawler = new Crawler('https://www.ak71.ch', new FileStorage(dirname(__FILE__) . '/runtime'), new LoopRunner);
 $crawler->addParser(new HtmlParser);
 $crawler->addHandler($handler);
 $crawler->setup();
