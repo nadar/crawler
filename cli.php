@@ -3,17 +3,19 @@
 use Nadar\PageCrawler\Crawler;
 use Nadar\PageCrawler\Handlers\DebugHandler;
 use Nadar\PageCrawler\Parsers\HtmlParser;
-use Nadar\PageCrawler\Parsers\PdfParser;
+use Nadar\PageCrawler\Runners\LoopRunner;
+use Nadar\PageCrawler\Storage\ArrayStorage;
+use Nadar\PageCrawler\Storage\FileStorage;
 
 include 'vendor/autoload.php';
 
 
 $handler = new DebugHandler();
 
-$crawler = new Crawler('https://zephir.ch');
+$crawler = new Crawler('https://www.luya.io', new FileStorage(dirname(__FILE__) . '/runtime'), new LoopRunner);
 $crawler->addParser(new HtmlParser);
-$crawler->addParser(new PdfParser);
 $crawler->addHandler($handler);
+$crawler->setup();
 $crawler->run();
 
 echo "==================" . PHP_EOL;
