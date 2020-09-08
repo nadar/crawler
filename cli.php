@@ -12,7 +12,7 @@ include 'vendor/autoload.php';
 
 $handler = new DebugHandler();
 
-$crawler = new Crawler('https://www.ak71.ch', new FileStorage(dirname(__FILE__) . '/runtime'), new LoopRunner);
+$crawler = new Crawler('https://www.luya.io', new FileStorage(dirname(__FILE__) . '/runtime'), new LoopRunner);
 $crawler->addParser(new HtmlParser);
 $crawler->addHandler($handler);
 $crawler->setup();
