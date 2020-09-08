@@ -3,6 +3,7 @@
 namespace Nadar\PageCrawler\Interfaces;
 
 use Nadar\PageCrawler\Crawler;
+use Nadar\PageCrawler\QueueItem;
 
 /**
  * Runtime Stack
@@ -23,4 +24,18 @@ interface RuntimeStackInterface
     public function isChecksumDone($checksum);
 
     public function markChecksumAsDone($checksum);
+
+    public function pushQueue(QueueItem $queueItem);
+
+    /**
+     * Must return an array with QueueItem objects and the retrieved items MUST be deleted from the queue!
+     * 
+     * + Must return an array with QueueItems
+     * + The runtime stack integrator retrieveQueue() must take care of empting the queue
+     * + empty if the queue is empty, an empty array will be returned. so the crawler knows to finish the crawler process.
+     *
+     * @param integer $amount
+     * @return array
+     */
+    public function retrieveQueue($amount): array;
 }

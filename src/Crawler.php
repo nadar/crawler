@@ -62,7 +62,8 @@ class Crawler
         }
 
         if (!$this->runtimeStack->isUrlDone($uniqueUrl)) {
-            $this->queue[] = $job;
+            $this->runtimeStack->pushQueue(new QueueItem($job->url->getNormalized(), $job->referrerUrl->getNormalized()));
+            //$this->queue[] = $job;
             $this->runtimeStack->markUrlAsDone($uniqueUrl);
         }
 
@@ -74,7 +75,12 @@ class Crawler
         $this->handlers[] = $handler;
     }
 
-    public function getHandlers()
+    /**
+     * Undocumented function
+     *
+     * @return HandlerInterface[]
+     */
+    public function getHandlers() : array
     {
         return $this->handlers;
     }
@@ -84,9 +90,25 @@ class Crawler
         $this->parsers[] = $parser;
     }
 
-    public function getParsers()
+    /**
+     * Undocumented function
+     *
+     * @return ParserInterface[]
+     */
+    public function getParsers() : array
     {
         return $this->parsers;
+    }
+
+    public function retrieveQueueJobs()
+    {
+        $jobs = [];
+        /** @var QueueItem $queueItem */
+        foreach ($this->runtimeStack->retrieveQueue($this->concurrentJobs) as $queueItem) {
+            $jobs[] = new Job(new Url($queueItem->url), new Url($queueItem->referrerUrl));
+        }
+
+        return $jobs;
     }
 
     public function run()
@@ -94,14 +116,17 @@ class Crawler
         $curlRequests = [];
         $multiCurl = curl_multi_init();
 
-        $jobs = array_splice($this->queue, 0, $this->concurrentJobs);
+        //$jobs = array_splice($this->queue, 0, $this->concurrentJobs);
+        $jobs = $this->retrieveQueueJobs();
+
+        if (empty($jobs)) {
+            return $this->end();
+        }
 
         foreach ($jobs as $queueKey => $queueJob) {
-            if ($queueJob->validate()) {
+            if ($queueJob->validate($this)) {
                 $curlRequests[$queueKey] = $queueJob->generateCurl();
                 curl_multi_add_handle($multiCurl, $curlRequests[$queueKey]);
-            } else {
-                unset($this->queue[$queueKey]);
             }
         }
 
@@ -120,7 +145,7 @@ class Crawler
             $checksum = $requestResponse->getChecksum();
             if (!$this->runtimeStack->isChecksumDone($checksum)) {
                 $queueJob = $jobs[$queueKey];
-                $queueJob->run($requestResponse);
+                $queueJob->run($requestResponse, $this);
                 $this->runtimeStack->markChecksumAsDone($checksum);
             }
             unset($checksum);
@@ -136,17 +161,13 @@ class Crawler
         // if the queue is not yet empty, re-run the run method
         unset($curlRequests, $multiCurl);
 
-        if (!empty($this->queue)) {
-            $this->run();
-        } else {
-            $this->end();
-        }
+        $this->run();
     }
 
     public function start()
     {
         $this->runtimeStack->onStart($this);
-        $this->push(new Job($this, $this->baseUrl, $this->baseUrl));
+        $this->push(new Job($this->baseUrl, $this->baseUrl));
         $this->run();
     }
 

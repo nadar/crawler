@@ -6,20 +6,17 @@ class Job
 {
     public $url;
 
-    protected $crawler;
+    public $referrerUrl;
 
-    protected $referrerUrl;
-
-    public function __construct(Crawler $crawler, Url $url, Url $referrerUrl)
+    public function __construct(Url $url, Url $referrerUrl)
     {
-        $this->crawler = $crawler;
         $this->url = $url;
         $this->referrerUrl = $referrerUrl;
     }
 
-    public function validate() : bool {
+    public function validate(Crawler $crawler) : bool {
 
-        foreach ($this->crawler->getParsers() as $handler) {
+        foreach ($crawler->getParsers() as $handler) {
             if ($handler->validateUrl($this->url)) {
                 return true;
             }
@@ -38,19 +35,19 @@ class Job
         return $curl;
     }
 
-    public function run(RequestResponse $requestResponse)
+    public function run(RequestResponse $requestResponse, Crawler $crawler)
     {
-        foreach ($this->crawler->getParsers() as $parser) {
+        foreach ($crawler->getParsers() as $parser) {
             if ($parser->validateRequestResponse($requestResponse)) {
                 $jobResult = $parser->run($this, $requestResponse);
 
                 foreach ($jobResult->followUrls as $url) {
                     $url = new Url($url);
-                    $url->merge($this->crawler->baseUrl);
+                    $url->merge($crawler->baseUrl);
 
-                    if ($url->isValid() && $this->crawler->baseUrl->sameHost($url)) {
-                        $job = new Job($this->crawler, $url, $this->url);
-                        $this->crawler->push($job);
+                    if ($url->isValid() && $crawler->baseUrl->sameHost($url)) {
+                        $job = new Job($url, $this->url);
+                        $crawler->push($job);
                         unset ($job);
                     }
                     
@@ -71,7 +68,7 @@ class Job
                 $result->title = $jobResult->title;
 
                 // post the result to the handlers
-                foreach ($this->crawler->getHandlers() as $handler) {
+                foreach ($crawler->getHandlers() as $handler) {
                     $handler->afterRun($result);
                 }
 

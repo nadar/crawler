@@ -69,7 +69,7 @@ include 'vendor/autoload.php';
 
 $handler = new DebugHandler();
 
-$crawler = new Crawler('.........YOUR_WEBSITE........');
+$crawler = new Crawler('.........YOUR_WEBSITE........', new ArrayStack());
 $crawler->addParser(new HtmlParser);
 $crawler->addParser(new PdfParser);
 $crawler->addHandler($handler);
@@ -80,3 +80,16 @@ echo "URLs: " . ($handler->counter) . PHP_EOL;
 echo "time: " . ($handler->elapsedTime()) . PHP_EOL;
 echo "peak: " . $handler->memoryPeak() . PHP_EOL;
 ```
+
+## Developer Informations
+
+For a better understanding, here is en explenation of how the classes are capsulated and for what they are used.
+
++ Crawler: The Crawler is the main programm, it starts, runs and ends.
++ Job: The job contains the url logic for the next "CURL"/Download Job
++ Parsers: The parsers will take the job informations in combination with the RequestResponse in order to generate a JobResult
++ JobResult: The Job result represents the result from a Parser.
++ QueueItem: The queue item is extract from the job and is only used to store those informations with use of RuntimeStackInterface
+
+
+Crawler -> Job -> RequestResponse -> Parser -> JobResult -> Result

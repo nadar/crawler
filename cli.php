@@ -11,9 +11,8 @@ include 'vendor/autoload.php';
 
 $handler = new DebugHandler();
 
-$crawler = new Crawler('https://zephir.ch', new ArrayStack);
+$crawler = new Crawler('https://www.ak71.ch', new ArrayStack);
 $crawler->addParser(new HtmlParser);
-$crawler->addParser(new PdfParser);
 $crawler->addHandler($handler);
 $crawler->start();
 

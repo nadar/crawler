@@ -4,11 +4,10 @@ namespace Nadar\PageCrawler\Stack;
 
 use Nadar\PageCrawler\Crawler;
 use Nadar\PageCrawler\Interfaces\RuntimeStackInterface;
+use Nadar\PageCrawler\QueueItem;
 
 class ArrayStack implements RuntimeStackInterface
 {
-    //protected $queue = [];
-
     protected $done = [];
 
     protected $checksums = [];
@@ -43,5 +42,19 @@ class ArrayStack implements RuntimeStackInterface
     public function markChecksumAsDone($checksum)
     {
         $this->checksums[] = $checksum;
+    }
+
+    /////////// QUEUE
+
+    protected $queue = [];
+
+    public function pushQueue(QueueItem $queueItem)
+    {
+        $this->queue[] = $queueItem;
+    }
+
+    public function retrieveQueue($amount): array
+    {
+        return array_splice($this->queue, 0, $amount);
     }
 }
