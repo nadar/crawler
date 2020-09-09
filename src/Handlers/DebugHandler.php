@@ -27,7 +27,7 @@ class DebugHandler implements HandlerInterface
 
         echo $result->url->getNormalized() . " | " . $result->title . " | ";
 
-        echo $this->readableMemory(memory_get_usage(true));
+        echo $this->memory();
 
         echo PHP_EOL;
     }
@@ -35,6 +35,11 @@ class DebugHandler implements HandlerInterface
     public function memoryPeak()
     {
         return $this->readableMemory(memory_get_peak_usage(true));
+    }
+
+    public function memory()
+    {
+        return $this->readableMemory(memory_get_usage(true));
     }
 
     private function readableMemory($memory)

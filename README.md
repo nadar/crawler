@@ -54,11 +54,13 @@ $crawler->run();
 
 Of course those benchmarks may vary depending on internet connection, bandwidth, servers but we made all the tests under the same circumstances. The memory peak varys strong when using the PDF parsers.
 
-| Index Size     | Concurrent Requests    | Memory Peak     |Time               | Parsers
+| Index Size     | Concurrent Requests    | Memory Peak     |Time               | Storage
 |-------------- |-------------------    |-----------        |----               | ---
-| 3785          | 15                    | 18 MB             | 260 Seconds       | Html
-| 1509          | 30                    | 97 MB             | 225 Seconds       | Html, PDF
-| 1374          | 30                    | 269 MB            | 87 Seconds        | Html, PDF
+| 3785          | 15                    | 18 MB             | 260 Seconds       | Array
+| 1509          | 30                    | 97 MB             | 225 Seconds       | Array
+| 1374          | 30                    | 269 MB            | 87 Seconds        | Array
+
+> The benchmark website is https://demo.luya.io/
 
 
 This is the example benchmark setup:

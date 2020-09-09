@@ -17,11 +17,11 @@ interface StorageInterface
 
     public function onEnd(Crawler $crawler);
 
-    public function isUrlDone($url);
+    public function isUrlDone($url): bool;
 
     public function markUrlAsDone($url);
 
-    public function isChecksumDone($checksum);
+    public function isChecksumDone($checksum): bool;
 
     public function markChecksumAsDone($checksum);
 

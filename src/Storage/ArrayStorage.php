@@ -24,7 +24,7 @@ class ArrayStorage implements StorageInterface
         $this->checksums = [];
     }
 
-    public function isUrlDone($url)
+    public function isUrlDone($url) : bool
     {
         return in_array($url, $this->done, true);
     }
@@ -34,7 +34,7 @@ class ArrayStorage implements StorageInterface
         $this->done[] = $url;
     }
 
-    public function isChecksumDone($checksum)
+    public function isChecksumDone($checksum) : bool
     {
         return in_array($checksum, $this->checksums);
     }

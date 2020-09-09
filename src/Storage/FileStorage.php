@@ -45,7 +45,7 @@ class FileStorage implements StorageInterface
         unlink($this->folder . $this->queueFileName);
     }
 
-    public function isUrlDone($url)
+    public function isUrlDone($url) : bool
     {
         return in_array($url, $this->fileToArray($this->folder . $this->doneFileName));
     }
@@ -55,7 +55,7 @@ class FileStorage implements StorageInterface
         file_put_contents($this->folder . $this->doneFileName, $url . PHP_EOL, FILE_APPEND);
     }
 
-    public function isChecksumDone($checksum)
+    public function isChecksumDone($checksum) : bool
     {
         return in_array($checksum, $this->fileToArray($this->folder . $this->checksumFileName));
     }
@@ -91,9 +91,10 @@ class FileStorage implements StorageInterface
         $items = [];
         foreach ($data as $row) {
             list ($url, $ref) = explode(";", $row);
-
             $items[] = new QueueItem($url, $ref);
         }
+
+        unset($rows, $data);
 
         return $items;
     }
