@@ -2,6 +2,11 @@
 
 namespace Nadar\Crawler;
 
+/**
+ * Represents an URL
+ * 
+ * In order to store informations use `getNormalized()`.
+ */
 class Url
 {
     protected $url;

@@ -61,7 +61,7 @@ class HtmlParser implements ParserInterface
 
     public function validateUrl(Url $url) : bool
     {
-        return in_array($url->getPathExtension(), ['', 'html', 'php', 'html']);
+        return in_array($url->getPathExtension(), ['', 'html', 'php', 'htm']);
     }
 
     public function validateRequestResponse(RequestResponse $requestResponse): bool
