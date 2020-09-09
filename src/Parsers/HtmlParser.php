@@ -39,13 +39,17 @@ class HtmlParser implements ParserInterface
             unset($node);
         }
 
+        $content = $this->stripTags ? strip_tags($content) : $content;
+        $content = $this->stripCrawlIgnore($content);
+
         $jobResult = new JobResult();
-        $jobResult->content = $jobResult->trim($this->stripTags ? strip_tags($content) : $content); // get only the content between "body" tags
+        $jobResult->content = $jobResult->trim($content); // get only the content between "body" tags
         $jobResult->title = $jobResult->trim($this->getDomTitle($dom));
         $jobResult->followUrls = $refs;
         $jobResult->language = $this->getDomLanguage($dom);
         $jobResult->keywords = $this->getDomKeywords($dom);
         $jobResult->description = $this->getDomDescription($dom);
+        $jobResult->group = $this->getCrawlGroup($content);
         
         unset($dom, $links, $refs, $link, $requestResponse, $content, $body);
 
