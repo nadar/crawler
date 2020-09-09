@@ -29,5 +29,8 @@ class CrawlerTest extends CrawlerTestCase
 
         $this->assertTrue($crawler->isUrlInFilter(new Url('https://luya.io'), ["/luya.io/"]));
         $this->assertFalse($crawler->isUrlInFilter(new Url('https://luya.io'), ["/example.com/"]));
+        $this->assertTrue($crawler->isUrlInFilter(new Url('https://luya.io/test.html'), ["#.html#i"]));
+        $this->assertTrue($crawler->isUrlInFilter(new Url('https://luya.io/test/agenda'), ["#/agenda#i"]));
+        $this->assertFalse($crawler->isUrlInFilter(new Url('https://test/the-agenda'), ["#/agenda#i"]));
     }
 }

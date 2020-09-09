@@ -27,8 +27,8 @@ class Crawler
      *
      * ```php
      * 'urlFilterRules' => [
-     *     '/\.\//i',           // filter all links with a dot inside
-     *     '/agenda\//i',       // filter all pages who contains "agenda/"
+     *     '#.html#i', // filter all links with `.html`
+     *     '#/agenda#i', // filter all links which contain the word agenda 
      * ],
      * ```
      */
