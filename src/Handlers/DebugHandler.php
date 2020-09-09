@@ -2,6 +2,7 @@
 
 namespace Nadar\Crawler\Handlers;
 
+use Nadar\Crawler\Crawler;
 use Nadar\Crawler\Interfaces\HandlerInterface;
 use Nadar\Crawler\Result;
 
@@ -46,6 +47,16 @@ class DebugHandler implements HandlerInterface
         }
         
         return round($memory/1048576, 2)." megabytes";
+    }
+
+    public function onEnd(Crawler $crawler)
+    {
+        $this->summary();
+    }
+
+    public function onSetup(Crawler $crawler)
+    {
+        gc_collect_cycles();
     }
 
     public function summary()

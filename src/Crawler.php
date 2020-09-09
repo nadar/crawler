@@ -178,11 +178,17 @@ class Crawler
     public function setup()
     {
         $this->storage->onSetup($this);
+        foreach ($this->getHandlers() as $handler) {
+            $handler->onSetup($this);
+        }
         $this->push(new Job($this->baseUrl, $this->baseUrl));
     }
 
     public function end()
     {
         $this->storage->onEnd($this);
+        foreach ($this->getHandlers() as $handler) {
+            $handler->onEnd($this);
+        }
     }
 }
