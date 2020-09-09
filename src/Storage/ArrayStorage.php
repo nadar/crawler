@@ -12,6 +12,8 @@ class ArrayStorage implements StorageInterface
 
     protected $checksums = [];
 
+    protected $queue = [];
+
     public function onSetup(Crawler $crawler)
     {
         $this->done = [];
@@ -43,10 +45,6 @@ class ArrayStorage implements StorageInterface
     {
         $this->checksums[] = $checksum;
     }
-
-    /////////// QUEUE
-
-    protected $queue = [];
 
     public function pushQueue(QueueItem $queueItem)
     {

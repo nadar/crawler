@@ -18,7 +18,7 @@ A highly extendible, dependency free Crawler for HTML, PDFS or any other type of
 ## Installation
 
 ```
-composer require nadar/page-crawler
+composer require nadar/crawler
 ```
 
 ## Usage
