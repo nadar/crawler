@@ -112,6 +112,18 @@ class HtmlParser implements ParserInterface
         return null;
     }
 
+    public function stripCrawlIgnore($content)
+    {
+        preg_match_all("/\[CRAWL_IGNORE\](.*?)\[\/CRAWL_IGNORE\]/s", $content, $output);	
+        if (isset($output[0]) && count($output[0]) > 0) {	
+            foreach ($output[0] as $ignorPartial) {	
+                $content = str_replace($ignorPartial, '', $content);	
+            }
+        }
+
+        return $content;
+    }
+
     public function getDomTitle(DomDocument $dom)
     {
         $list = $dom->getElementsByTagName("title");
@@ -158,17 +170,5 @@ class HtmlParser implements ParserInterface
         }
 
         return null;
-    }
-
-    public function stripCrawlIgnore($content)
-    {
-        preg_match_all("/\[CRAWL_IGNORE\](.*?)\[\/CRAWL_IGNORE\]/s", $content, $output);	
-        if (isset($output[0]) && count($output[0]) > 0) {	
-            foreach ($output[0] as $ignorPartial) {	
-                $content = str_replace($ignorPartial, '', $content);	
-            }
-        }
-
-        return $content;
     }
 }

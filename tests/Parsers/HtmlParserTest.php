@@ -37,6 +37,13 @@ class HtmlParserTest extends CrawlerTestCase
         
     }
 
+    public function testCrawlerTags()
+    {
+        $parser = new HtmlParser;
+        $this->assertSame('hello  are you?', $parser->stripCrawlIgnore('hello [CRAWL_IGNORE]how[/CRAWL_IGNORE] are you?'));
+        $this->assertSame('the', $parser->getCrawlGroup('this is [CRAWL_GROUP]the[/CRAWL_GROUP] group'));
+    }
+
     public function testGetContent()
     {
         $job = new Job(new Url('https://example.com/'), new Url('https://example.com/'));
