@@ -18,7 +18,7 @@ class CrawlerTest extends CrawlerTestCase
         $crawler->addParser(new HtmlParser);
         $crawler->addHandler($debug);
         $this->assertEmpty($crawler->setup());
-
+        $this->assertEmpty($crawler->run());
         $this->assertNotEmpty($debug->elapsedTime());
     }
 }
