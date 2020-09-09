@@ -13,6 +13,30 @@ use Nadar\Crawler\Url;
 
 class HtmlParserTest extends CrawlerTestCase
 {
+    public function testDomDocuemntReaderInformations()
+    {
+        $parser = new HtmlParser;
+
+        $dom = $parser->generateDomDocuemnt('<!doctype html><html lang="de">
+        <head>
+            <meta name="description" content="meta meta">
+            <meta name="keywords" content="kws kws">
+            <title>title</title>
+        </head>
+        <body>content</body>
+</html>');
+        $this->assertSame('de', $parser->getDomLanguage($dom));
+        $this->assertSame('title', $parser->getDomTitle($dom));
+        $this->assertSame('meta meta', $parser->getDomDescription($dom));
+        $this->assertSame('kws kws', $parser->getDomKeywords($dom));
+
+        // test with invalid or none existing html lang attribute
+
+        $dom = $parser->generateDomDocuemnt('<!doctype html><html><head><title>title</title></head><body>content</body></html>');
+        $this->assertSame(null, $parser->getDomLanguage($dom));
+        
+    }
+
     public function testGetContent()
     {
         $job = new Job(new Url('https://example.com/'), new Url('https://example.com/'));

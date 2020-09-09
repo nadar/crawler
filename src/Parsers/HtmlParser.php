@@ -20,24 +20,13 @@ class HtmlParser implements ParserInterface
             return new JobIgnoreResult();
         }
         
-        $dom = new DOMDocument();
-
-        // Parse the HTML. The @ is used to suppress any parsing errors
-        // that will be thrown if the $html string isn't valid XHTML.
-        @$dom->loadHTML($requestResponse->getContent());
+        $dom = $this->generateDomDocuemnt($requestResponse->getContent());
 
         // follow links
         $links = $dom->getElementsByTagName('a');
         $refs = [];
         foreach ($links as $link) {
             $refs[] = $link->getAttribute('href');
-        }
-
-        // title
-        $title = null;
-        $list = $dom->getElementsByTagName("title");
-        if ($list->length > 0) {
-            $title = $list->item(0)->textContent;
         }
 
         // body content
@@ -52,8 +41,11 @@ class HtmlParser implements ParserInterface
 
         $jobResult = new JobResult();
         $jobResult->content = $jobResult->trim($this->stripTags ? strip_tags($content) : $content); // get only the content between "body" tags
-        $jobResult->title = $jobResult->trim($title);
+        $jobResult->title = $jobResult->trim($this->getDomTitle($dom));
         $jobResult->followUrls = $refs;
+        $jobResult->language = $this->getDomLanguage($dom);
+        $jobResult->keywords = $this->getDomKeywords($dom);
+        $jobResult->description = $this->getDomDescription($dom);
         
         unset($dom, $links, $refs, $link, $requestResponse, $content, $body);
 
@@ -68,6 +60,23 @@ class HtmlParser implements ParserInterface
     public function validateRequestResponse(RequestResponse $requestResponse): bool
     {
         return in_array($requestResponse->getContentType(), ['text/html']);
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $content
+     * @return DOMDocument
+     */
+    public function generateDomDocuemnt($content)
+    {
+        $dom = new DOMDocument();
+
+        // Parse the HTML. The @ is used to suppress any parsing errors
+        // that will be thrown if the $html string isn't valid XHTML.
+        @$dom->loadHTML($content);
+
+        return $dom;
     }
 
     public function isCrawlFullIgnore($content)
@@ -103,25 +112,52 @@ class HtmlParser implements ParserInterface
         return null;
     }
 
-    public function getLanguage($content)
+    public function getDomTitle(DomDocument $dom)
     {
-        //         return $crawler->filterXPath('//html')->attr('lang');	
+        $list = $dom->getElementsByTagName("title");
+        if ($list->length > 0) {
+            return $list->item(0)->textContent;
+        }
+
+        return null;
     }
 
-    public function getDescription($content)
+    public function getDomLanguage(DOMDocument $dom)
     {
-        //$descriptions = $crawler->filterXPath("//meta[@name='description']")->extract(['content']); 
+        $html = $dom->getElementsByTagName('html');
+
+        if ($html->length > 0) {
+            $tag = $html->item(0);
+            return $tag->hasAttribute('lang') ? $tag->getAttribute('lang') : null;
+        }
+
+        return null;	
     }
 
-    public function getKeywords($content)
+    public function getDomDescription(DOMDocument $dom)
     {
-        /*
-                $descriptions = $crawler->filterXPath("//meta[@name='keywords']")->extract(['content']);	
+        $metas = $dom->getElementsByTagName('meta');
 
-        if (isset($descriptions[0])) {	
-            return str_replace(",", " ", $descriptions[0]);	
-        }	
-        */
+        foreach ($metas as $meta) {
+            if (strtolower($meta->getAttribute('name')) == 'description') {
+                return $meta->getAttribute('content');
+            }
+        }
+
+        return null;
+    }
+
+    public function getDomKeywords(DOMDocument $dom)
+    {
+        $metas = $dom->getElementsByTagName('meta');
+
+        foreach ($metas as $meta) {
+            if (strtolower($meta->getAttribute('name')) == 'keywords') {
+                return $meta->getAttribute('content');
+            }
+        }
+
+        return null;
     }
 
     public function stripCrawlIgnore($content)
@@ -130,7 +166,7 @@ class HtmlParser implements ParserInterface
         if (isset($output[0]) && count($output[0]) > 0) {	
             foreach ($output[0] as $ignorPartial) {	
                 $content = str_replace($ignorPartial, '', $content);	
-            }	
+            }
         }
 
         return $content;
