@@ -13,23 +13,22 @@ class Result
 
     public $contentType;
 
-    public $format;
+    public $parser;
 
-    // custom
+    public $checksum;
 
+    // Response information from the Parser
 
     /**
      * @var Url $url
      */
     public $url;
 
+    public $language;
+
     public $title;
 
     public $content;
-
-    public $followUrls = [];
-
-    public $language;
 
     public $keywords;
 
