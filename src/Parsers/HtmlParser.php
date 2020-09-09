@@ -5,6 +5,7 @@ namespace Nadar\Crawler\Parsers;
 use DOMDocument;
 use Nadar\Crawler\Interfaces\ParserInterface;
 use Nadar\Crawler\Job;
+use Nadar\Crawler\JobIgnoreResult;
 use Nadar\Crawler\JobResult;
 use Nadar\Crawler\RequestResponse;
 use Nadar\Crawler\Url;
@@ -14,9 +15,7 @@ class HtmlParser implements ParserInterface
     public function run(Job $job, RequestResponse $requestResponse) : JobResult
     {
         if ($this->isCrawlFullIgnore($requestResponse->getContent())) {
-            $job = new JobResult();
-            $job->ignore = true;
-            return $job;
+            return new JobIgnoreResult();
         }
         
         $dom = new DOMDocument();

@@ -5,6 +5,7 @@ namespace Nadar\Crawler\Parsers;
 use Exception;
 use Nadar\Crawler\Interfaces\ParserInterface;
 use Nadar\Crawler\Job;
+use Nadar\Crawler\JobIgnoreResult;
 use Nadar\Crawler\JobResult;
 use Nadar\Crawler\RequestResponse;
 use Nadar\Crawler\Url;
@@ -20,12 +21,17 @@ class PdfParser implements ParserInterface
     }
     public function run(Job $job, RequestResponse $requestResponse) : JobResult
     {
-        $parser = new Parser();
-        $pdf = $parser->parseContent($requestResponse->getContent());
-        $content = null;
-        foreach ($pdf->getPages() as $page) {
-            $content .= $page->getText();
+        try {
+            $parser = new Parser();
+            $pdf = $parser->parseContent($requestResponse->getContent());
+            $content = null;
+            foreach ($pdf->getPages() as $page) {
+                $content .= $page->getText();
+            }
+        } catch (Exception $exception) {
+            return new JobIgnoreResult();
         }
+
         $result = new JobResult();
         $result->content = $content;
         $result->title = $job->url->getPathFileName();
