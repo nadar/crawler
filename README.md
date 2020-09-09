@@ -38,7 +38,7 @@ class MyCrawlHandler implements \Nadar\Crawler\Interfaces\HandlerInterface
 The handler class within the full setup:
 
 ```php
-$crawler = new Crawler('https://luya.io');
+$crawler = new Crawler('https://luya.io', new ArrayStorage, new LoopRunner);
 
 // what kind of document types would you like to parse?
 $crawler->registerParser(new Nadar\Crawler\Parsers\Html);
