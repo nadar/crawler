@@ -24,12 +24,7 @@ class DebugHandler implements HandlerInterface
     public function afterRun(Result $result)
     {
         $this->counter++;
-
-        echo $result->url->getNormalized() . " | " . $result->title . " | ";
-
-        echo $this->memory();
-
-        echo PHP_EOL;
+        echo $result->url->getNormalized() . " | " . $result->title . " |  " . $this->memory() . PHP_EOL;
     }
 
     public function memoryPeak()
@@ -51,5 +46,14 @@ class DebugHandler implements HandlerInterface
         }
         
         return round($memory/1048576, 2)." megabytes";
+    }
+
+    public function summary()
+    {
+        echo "==================" . PHP_EOL;
+        echo "index size: " . ($this->counter) . PHP_EOL;
+        echo "time: " . ($this->elapsedTime()) . PHP_EOL;
+        echo "memory peak: " . $this->memoryPeak() . PHP_EOL;
+        echo "memory: " . $this->memory() . PHP_EOL;
     }
 }

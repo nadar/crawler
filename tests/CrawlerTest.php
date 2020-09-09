@@ -21,6 +21,7 @@ class CrawlerTest extends CrawlerTestCase
         $this->assertEmpty($crawler->setup());
         $this->assertEmpty($crawler->run());
         $this->assertNotEmpty($debug->elapsedTime());
+        $debug->summary();
     }
 
     public function testFilterUrl()
