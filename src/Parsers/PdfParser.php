@@ -13,12 +13,15 @@ use Smalot\PdfParser\Parser;
 
 class PdfParser implements ParserInterface
 {
+    public $utf8Encoding = true;
+
     public function __construct()
     {
         if (!class_exists(Parser::class)) {
             throw new Exception("In order to use the PDF parsers you have to add `smalot/pdfparser` in your composer.json!");
         }
     }
+
     public function run(Job $job, RequestResponse $requestResponse) : JobResult
     {
         try {
@@ -33,7 +36,7 @@ class PdfParser implements ParserInterface
         }
 
         $result = new JobResult();
-        $result->content = $content;
+        $result->content = $this->utf8Encoding ? mb_convert_encoding($content, 'UTF-8', 'UTF-8') : $content;
         $result->title = $job->url->getPathFileName();
 
         unset($parser, $pdf, $content);
