@@ -1,10 +1,10 @@
 <?php
 
-namespace Nadar\PageCrawler\Tests;
+namespace Nadar\Crawler\Tests;
 
 use PHPUnit\Framework\TestCase;
 
-class PageCrawlerTestCase extends TestCase
+class CrawlerTestCase extends TestCase
 {
     
 }

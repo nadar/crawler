@@ -1,9 +1,9 @@
 <?php
 
-namespace Nadar\PageCrawler\Handlers;
+namespace Nadar\Crawler\Handlers;
 
-use Nadar\PageCrawler\Interfaces\HandlerInterface;
-use Nadar\PageCrawler\Result;
+use Nadar\Crawler\Interfaces\HandlerInterface;
+use Nadar\Crawler\Result;
 
 class DebugHandler implements HandlerInterface
 {

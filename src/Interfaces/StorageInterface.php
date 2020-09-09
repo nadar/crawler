@@ -1,9 +1,9 @@
 <?php
 
-namespace Nadar\PageCrawler\Interfaces;
+namespace Nadar\Crawler\Interfaces;
 
-use Nadar\PageCrawler\Crawler;
-use Nadar\PageCrawler\QueueItem;
+use Nadar\Crawler\Crawler;
+use Nadar\Crawler\QueueItem;
 
 /**
  * Runtime Stack

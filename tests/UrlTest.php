@@ -1,10 +1,10 @@
 <?php
 
-namespace Nadar\PageCrawler\Tests;
+namespace Nadar\Crawler\Tests;
 
-use Nadar\PageCrawler\Url;
+use Nadar\Crawler\Url;
 
-class UrlTest extends PageCrawlerTestCase
+class UrlTest extends CrawlerTestCase
 {
     public function testUrlNoramlizer()
     {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Nadar\PageCrawler\Interfaces;
+namespace Nadar\Crawler\Interfaces;
 
-use \Nadar\PageCrawler\Result;
+use \Nadar\Crawler\Result;
 
 interface HandlerInterface
 {

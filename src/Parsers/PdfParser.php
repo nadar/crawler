@@ -1,12 +1,12 @@
 <?php
 
-namespace Nadar\PageCrawler\Parsers;
+namespace Nadar\Crawler\Parsers;
 
-use Nadar\PageCrawler\Interfaces\ParserInterface;
-use Nadar\PageCrawler\Job;
-use Nadar\PageCrawler\JobResult;
-use Nadar\PageCrawler\RequestResponse;
-use Nadar\PageCrawler\Url;
+use Nadar\Crawler\Interfaces\ParserInterface;
+use Nadar\Crawler\Job;
+use Nadar\Crawler\JobResult;
+use Nadar\Crawler\RequestResponse;
+use Nadar\Crawler\Url;
 use Smalot\PdfParser\Parser;
 
 class PdfParser implements ParserInterface

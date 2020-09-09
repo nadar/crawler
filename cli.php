@@ -1,18 +1,18 @@
 <?php
 
-use Nadar\PageCrawler\Crawler;
-use Nadar\PageCrawler\Handlers\DebugHandler;
-use Nadar\PageCrawler\Parsers\HtmlParser;
-use Nadar\PageCrawler\Runners\LoopRunner;
-use Nadar\PageCrawler\Storage\ArrayStorage;
-use Nadar\PageCrawler\Storage\FileStorage;
+use Nadar\Crawler\Crawler;
+use Nadar\Crawler\Handlers\DebugHandler;
+use Nadar\Crawler\Parsers\HtmlParser;
+use Nadar\Crawler\Runners\LoopRunner;
+use Nadar\Crawler\Storage\ArrayStorage;
+use Nadar\Crawler\Storage\FileStorage;
 
 include 'vendor/autoload.php';
 
 
 $handler = new DebugHandler();
 
-$crawler = new Crawler('https://www.luya.io', new FileStorage(dirname(__FILE__) . '/runtime'), new LoopRunner);
+$crawler = new Crawler('https://luya.io', new FileStorage(dirname(__FILE__) . '/runtime'), new LoopRunner);
 $crawler->addParser(new HtmlParser);
 $crawler->addHandler($handler);
 $crawler->setup();

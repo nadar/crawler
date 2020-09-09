@@ -1,11 +1,11 @@
 <?php
 
-namespace Nadar\PageCrawler\Storage;
+namespace Nadar\Crawler\Storage;
 
 use Exception;
-use Nadar\PageCrawler\Crawler;
-use Nadar\PageCrawler\Interfaces\StorageInterface;
-use Nadar\PageCrawler\QueueItem;
+use Nadar\Crawler\Crawler;
+use Nadar\Crawler\Interfaces\StorageInterface;
+use Nadar\Crawler\QueueItem;
 
 class FileStorage implements StorageInterface
 {

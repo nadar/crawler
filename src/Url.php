@@ -1,6 +1,6 @@
 <?php
 
-namespace Nadar\PageCrawler;
+namespace Nadar\Crawler;
 
 class Url
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Nadar\PageCrawler;
+namespace Nadar\Crawler;
 
-use Nadar\PageCrawler\Interfaces\HandlerInterface;
-use Nadar\PageCrawler\Interfaces\ParserInterface;
-use Nadar\PageCrawler\Interfaces\RunnerInterface;
-use Nadar\PageCrawler\Interfaces\StorageInterface;
+use Nadar\Crawler\Interfaces\HandlerInterface;
+use Nadar\Crawler\Interfaces\ParserInterface;
+use Nadar\Crawler\Interfaces\RunnerInterface;
+use Nadar\Crawler\Interfaces\StorageInterface;
 
 class Crawler
 {

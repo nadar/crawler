@@ -1,5 +1,5 @@
 {
-    "name": "nadar/page-crawler",
+    "name": "nadar/crawler",
     "type": "library",
     "authors": [
         {
@@ -12,12 +12,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Nadar\\PageCrawler\\" : "src/"
+            "Nadar\\Crawler\\" : "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Nadar\\PageCrawler\\Tests\\" : "tests/"
+            "Nadar\\Crawler\\Tests\\" : "tests/"
         }
     },
     "require-dev": {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Nadar\PageCrawler\Interfaces;
+namespace Nadar\Crawler\Interfaces;
 
-use Nadar\PageCrawler\Job;
-use Nadar\PageCrawler\JobResult;
-use Nadar\PageCrawler\RequestResponse;
-use Nadar\PageCrawler\Url;
+use Nadar\Crawler\Job;
+use Nadar\Crawler\JobResult;
+use Nadar\Crawler\RequestResponse;
+use Nadar\Crawler\Url;
 
 interface ParserInterface
 {

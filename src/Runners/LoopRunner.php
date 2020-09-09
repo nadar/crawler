@@ -1,9 +1,9 @@
 <?php
 
-namespace Nadar\PageCrawler\Runners;
+namespace Nadar\Crawler\Runners;
 
-use Nadar\PageCrawler\Crawler;
-use Nadar\PageCrawler\Interfaces\RunnerInterface;
+use Nadar\Crawler\Crawler;
+use Nadar\Crawler\Interfaces\RunnerInterface;
 
 class LoopRunner implements RunnerInterface
 {

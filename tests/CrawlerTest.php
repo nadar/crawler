@@ -1,14 +1,14 @@
 <?php
 
-namespace Nadar\PageCrawler\Tests;
+namespace Nadar\Crawler\Tests;
 
-use Nadar\PageCrawler\Crawler;
-use Nadar\PageCrawler\Parsers\HtmlParser;
-use Nadar\PageCrawler\Handlers\DebugHandler;
-use Nadar\PageCrawler\Runners\LoopRunner;
-use Nadar\PageCrawler\Storage\ArrayStorage;
+use Nadar\Crawler\Crawler;
+use Nadar\Crawler\Parsers\HtmlParser;
+use Nadar\Crawler\Handlers\DebugHandler;
+use Nadar\Crawler\Runners\LoopRunner;
+use Nadar\Crawler\Storage\ArrayStorage;
 
-class CrawlerTest extends PageCrawlerTestCase
+class CrawlerTest extends CrawlerTestCase
 {
     public function testRunCrawler()
     {
