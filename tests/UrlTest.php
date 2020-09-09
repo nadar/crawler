@@ -28,4 +28,17 @@ class UrlTest extends CrawlerTestCase
         $this->assertTrue($url->sameHost(new Url('https://luya.io')));
         $this->assertFalse($url->sameHost(new Url('https://nadar.io')));
     }
+
+    public function testMerge()
+    {
+        $a = new Url('/foobar');
+        $b = new Url('https://nadar.io/barfoo');
+        
+
+        $this->assertSame('nadar.io', $a->merge($b)->getHost());
+        $this->assertSame('https', $a->merge($b)->getScheme());
+
+        $this->assertSame('nadar.io', $b->merge($a)->getHost()); // nothing will happen as host exists
+        $this->assertSame('https', $b->merge($a)->getScheme()); // nothing will happen as scheme exists
+    }
 }

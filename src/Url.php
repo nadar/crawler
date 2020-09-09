@@ -85,8 +85,10 @@ class Url
     /**
      * If the current URL is missing informations, it cain obtain informations from the to merge url
      *
+     * Will only merge the host and scheme of the current object with the provided url. Only if those informations are missing.
+     * 
      * @param Url $url
-     * @return void
+     * @return static
      */
     public function merge(Url $url)
     {
@@ -97,5 +99,7 @@ class Url
         if (empty($this->getScheme())) {
             $this->parsed['scheme'] = $url->getScheme();
         }
+
+        return $this;
     }
 }
