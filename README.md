@@ -41,10 +41,10 @@ The handler class within the full setup:
 $crawler = new Crawler('https://luya.io', new ArrayStorage, new LoopRunner);
 
 // what kind of document types would you like to parse?
-$crawler->registerParser(new Nadar\Crawler\Parsers\Html);
+$crawler->addParser(new Nadar\Crawler\Parsers\Html);
 
 // register your handler in order to interact with the results, maybe store them in a database?
-$crawler->registerHandler(new MyCrawlHandler);
+$crawler->addHandler(new MyCrawlHandler);
 
 // start the crawling
 $crawler->run();
