@@ -36,8 +36,8 @@ class PdfParser implements ParserInterface
         }
 
         $result = new JobResult();
-        $result->content = $this->utf8Encoding ? mb_convert_encoding($content, 'UTF-8', 'UTF-8') : $content;
-        $result->title = $job->url->getPathFileName();
+        $result->content = $result->trim($this->utf8Encoding ? mb_convert_encoding($content, 'UTF-8', 'UTF-8') : $content);
+        $result->title = $result->trim($job->url->getPathFileName());
 
         unset($parser, $pdf, $content);
         return $result;

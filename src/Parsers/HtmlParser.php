@@ -51,8 +51,8 @@ class HtmlParser implements ParserInterface
         }
 
         $jobResult = new JobResult();
-        $jobResult->content = $this->stripTags ? strip_tags($content) : $content; // get only the content between "body" tags
-        $jobResult->title = $title;
+        $jobResult->content = $jobResult->trim($this->stripTags ? strip_tags($content) : $content); // get only the content between "body" tags
+        $jobResult->title = $jobResult->trim($title);
         $jobResult->followUrls = $refs;
         
         unset($dom, $links, $refs, $link, $requestResponse, $content, $body);

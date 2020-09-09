@@ -70,14 +70,7 @@ class HtmlParserTest extends CrawlerTestCase
         $parser->stripTags = false;
         $result = $parser->run($job, $requestResponse);
 
-        $this->assertSame('<body>
-        <div>
-            <h1>Example Domain</h1>
-            <p>This domain is for use in illustrative examples in documents. You may use this
-            domain in literature without prior coordination or asking for permission.</p>
-            <p><a href="https://www.iana.org/domains/example">More information...</a></p>
-        </div>
-        </body>', $result->content);
+        $this->assertSame('<body> <div> <h1>Example Domain</h1> <p>This domain is for use in illustrative examples in documents. You may use this domain in literature without prior coordination or asking for permission.</p> <p><a href="https://www.iana.org/domains/example">More information...</a></p> </div> </body>', $result->content);
 
         $this->assertSame('Example Domain', $result->title);
 
