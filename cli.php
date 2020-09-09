@@ -24,4 +24,4 @@ echo "==================" . PHP_EOL;
 echo "URLs: " . ($handler->counter) . PHP_EOL;
 echo "time: " . ($handler->elapsedTime()) . PHP_EOL;
 echo "memory peak: " . $handler->memoryPeak() . PHP_EOL;
-echo "memory: " . $handler->memory() . PHP_EOL; 
+echo "memory: " . $handler->memory() . PHP_EOL;

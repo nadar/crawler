@@ -45,13 +45,11 @@ class DebugHandler implements HandlerInterface
     private function readableMemory($memory)
     {
         if ($memory < 1024) {
-
             return $memory." bytes";
         } elseif ($memory < 1048576) {
-
-            return round($memory/1024,2)." kilobytes";
+            return round($memory/1024, 2)." kilobytes";
         }
         
-        return round($memory/1048576,2)." megabytes";
+        return round($memory/1048576, 2)." megabytes";
     }
 }

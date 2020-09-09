@@ -11,7 +11,7 @@ class Url
     public function __construct($url)
     {
         $this->url = trim($url);
-        $this->parsed = parse_url($this->url);    
+        $this->parsed = parse_url($this->url);
     }
 
     public function getNormalized()
@@ -86,7 +86,7 @@ class Url
      * If the current URL is missing informations, it cain obtain informations from the to merge url
      *
      * Will only merge the host and scheme of the current object with the provided url. Only if those informations are missing.
-     * 
+     *
      * @param Url $url
      * @return static
      */

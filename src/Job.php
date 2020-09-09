@@ -14,8 +14,8 @@ class Job
         $this->referrerUrl = $referrerUrl;
     }
 
-    public function validate(Crawler $crawler) : bool {
-
+    public function validate(Crawler $crawler) : bool
+    {
         foreach ($crawler->getParsers() as $handler) {
             if ($handler->validateUrl($this->url)) {
                 return true;
@@ -48,10 +48,10 @@ class Job
                     if ($url->isValid() && $crawler->baseUrl->sameHost($url)) {
                         $job = new Job($url, $this->url);
                         $crawler->push($job);
-                        unset ($job);
+                        unset($job);
                     }
                     
-                    unset ($url);
+                    unset($url);
                 }
 
                 if ($jobResult->ignore) {

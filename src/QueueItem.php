@@ -11,6 +11,6 @@ class QueueItem
     public function __construct($url, $referrerUrl)
     {
         $this->url = $url;
-        $this->referrerUrl = $referrerUrl;    
+        $this->referrerUrl = $referrerUrl;
     }
 }

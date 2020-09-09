@@ -7,8 +7,8 @@ use Nadar\Crawler\QueueItem;
 
 /**
  * Runtime Stack
- * 
- * The runtime stack is a storage system which is required when the parsers run in order to determine whether an 
+ *
+ * The runtime stack is a storage system which is required when the parsers run in order to determine whether an
  * url is already parsed or not.
  */
 interface StorageInterface
@@ -29,7 +29,7 @@ interface StorageInterface
 
     /**
      * Must return an array with QueueItem objects and the retrieved items MUST be deleted from the queue!
-     * 
+     *
      * + Must return an array with QueueItems
      * + The runtime stack integrator retrieveQueue() must take care of empting the queue
      * + empty if the queue is empty, an empty array will be returned. so the crawler knows to finish the crawler process.

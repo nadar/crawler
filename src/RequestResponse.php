@@ -10,7 +10,7 @@ class RequestResponse
     public function __construct($content, $contentType)
     {
         $this->content = $content;
-        $this->contentType = trim($contentType);    
+        $this->contentType = trim($contentType);
     }
 
     public function getContent()

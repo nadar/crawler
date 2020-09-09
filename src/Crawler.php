@@ -28,7 +28,7 @@ class Crawler
      * ```php
      * 'urlFilterRules' => [
      *     '#.html#i', // filter all links with `.html`
-     *     '#/agenda#i', // filter all links which contain the word agenda 
+     *     '#/agenda#i', // filter all links which contain the word agenda
      * ],
      * ```
      */
@@ -147,11 +147,10 @@ class Crawler
         $index = null;
         do {
             curl_multi_exec($multiCurl, $index);
-        } while($index > 0);
+        } while ($index > 0);
 
         // get content and remove handles
         foreach ($curlRequests as $queueKey => $ch) {
-
             $requestResponse = new RequestResponse(curl_multi_getcontent($ch), curl_getinfo($ch, CURLINFO_CONTENT_TYPE));
 
             $checksum = $requestResponse->getChecksum();
