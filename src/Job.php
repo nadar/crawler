@@ -2,6 +2,11 @@
 
 namespace Nadar\Crawler;
 
+/**
+ * URL Job
+ * 
+ * The job class is the main class which combines handlers and parsers for a given URL.
+ */
 class Job
 {
     public $url;

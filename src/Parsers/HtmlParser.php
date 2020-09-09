@@ -12,6 +12,8 @@ use Nadar\Crawler\Url;
 
 class HtmlParser implements ParserInterface
 {
+    public $stripTags = false;
+
     public function run(Job $job, RequestResponse $requestResponse) : JobResult
     {
         if ($this->isCrawlFullIgnore($requestResponse->getContent())) {
@@ -49,7 +51,7 @@ class HtmlParser implements ParserInterface
         }
 
         $jobResult = new JobResult();
-        $jobResult->content = $content; // get only the content between "body" tags
+        $jobResult->content = $this->stripTags ? strip_tags($content) : $content; // get only the content between "body" tags
         $jobResult->title = $title;
         $jobResult->followUrls = $refs;
         
