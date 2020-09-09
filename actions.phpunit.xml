@@ -13,12 +13,12 @@
       <directory>./tests</directory>
     </testsuite>
   </testsuites>
-  <coverage>
-    <include>
-        <directory suffix=".php">src</directory>
-    </include>
-    <exclude>
-      <directory suffix=".php">src/interfaces</directory>
-    </exclude>
-  </coverage>
+  <filter>
+    <whitelist processUncoveredFilesFromWhitelist="true">
+      <directory suffix=".php">src</directory>
+      <exclude>
+        <directory suffix=".php">src/interfaces</directory>
+      </exclude>
+    </whitelist>
+  </filter>
 </phpunit>
