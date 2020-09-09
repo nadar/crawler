@@ -26,13 +26,13 @@ class Crawler
      * Examples:
      *
      * ```php
-     * 'filterRegex' => [
+     * 'urlFilterRules' => [
      *     '/\.\//i',           // filter all links with a dot inside
      *     '/agenda\//i',       // filter all pages who contains "agenda/"
      * ],
      * ```
      */
-    public $urlFilter = [];
+    public $urlFilterRules = [];
 
     protected $parsers = [];
 
@@ -59,11 +59,8 @@ class Crawler
     {
         $uniqueUrl = $job->url->getUniqueKey();
 
-        // filter certain pages
-        foreach ($this->urlFilter as $regex) {
-            if (preg_match($regex, $job->url->getNormalized()) === 1) {
-                return false;
-            }
+        if ($this->isUrlInFilter($job->url, $this->urlFilterRules)) {
+            return false;
         }
 
         if (!$this->storage->isUrlDone($uniqueUrl)) {
@@ -72,6 +69,18 @@ class Crawler
         }
 
         unset($uniqueUrl);
+    }
+
+    public function isUrlInFilter(Url $url, array $filterRules)
+    {
+        // filter certain pages
+        foreach ($filterRules as $regex) {
+            if (preg_match($regex, $url->getNormalized()) === 1) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function addHandler(HandlerInterface $handler)

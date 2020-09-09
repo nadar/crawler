@@ -7,6 +7,7 @@ use Nadar\Crawler\Parsers\HtmlParser;
 use Nadar\Crawler\Handlers\DebugHandler;
 use Nadar\Crawler\Runners\LoopRunner;
 use Nadar\Crawler\Storage\ArrayStorage;
+use Nadar\Crawler\Url;
 
 class CrawlerTest extends CrawlerTestCase
 {
@@ -20,5 +21,13 @@ class CrawlerTest extends CrawlerTestCase
         $this->assertEmpty($crawler->setup());
         $this->assertEmpty($crawler->run());
         $this->assertNotEmpty($debug->elapsedTime());
+    }
+
+    public function testFilterUrl()
+    {
+        $crawler = new Crawler('https://luya.io', new ArrayStorage, new LoopRunner);
+
+        $this->assertTrue($crawler->isUrlInFilter(new Url('https://luya.io'), ["/luya.io/"]));
+        $this->assertFalse($crawler->isUrlInFilter(new Url('https://luya.io'), ["/example.com/"]));
     }
 }
