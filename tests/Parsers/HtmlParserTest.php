@@ -67,6 +67,7 @@ class HtmlParserTest extends CrawlerTestCase
         ', 'text/html');
 
         $parser = new HtmlParser();
+        $parser->stripTags = false;
         $result = $parser->run($job, $requestResponse);
 
         $this->assertSame('<body>

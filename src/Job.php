@@ -72,12 +72,12 @@ class Job
                 $result->checksum = $requestResponse->getChecksum();
 
                 $result->url = $this->url;
-                $result->language = $jobResult->language;
-                $result->title = $jobResult->title;
-                $result->content = $jobResult->content;
-                $result->keywords = $jobResult->keywords;
-                $result->description = $jobResult->description;
-                $result->group = $jobResult->group;
+                $result->language = trim($jobResult->language);
+                $result->title = trim($jobResult->title);
+                $result->content = trim($jobResult->content);
+                $result->keywords = trim($jobResult->keywords);
+                $result->description = trim($jobResult->description);
+                $result->group = trim($jobResult->group);
 
                 // post the result to the handlers
                 foreach ($crawler->getHandlers() as $handler) {

@@ -12,7 +12,7 @@ use Nadar\Crawler\Url;
 
 class HtmlParser implements ParserInterface
 {
-    public $stripTags = false;
+    public $stripTags = true;
 
     public function run(Job $job, RequestResponse $requestResponse) : JobResult
     {
@@ -79,5 +79,60 @@ class HtmlParser implements ParserInterface
         }
 
         return false;
+    }
+
+    public function getCrawlTitle($content)
+    {
+        preg_match_all("/\[CRAWL_TITLE\](.*?)\[\/CRAWL_TITLE\]/", $content, $results);	
+
+        if (!empty($results) && isset($results[1]) && isset($results[1][0])) {
+            return $results[1][0];	
+        }	
+
+        return null;
+    }
+
+    public function getCrawlGroup($content)
+    {
+        preg_match_all("/\[CRAWL_GROUP\](.*?)\[\/CRAWL_GROUP\]/", $content, $results);	
+
+        if (!empty($results) && isset($results[1]) && isset($results[1][0])) {	
+            return $results[1][0];	
+        }
+
+        return null;
+    }
+
+    public function getLanguage($content)
+    {
+        //         return $crawler->filterXPath('//html')->attr('lang');	
+    }
+
+    public function getDescription($content)
+    {
+        //$descriptions = $crawler->filterXPath("//meta[@name='description']")->extract(['content']); 
+    }
+
+    public function getKeywords($content)
+    {
+        /*
+                $descriptions = $crawler->filterXPath("//meta[@name='keywords']")->extract(['content']);	
+
+        if (isset($descriptions[0])) {	
+            return str_replace(",", " ", $descriptions[0]);	
+        }	
+        */
+    }
+
+    public function stripCrawlIgnore($content)
+    {
+        preg_match_all("/\[CRAWL_IGNORE\](.*?)\[\/CRAWL_IGNORE\]/s", $content, $output);	
+        if (isset($output[0]) && count($output[0]) > 0) {	
+            foreach ($output[0] as $ignorPartial) {	
+                $content = str_replace($ignorPartial, '', $content);	
+            }	
+        }
+
+        return $content;
     }
 }
