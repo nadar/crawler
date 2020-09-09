@@ -2,6 +2,7 @@
 
 namespace Nadar\Crawler\Parsers;
 
+use Exception;
 use Nadar\Crawler\Interfaces\ParserInterface;
 use Nadar\Crawler\Job;
 use Nadar\Crawler\JobResult;
@@ -11,6 +12,12 @@ use Smalot\PdfParser\Parser;
 
 class PdfParser implements ParserInterface
 {
+    public function __construct()
+    {
+        if (!class_exists(Parser::class)) {
+            throw new Exception("In order to use the PDF parsers you have to add `smalot/pdfparser` in your composer.json!");
+        }
+    }
     public function run(Job $job, RequestResponse $requestResponse) : JobResult
     {
         $parser = new Parser();

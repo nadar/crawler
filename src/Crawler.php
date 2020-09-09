@@ -75,7 +75,7 @@ class Crawler
     {
         // filter certain pages
         foreach ($filterRules as $regex) {
-            if (preg_match(preg_quote($regex), $url->getNormalized()) === 1) {
+            if (preg_match($regex, $url->getNormalized()) === 1) {
                 return true;
             }
         }
