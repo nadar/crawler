@@ -19,5 +19,3 @@ $crawler->addParser(new PdfParser);
 $crawler->addHandler($handler);
 $crawler->setup();
 $crawler->run();
-
-$handler->summary();
