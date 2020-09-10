@@ -20,7 +20,8 @@ class HtmlParser implements ParserInterface
             return new JobIgnoreResult();
         }
         
-        $dom = $this->generateDomDocuemnt($requestResponse->getContent());
+        $content = $requestResponse->getContent();
+        $dom = $this->generateDomDocuemnt($content);
 
         // follow links
         $links = $dom->getElementsByTagName('a');
@@ -30,13 +31,9 @@ class HtmlParser implements ParserInterface
         }
 
         // body content
-        $content = $requestResponse->getContent();
-        $body = $dom->getElementsByTagName('body');
-        if ($body && $body->length > 0) {
-            $node = $body->item(0);
-            $content = $dom->saveHTML($node);
-
-            unset($node);
+        $body = $this->getDomBodyContent($dom);
+        if (!empty($body)) {
+            $content = $body;
         }
 
         $content = $this->stripTags ? strip_tags($content) : $content;
@@ -126,6 +123,26 @@ class HtmlParser implements ParserInterface
         }
 
         return $content;
+    }
+
+    public function getDomBodyContent(DOMDocument $dom)
+    {
+        foreach (iterator_to_array($dom->getElementsByTagName("script")) as $node) {
+            $node->parentNode->removeChild($node);
+        }
+
+        foreach (iterator_to_array($dom->getElementsByTagName("style")) as $node) {
+            $node->parentNode->removeChild($node);
+        }
+
+        // body content
+        $body = $dom->getElementsByTagName('body');
+        if ($body && $body->length > 0) {
+            $node = $body->item(0);
+            return $dom->saveHTML($node);
+        }
+        
+        return null;
     }
 
     public function getDomTitle(DomDocument $dom)
