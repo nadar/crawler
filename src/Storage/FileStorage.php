@@ -17,11 +17,13 @@ class FileStorage implements StorageInterface
 
     public function __construct($folder)
     {
-        $this->folder = trim($folder) . DIRECTORY_SEPARATOR;
+        $folder = trim(rtrim($folder, DIRECTORY_SEPARATOR));
 
-        if (!is_writable($this->folder)) {
-            throw new Exception("The folder {$this->folder} is not writeable.");
+        if (!is_writable($folder)) {
+            throw new Exception("The folder \"{$folder}\" is not writeable.");
         }
+
+        $this->folder = $folder . DIRECTORY_SEPARATOR;
     }
 
     public function fileToArray($file)
