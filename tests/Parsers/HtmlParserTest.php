@@ -26,7 +26,8 @@ class HtmlParserTest extends CrawlerTestCase
         <body><script>alert(1)</script>between<script type="text/javascript">alert(2)</script><p>the lines</p><style>body {background-color: linen;}</style></body>
 </html>');
 
-        $this->assertSame('<body>between<p>the lines</p>'.PHP_EOL.'</body>', $parser->getDomBodyContent($dom));
+        $this->assertSame('<body>between<p>the lines</p>
+</body>', $parser->getDomBodyContent($dom));
     }
 
     public function testDomDocuemntReaderInformations()
