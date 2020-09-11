@@ -8,11 +8,11 @@ A highly extendible, dependency free Crawler for HTML, PDFS or any other type of
 
 **Why another Page Crawler?** Yes, indeed, there are already very good parsers around but this parsers should:
 
-+ Dependency Free - we don't want to use any HTTP client, as much PHP "native" code as possible in order to keep the overhead as small as possible
-+ Memory Efficent - As memory efficient as possible, less overhead, full code control.
-+ Extendible - Attach your own parsers in order to determine how html or any other format is parsed. We provided out of the box support for HTML and PDF.
-+ Runtime Storage - When the parers run, certain informations must be stored. This is extendible to suite your database or use our built int array or file storage system
-+ Async - It's possible to start the crawler and process any further run cycle in an asynchronus process
++ **Dependency Free** - we don't want to use any HTTP client, as much PHP "native" code as possible in order to keep the overhead as small. It just requires CURL
++ **Memory Efficent** - As memory efficient as possible, less overhead, full code control.
++ **Extendible** - Attach your own parsers in order to determine how html or any other format is parsed. We provided out of the box support for HTML and PDF.
++ **Runtime Storage** - When the parers run, certain informations must be stored. This is extendible to suit your use case. Either use your database or take the built int array or file storage system.
++ **Async** - It's possible to start the crawler and process any further run cycle in an asynchronus process.
 
 
 ## Installation
@@ -58,9 +58,9 @@ Of course those benchmarks may vary depending on internet connection, bandwidth,
 |-------------- |-------------------    |-----------        |----               | ---
 | 3785          | 15                    | 18 MB             | 260 Seconds       | Array
 | 1509          | 30                    | 97 MB             | 225 Seconds       | Array
-| 1374          | 30                    | 269 MB            | 87 Seconds        | Array
 
 > The benchmark website is https://demo.luya.io/
+> Looking for a better "static" website to benchmark... not finished here
 
 
 This is the example benchmark setup:
