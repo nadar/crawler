@@ -6,7 +6,7 @@
 
 A highly extendible, dependency free Crawler for HTML, PDFS or any other type of Documents.
 
-**Why another Page Crawler?** Yes, indeed, there are already very good parsers around but this parsers should:
+**Why another Page Crawler?** Yes, indeed, there are already very good Crawlers around, therefore those where my goals:
 
 + **Dependency Free** - we don't want to use any HTTP client, as much PHP "native" code as possible in order to keep the overhead as small. It just requires CURL
 + **Memory Efficent** - As memory efficient as possible, less overhead, full code control.
@@ -59,7 +59,8 @@ $crawler->addParser(new Nadar\Crawler\Parsers\Html);
 // register your handler in order to interact with the results, maybe store them in a database?
 $crawler->addHandler(new MyCrawlHandler);
 
-// start the crawling
+// setup and start the crawl process
+$crawler->setup();
 $crawler->run();
 ```
 
@@ -69,11 +70,9 @@ Of course those benchmarks may vary depending on internet connection, bandwidth,
 
 | Index Size     | Concurrent Requests    | Memory Peak     |Time               | Storage
 |-------------- |-------------------    |-----------        |----               | ---
-| 3785          | 15                    | 18 MB             | 260 Seconds       | Array
-| 1509          | 30                    | 97 MB             | 225 Seconds       | Array
 
-> The benchmark website is https://demo.luya.io/
-> Looking for a better "static" website to benchmark... not finished here
+
+> The benchmark website is https://demo.luya.io/, Looking for a better "static" website to benchmark... not finished here
 
 
 This is the example benchmark setup:
@@ -86,19 +85,12 @@ use Nadar\Crawler\Parsers\PdfParser;
 
 include 'vendor/autoload.php';
 
-$handler = new DebugHandler();
-
 $crawler = new Crawler('.........YOUR_WEBSITE........', new ArrayStorage, new LoopRunner);
 $crawler->addParser(new HtmlParser);
 $crawler->addParser(new PdfParser);
-$crawler->addHandler($handler);
+$crawler->addHandler(new DebugHandler());
 $crawler->setup();
 $crawler->run();
-
-echo "==================" . PHP_EOL;
-echo "URLs: " . ($handler->counter) . PHP_EOL;
-echo "time: " . ($handler->elapsedTime()) . PHP_EOL;
-echo "peak: " . $handler->memoryPeak() . PHP_EOL;
 ```
 
 ## Developer Informations
