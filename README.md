@@ -23,15 +23,26 @@ composer require nadar/crawler
 
 ## Usage
 
-Create your custom handler, this is the classes which will interact with the crawler in order to store your content somwehere. This function will run after each url is crawled:
+Create your handler, this is the classes which will interact with the crawler in order to store your content/results somwehere. The afterRun() method will run whenever a url is crawled and contain the results:
 
 ```php
 class MyCrawlHandler implements \Nadar\Crawler\Interfaces\HandlerInterface
 {
     public function afterRun(\Nadar\Crawler\Result $result)
     {
-        echo $result->title;
+        echo $result->title . " with content " . $result->content . " for url " . $result->url->getNormalized();
     }
+    
+    public function onSetup(Crawler $crawler)
+    {
+        // do some stuff before the crawler runs, maybe truncate your temporary table where the results should be stored.
+    }
+    
+    public function onEnd(Crawler $crawler)
+    {
+        // runs when the crawler is finished, maybe synchronize your temporary index table with the "real" site index.
+    }
+
 }
 ```
 
@@ -42,6 +53,8 @@ $crawler = new Crawler('https://luya.io', new ArrayStorage, new LoopRunner);
 
 // what kind of document types would you like to parse?
 $crawler->addParser(new Nadar\Crawler\Parsers\Html);
+// need pdfs, increases memory usage! 
+// $crawler->addParser(new Nadar\Crawler\Parsers\Pdf);
 
 // register your handler in order to interact with the results, maybe store them in a database?
 $crawler->addHandler(new MyCrawlHandler);
