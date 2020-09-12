@@ -23,6 +23,14 @@ class PdfParserTest extends CrawlerTestCase
         $parser = new PdfParser();
         $result = $parser->run($job, $requestResponse);
         
+        $this->assertTrue($parser->validateRequestResponse($requestResponse));
         $this->assertNotEmpty($result->content);
+        
+    }
+
+    public function testValidators()
+    {
+        $parser = new PdfParser();
+        $this->assertTrue($parser->validateUrl(new Url('https://luya.io/test.pdf')));
     }
 }

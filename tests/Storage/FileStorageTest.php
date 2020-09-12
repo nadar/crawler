@@ -2,6 +2,7 @@
 
 namespace Nadar\Crawler\Tests\Storage;
 
+use Exception;
 use Nadar\Crawler\Crawler;
 use Nadar\Crawler\QueueItem;
 use Nadar\Crawler\Runners\LoopRunner;
@@ -10,6 +11,12 @@ use Nadar\Crawler\Tests\CrawlerTestCase;
 
 class FileStorrageTest extends CrawlerTestCase
 {
+    public function testNotWriteableFolder()
+    {
+        $this->expectException(Exception::class);
+        new FileStorage('doesnotexists');
+    }
+
     public function testFileStorage()
     {
         $folder = dirname(__FILE__) . '/runtime';
