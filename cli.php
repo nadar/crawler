@@ -13,9 +13,13 @@ include 'vendor/autoload.php';
 
 $handler = new DebugHandler();
 
-$crawler = new Crawler('https://demo.luya.io/', new FileStorage(dirname(__FILE__) . '/runtime'), new LoopRunner);
+$storage = new FileStorage(dirname(__FILE__) . '/runtime');
+//$storage = new ArrayStorage;
+
+$crawler = new Crawler('https://www.ak71.ch/', $storage, new LoopRunner);
+$crawler->concurrentJobs = 30;
 $crawler->addParser(new HtmlParser);
-$crawler->addParser(new PdfParser);
+//$crawler->addParser(new PdfParser);
 $crawler->addHandler($handler);
 $crawler->setup();
 $crawler->run();

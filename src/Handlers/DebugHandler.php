@@ -38,7 +38,7 @@ class DebugHandler implements HandlerInterface
         return $this->readableMemory(memory_get_usage(true));
     }
 
-    private function readableMemory($memory)
+    public function readableMemory($memory)
     {
         if ($memory < 1024) {
             return $memory." bytes";

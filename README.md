@@ -66,10 +66,12 @@ $crawler->run();
 
 ## Benchmark
 
-Of course those benchmarks may vary depending on internet connection, bandwidth, servers but we made all the tests under the same circumstances. The memory peak varys strong when using the PDF parsers.
+Of course those benchmarks may vary depending on internet connection, bandwidth, servers but we made all the tests under the same circumstances. The memory peak varys strong when using the PDF parsers, therefore we test only with HTML parser
 
 | Index Size     | Concurrent Requests    | Memory Peak     |Time               | Storage
 |-------------- |-------------------    |-----------        |----               | ---
+| 308              | 30                    | 6MB               | 19s               | ArrayStorage
+| 308              | 30                    | 6MB               | 20s               | FileStorage
 
 
 > The benchmark website is https://demo.luya.io/, Looking for a better "static" website to benchmark... not finished here
