@@ -3,6 +3,7 @@
 namespace Nadar\Crawler\Tests\Parsers;
 
 use Nadar\Crawler\Crawler;
+use Nadar\Crawler\Handlers\DebugHandler;
 use Nadar\Crawler\Job;
 use Nadar\Crawler\Parsers\HtmlParser;
 use Nadar\Crawler\RequestResponse;
@@ -27,6 +28,25 @@ class HtmlParserTest extends CrawlerTestCase
 </html>');
 
         $this->assertSame('<body>between<p>the lines</p></body>', str_replace(['\n', '\r', PHP_EOL], '', $parser->getDomBodyContent($dom)));
+    }
+
+    public function testFullIgnoreTag()
+    {
+        $parser = new HtmlParser;
+        $job = new Job(new Url('https://example.com/'), new Url('https://example.com/'));
+        $requestResponse = new RequestResponse('<!doctype html><html lang="de">
+        <head>
+        </head>
+        <body>test [CRAWL_FULL_IGNORE]</body>
+</html>', 'text/html');
+
+        $crawler = new Crawler('https://example.com/', new ArrayStorage, new LoopRunner);
+        $debug = new DebugHandler;
+
+        $crawler->addHandler($debug);
+        $job->run($requestResponse, $crawler);
+
+        $this->assertSame(0, $debug->counter);
     }
 
     public function testDomDocuemntReaderInformations()

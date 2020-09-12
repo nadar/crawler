@@ -23,6 +23,18 @@ class CrawlerTest extends CrawlerTestCase
         $this->assertNotEmpty($debug->elapsedTime());
     }
 
+    public function testCrawlWithFilteredMainDomain()
+    {
+        $debug = new DebugHandler();
+        $crawler = new Crawler('https://luya.io', new ArrayStorage, new LoopRunner);
+        $crawler->urlFilterRules = ['#luya.io#'];
+        $crawler->addHandler($debug);
+        $crawler->addParser(new HtmlParser);
+        $crawler->run();
+
+        $this->assertSame(0, $debug->counter);
+    }
+
     public function testFilterUrl()
     {
         $crawler = new Crawler('https://luya.io', new ArrayStorage, new LoopRunner);
