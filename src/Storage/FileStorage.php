@@ -73,14 +73,7 @@ class FileStorage implements StorageInterface
     }
 
     /**
-     * Must return an array with QueueItem objects and the retrieved items MUST be deleted from the queue!
-     *
-     * + Must return an array with QueueItems
-     * + The runtime stack integrator retrieveQueue() must take care of empting the queue
-     * + empty if the queue is empty, an empty array will be returned. so the crawler knows to finish the crawler process.
-     *
-     * @param integer $amount
-     * @return array
+     * {@inheritDoc}
      */
     public function retrieveQueue($amount): array
     {
@@ -93,7 +86,7 @@ class FileStorage implements StorageInterface
         $items = [];
         foreach ($data as $row) {
             list($url, $ref) = explode(";", $row);
-            $items[] = new QueueItem($url, $ref);
+            $items[] = new QueueItem(trim($url), trim($ref));
         }
 
         unset($rows, $data);
