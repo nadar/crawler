@@ -5,8 +5,8 @@ namespace Nadar\Crawler\Parsers;
 use DOMDocument;
 use Nadar\Crawler\Interfaces\ParserInterface;
 use Nadar\Crawler\Job;
-use Nadar\Crawler\JobIgnoreResult;
-use Nadar\Crawler\JobResult;
+use Nadar\Crawler\ParserIgnoreResult;
+use Nadar\Crawler\ParserResult;
 use Nadar\Crawler\RequestResponse;
 use Nadar\Crawler\Url;
 
@@ -14,10 +14,10 @@ class HtmlParser implements ParserInterface
 {
     public $stripTags = true;
 
-    public function run(Job $job, RequestResponse $requestResponse) : JobResult
+    public function run(Job $job, RequestResponse $requestResponse) : ParserResult
     {
         if ($this->isCrawlFullIgnore($requestResponse->getContent())) {
-            return new JobIgnoreResult();
+            return new ParserIgnoreResult();
         }
         
         $content = $requestResponse->getContent();
@@ -39,10 +39,10 @@ class HtmlParser implements ParserInterface
         $content = $this->stripTags ? strip_tags($content) : $content;
         $content = $this->stripCrawlIgnore($content);
 
-        $jobResult = new JobResult();
+        $jobResult = new ParserResult();
         $jobResult->content = $jobResult->trim($content); // get only the content between "body" tags
         $jobResult->title = $jobResult->trim($this->getDomTitle($dom));
-        $jobResult->followUrls = $refs;
+        $jobResult->links = $refs;
         $jobResult->language = $this->getDomLanguage($dom);
         $jobResult->keywords = $this->getDomKeywords($dom);
         $jobResult->description = $this->getDomDescription($dom);

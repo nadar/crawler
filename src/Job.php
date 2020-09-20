@@ -44,9 +44,9 @@ class Job
     {
         foreach ($crawler->getParsers() as $parser) {
             if ($parser->validateRequestResponse($requestResponse)) {
-                $jobResult = $parser->run($this, $requestResponse);
+                $parserResult = $parser->run($this, $requestResponse);
 
-                foreach ($jobResult->followUrls as $url) {
+                foreach ($parserResult->links as $url) {
                     $url = new Url($url);
                     $url->merge($crawler->baseUrl);
 
@@ -59,7 +59,7 @@ class Job
                     unset($url);
                 }
 
-                if ($jobResult->ignore) {
+                if ($parserResult->ignore) {
                     // for whatever reason the parser ignores this url
                     continue;
                 }
@@ -68,23 +68,24 @@ class Job
 
                 $result->refererUrl = $this->referrerUrl;
                 $result->contentType = $requestResponse->getContentType();
-                $result->parser = get_class($parser);
+                $result->parser = $parser;
+                $result->parserResult = $parserResult;
                 $result->checksum = $requestResponse->getChecksum();
 
                 $result->url = $this->url;
-                $result->language = $jobResult->language;
-                $result->title = $jobResult->title;
-                $result->content = $jobResult->content;
-                $result->keywords = $jobResult->keywords;
-                $result->description = $jobResult->description;
-                $result->group = $jobResult->group;
+                $result->language = $parserResult->language;
+                $result->title = $parserResult->title;
+                $result->content = $parserResult->content;
+                $result->keywords = $parserResult->keywords;
+                $result->description = $parserResult->description;
+                $result->group = $parserResult->group;
 
                 // post the result to the handlers
                 foreach ($crawler->getHandlers() as $handler) {
                     $handler->afterRun($result);
                 }
 
-                unset($handler, $result, $jobResult);
+                unset($handler, $result, $parserResult);
             }
         }
 

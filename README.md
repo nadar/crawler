@@ -101,9 +101,9 @@ For a better understanding, here is en explenation of how the classes are capsul
 
 + Crawler: The Crawler is the main programm, it starts, runs and ends.
 + Job: The job contains the url logic for the next "CURL"/Download Job
-+ Parsers: The parsers will take the job informations in combination with the RequestResponse in order to generate a JobResult
-+ JobResult: The Job result represents the result from a Parser.
++ Parsers: The parsers will take the job informations in combination with the RequestResponse in order to generate a ParserResult
++ ParserResult: The Job result represents the result from a Parser.
 + QueueItem: The queue item is extract from the job and is only used to store those informations with use of StorageInterface
 
 
-Crawler -> Job -> (ItemQueue -> Storage) -> RequestResponse -> Parser -> JobResult -> Result
+Crawler -> Job -> (ItemQueue -> Storage) -> RequestResponse -> Parser -> ParserResult -> Result

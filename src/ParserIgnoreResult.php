@@ -2,7 +2,7 @@
 
 namespace Nadar\Crawler;
 
-class JobIgnoreResult extends JobResult
+class ParserIgnoreResult extends ParserResult
 {
     public $ignore = true;
 }

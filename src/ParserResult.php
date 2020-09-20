@@ -2,7 +2,7 @@
 
 namespace Nadar\Crawler;
 
-class JobResult
+class ParserResult
 {
     public $ignore = false;
     
@@ -10,7 +10,11 @@ class JobResult
 
     public $content;
 
-    public $followUrls = [];
+    /**
+     * @var array An array with links found on this parsers. The links are not validated whether they are on
+     * the curren site or not. Therefore this can also contain external links.
+     */
+    public $links = [];
 
     public $language;
 

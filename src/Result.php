@@ -2,6 +2,8 @@
 
 namespace Nadar\Crawler;
 
+use Nadar\Crawler\Interfaces\ParserInterface;
+
 class Result
 {
     // assigned by job
@@ -13,7 +15,15 @@ class Result
 
     public $contentType;
 
+    /**
+     * @var ParserInterface
+     */
     public $parser;
+
+    /**
+     * @var ParserResult
+     */
+    public $parserResult;
 
     public $checksum;
 

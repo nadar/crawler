@@ -5,8 +5,8 @@ namespace Nadar\Crawler\Parsers;
 use Exception;
 use Nadar\Crawler\Interfaces\ParserInterface;
 use Nadar\Crawler\Job;
-use Nadar\Crawler\JobIgnoreResult;
-use Nadar\Crawler\JobResult;
+use Nadar\Crawler\ParserIgnoreResult;
+use Nadar\Crawler\ParserResult;
 use Nadar\Crawler\RequestResponse;
 use Nadar\Crawler\Url;
 use Smalot\PdfParser\Parser;
@@ -22,7 +22,7 @@ class PdfParser implements ParserInterface
         }
     }
 
-    public function run(Job $job, RequestResponse $requestResponse) : JobResult
+    public function run(Job $job, RequestResponse $requestResponse) : ParserResult
     {
         try {
             $parser = new Parser();
@@ -32,10 +32,10 @@ class PdfParser implements ParserInterface
                 $content .= $page->getText();
             }
         } catch (Exception $exception) {
-            return new JobIgnoreResult();
+            return new ParserIgnoreResult();
         }
 
-        $result = new JobResult();
+        $result = new ParserResult();
         $result->content = $result->trim($this->utf8Encoding ? mb_convert_encoding($content, 'UTF-8', 'UTF-8') : $content);
         $result->title = $result->trim($job->url->getPathFileName());
 
