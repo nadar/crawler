@@ -151,4 +151,20 @@ class HtmlParserTest extends CrawlerTestCase
         // the domain in the content is another domain and there no further link to process
         $this->assertSame([], $crawler->retrieveQueueJobs());
     }
+
+    public function testCrawlTitle()
+    {
+        $parser = new HtmlParser;
+
+        $this->assertSame('title', $parser->getCrawlTitle('Foo[CRAWL_TITLE]title[/CRAWL_TITLE]Bar'));
+    }
+
+    public function testCrawlFullIgnore()
+    {
+        
+
+        $parser = new HtmlParser;
+
+        $this->assertTrue($parser->isCrawlFullIgnore('Foo[CRAWL_FULL_IGNORE]title[/CRAWL_TITLE]Bar'));
+    }
 }
