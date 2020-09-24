@@ -46,7 +46,7 @@ class Job
             if ($parser->validateRequestResponse($requestResponse)) {
                 $parserResult = $parser->run($this, $requestResponse);
 
-                foreach ($parserResult->links as $url) {
+                foreach ($parserResult->links as $url => $linkTitle) {
                     $url = new Url($url);
                     $url->merge($crawler->baseUrl);
 
