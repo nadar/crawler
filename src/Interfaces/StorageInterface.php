@@ -10,6 +10,9 @@ use Nadar\Crawler\QueueItem;
  *
  * The runtime stack is a storage system which is required when the parsers run in order to determine whether an
  * url is already parsed or not.
+ * 
+ * @author Basil Suter <git@nadar.io>
+ * @since 1.0.0
  */
 interface StorageInterface
 {

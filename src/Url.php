@@ -3,14 +3,23 @@
 namespace Nadar\Crawler;
 
 /**
- * Represents an URL
+ * Represents an URL.
  * 
- * In order to store informations use `getNormalized()`.
+ * In order to retrieve the url from an object use `getNormalized()`. This value is mainly used to identife and store.
+ * 
+ * @author Basil Suter <git@nadar.io>
+ * @since 1.0.0
  */
 class Url
 {
+    /**
+     * @var string Contains the original provided url.
+     */
     protected $url;
 
+    /**
+     * @var array Contains the array informations from parse_url() method.
+     */
     protected $parsed;
 
     public function __construct($url)
@@ -19,6 +28,14 @@ class Url
         $this->parsed = parse_url($this->url);
     }
 
+    /**
+     * Get the normalized url.
+     *
+     * A normalized urls means that unnecessary url parts are removed but keep the
+     * main informations in order to have a valid url.
+     * 
+     * @return string https://luya.io/admin
+     */
     public function getNormalized()
     {
         $url = $this->getScheme() . '://' . trim($this->getHost(), '/') . '/' . ltrim($this->getPath(), '/');
@@ -31,29 +48,39 @@ class Url
     }
 
     /**
-     * Generate an "unique" key
-     *
-     * @return void
+     * Generate an unique url with host, path and query params.
+     * 
+     * @return string
      */
     public function getUniqueKey()
     {
         return $this->getHost().trim($this->getPath(), '/').$this->getQuery();
     }
 
+    /**
+     * Hostname
+     *
+     * @return string example.com if the url is https://example.com
+     */
     public function getHost()
     {
         return isset($this->parsed['host']) ? $this->parsed['host'] : false;
     }
 
+    /**
+     * Path
+     *
+     * @return string admin if the url is https://luya.io/admin
+     */
     public function getPath()
     {
         return isset($this->parsed['path']) ? $this->parsed['path'] : false;
     }
 
     /**
-     * Get lower case name of the extension like `png`, `pdf`
+     * Get lower case name of the extension like `png`, `pdf` if any. false otherwise
      *
-     * @return void
+     * @return string
      */
     public function getPathExtension()
     {

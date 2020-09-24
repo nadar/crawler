@@ -2,9 +2,16 @@
 
 namespace Nadar\Crawler;
 
+/**
+ * Response from a Request
+ * 
+ * @author Basil Suter <git@nadar.io>
+ * @since 1.0.0
+ */
 class RequestResponse
 {
     protected $content;
+    
     protected $contentType;
 
     public function __construct($content, $contentType)

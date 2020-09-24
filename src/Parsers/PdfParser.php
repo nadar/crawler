@@ -11,6 +11,12 @@ use Nadar\Crawler\RequestResponse;
 use Nadar\Crawler\Url;
 use Smalot\PdfParser\Parser;
 
+/**
+ * PDF Parser
+ * 
+ * @author Basil Suter <git@nadar.io>
+ * @since 1.0.0
+ */
 class PdfParser implements ParserInterface
 {
     public $utf8Encoding = true;

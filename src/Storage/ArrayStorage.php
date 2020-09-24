@@ -6,6 +6,12 @@ use Nadar\Crawler\Crawler;
 use Nadar\Crawler\Interfaces\StorageInterface;
 use Nadar\Crawler\QueueItem;
 
+/**
+ * Array Storage
+ * 
+ * @author Basil Suter <git@nadar.io>
+ * @since 1.0.0
+ */
 class ArrayStorage implements StorageInterface
 {
     protected $done = [];

@@ -2,6 +2,12 @@
 
 namespace Nadar\Crawler;
 
+/**
+ * Queue Item
+ * 
+ * @author Basil Suter <git@nadar.io>
+ * @since 1.0.0
+ */
 class QueueItem
 {
     public $url;

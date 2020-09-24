@@ -7,6 +7,12 @@ use Nadar\Crawler\Crawler;
 use Nadar\Crawler\Interfaces\StorageInterface;
 use Nadar\Crawler\QueueItem;
 
+/**
+ * File Storage
+ * 
+ * @author Basil Suter <git@nadar.io>
+ * @since 1.0.0
+ */
 class FileStorage implements StorageInterface
 {
     protected $folder;

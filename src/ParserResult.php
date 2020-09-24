@@ -2,6 +2,12 @@
 
 namespace Nadar\Crawler;
 
+/**
+ * Parser Result
+ * 
+ * @author Basil Suter <git@nadar.io>
+ * @since 1.0.0
+ */
 class ParserResult
 {
     public $ignore = false;

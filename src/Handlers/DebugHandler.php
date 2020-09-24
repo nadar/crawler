@@ -6,6 +6,14 @@ use Nadar\Crawler\Crawler;
 use Nadar\Crawler\Interfaces\HandlerInterface;
 use Nadar\Crawler\Result;
 
+/**
+ * Debug Handler
+ * 
+ * Prints information to the output.
+ * 
+ * @author Basil Suter <git@nadar.io>
+ * @since 1.0.0
+ */
 class DebugHandler implements HandlerInterface
 {
     public $counter = 0;

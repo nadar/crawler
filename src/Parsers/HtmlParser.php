@@ -10,6 +10,12 @@ use Nadar\Crawler\ParserResult;
 use Nadar\Crawler\RequestResponse;
 use Nadar\Crawler\Url;
 
+/**
+ * Html Parser
+ * 
+ * @author Basil Suter <git@nadar.io>
+ * @since 1.0.0
+ */
 class HtmlParser implements ParserInterface
 {
     public $stripTags = true;

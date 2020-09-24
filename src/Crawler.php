@@ -7,10 +7,21 @@ use Nadar\Crawler\Interfaces\ParserInterface;
 use Nadar\Crawler\Interfaces\RunnerInterface;
 use Nadar\Crawler\Interfaces\StorageInterface;
 
+/**
+ * Crawler
+ * 
+ * The main object holding the process informations.
+ * 
+ * @author Basil Suter <git@nadar.io>
+ * @since 1.0.0
+ */
 class Crawler
 {
     public $concurrentJobs = 30;
 
+    /**
+     * @var Url Contains the URL object with the base URL. Urls which are not matching the base url will not be crawled or added to the results page.
+     */
     public $baseUrl;
 
     /**
@@ -34,8 +45,14 @@ class Crawler
      */
     public $urlFilterRules = [];
 
+    /**
+     * @var ParserInterface[] An array containing all parser objects
+     */
     protected $parsers = [];
 
+    /**
+     * @var HandlerInterface[] An array containing all handler objects
+     */
     protected $handlers = [];
 
     /**
@@ -48,6 +65,13 @@ class Crawler
      */
     protected $runner;
 
+    /**
+     * Constructor
+     *
+     * @param string $baseUrl The base url f.e. `https://luya.io`
+     * @param StorageInterface $storage
+     * @param RunnerInterface $runner
+     */
     public function __construct($baseUrl, StorageInterface $storage, RunnerInterface $runner)
     {
         $this->storage = $storage;
@@ -55,6 +79,11 @@ class Crawler
         $this->baseUrl = new Url($baseUrl);
     }
 
+    /**
+     * Push a new Job into the Crawler Queue
+     *
+     * @param Job $job
+     */
     public function push(Job $job)
     {
         $uniqueUrl = $job->url->getUniqueKey();
@@ -71,6 +100,13 @@ class Crawler
         unset($uniqueUrl);
     }
 
+    /**
+     * Check whether an URL is in the list of filters or not
+     *
+     * @param Url $url
+     * @param array $filterRules
+     * @return boolean
+     */
     public function isUrlInFilter(Url $url, array $filterRules)
     {
         // filter certain pages
@@ -83,37 +119,54 @@ class Crawler
         return false;
     }
 
+    /**
+     * Add a Handler to the Crawler
+     *
+     * @param HandlerInterface $handler
+     */
     public function addHandler(HandlerInterface $handler)
     {
         $this->handlers[] = $handler;
     }
 
     /**
-     * Undocumented function
-     *
+     * Get all registered handlers.
+     * 
      * @return HandlerInterface[]
+     * @see {{addHandler()}}
      */
     public function getHandlers() : array
     {
         return $this->handlers;
     }
 
+    /**
+     * Add a new Parser to the Crawler
+     *
+     * @param ParserInterface $parser
+     */
     public function addParser(ParserInterface $parser)
     {
         $this->parsers[] = $parser;
     }
 
     /**
-     * Undocumented function
+     * Get all registered parsers
      *
      * @return ParserInterface[]
+     * @see {{addParser()}}
      */
     public function getParsers() : array
     {
         return $this->parsers;
     }
 
-    public function retrieveQueueJobs()
+    /**
+     * Get all upcoming jobs from the queue and parse them into a Job object
+     *
+     * @return Job[] An array with Job objects
+     */
+    protected function retrieveQueueJobs()
     {
         $jobs = [];
         /** @var QueueItem $queueItem */
@@ -123,7 +176,22 @@ class Crawler
 
         return $jobs;
     }
+    
+    /**
+     * Setup the Crawler
+     */
+    public function setup()
+    {
+        $this->storage->onSetup($this);
+        foreach ($this->getHandlers() as $handler) {
+            $handler->onSetup($this);
+        }
+        $this->push(new Job($this->baseUrl, $this->baseUrl));
+    }
 
+    /**
+     * Run the crawler cycle
+     */
     public function run()
     {
         $curlRequests = [];
@@ -175,16 +243,10 @@ class Crawler
         $this->runner->afterRun($this);
     }
 
-    public function setup()
-    {
-        $this->storage->onSetup($this);
-        foreach ($this->getHandlers() as $handler) {
-            $handler->onSetup($this);
-        }
-        $this->push(new Job($this->baseUrl, $this->baseUrl));
-    }
-
-    public function end()
+    /**
+     * Is triggered when the crawler ends
+     */
+    protected function end()
     {
         $this->storage->onEnd($this);
         foreach ($this->getHandlers() as $handler) {

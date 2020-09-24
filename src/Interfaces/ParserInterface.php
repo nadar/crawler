@@ -7,6 +7,12 @@ use Nadar\Crawler\ParserResult;
 use Nadar\Crawler\RequestResponse;
 use Nadar\Crawler\Url;
 
+/**
+ * Parser Interface
+ * 
+ * @author Basil Suter <git@nadar.io>
+ * @since 1.0.0
+ */
 interface ParserInterface
 {
     public function run(Job $job, RequestResponse $requestResponse) : ParserResult;

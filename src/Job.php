@@ -3,9 +3,12 @@
 namespace Nadar\Crawler;
 
 /**
- * URL Job
+ * Job for an URL.
  * 
  * The job class is the main class which combines handlers and parsers for a given URL.
+ * 
+ * @author Basil Suter <git@nadar.io>
+ * @since 1.0.0
  */
 class Job
 {

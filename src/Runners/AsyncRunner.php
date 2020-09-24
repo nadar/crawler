@@ -29,6 +29,9 @@ use Nadar\Crawler\Interfaces\RunnerInterface;
  * ```
  *
  * This will now run async until all pages are crawled.
+ * 
+ * @author Basil Suter <git@nadar.io>
+ * @since 1.0.0
  */
 class AsyncRunner implements RunnerInterface
 {
