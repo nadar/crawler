@@ -22,6 +22,11 @@ class Url
      */
     protected $parsed;
 
+    /**
+     * Constructor
+     *
+     * @param string $url The url which should be objectified
+     */
     public function __construct($url)
     {
         $this->url = trim($url);
@@ -80,37 +85,65 @@ class Url
     /**
      * Get lower case name of the extension like `png`, `pdf` if any. false otherwise
      *
-     * @return string
+     * @return string Returns the extenion if any, otherwise false
      */
     public function getPathExtension()
     {
         return $this->getPath() ? strtolower(pathinfo($this->getPath(), PATHINFO_EXTENSION)) : false;
     }
 
+    /**
+     * Return the filename (or last path entry) from a given url.
+     *
+     * @return string Returns the filename, for example https://luya.io/storage/example.pdf would return `example.pdf`.
+     */
     public function getPathFileName()
     {
         return basename($this->getPath());
     }
 
+    /**
+     * Returns the query params a string without question mark start
+     *
+     * @return string The query param, f.e. `argument=wert` or false if no query param
+     */
     public function getQuery()
     {
         return isset($this->parsed['query']) ? $this->parsed['query'] : false;
     }
 
+    /**
+     * Returns the schema from the url
+     *
+     * @return string The schema f.e. `http` or false if no scheme detected
+     */
     public function getScheme()
     {
         return isset($this->parsed['scheme']) ? $this->parsed['scheme'] : false;
     }
 
+    /**
+     * Whether the given host is equal to the host of the object
+     *
+     * @param Url $url
+     * @return boolean
+     */
     public function sameHost(Url $url)
     {
         return $this->getHost() == $url->getHost();
     }
 
+    /**
+     * Whether the current url is a valid url.
+     * 
+     * A valid url must be have a valid host to connect.
+     *
+     * @return boolean
+     */
     public function isValid()
     {
         // filter out: mailto:, tel:
-
+        // @TODO
         return true;
     }
 

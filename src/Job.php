@@ -12,16 +12,34 @@ namespace Nadar\Crawler;
  */
 class Job
 {
+    /**
+     * @var Url contains the url which should be crawled.
+     */
     public $url;
 
+    /**
+     * @var Url contains the refferer url which triggered the crawl job (or which found the given page)
+     */
     public $referrerUrl;
 
+    /**
+     * Construtor
+     *
+     * @param Url $url
+     * @param Url $referrerUrl
+     */
     public function __construct(Url $url, Url $referrerUrl)
     {
         $this->url = $url;
         $this->referrerUrl = $referrerUrl;
     }
 
+    /**
+     * Whether the job is valid for further processing or not.
+     *
+     * @param Crawler $crawler
+     * @return boolean
+     */
     public function validate(Crawler $crawler) : bool
     {
         foreach ($crawler->getParsers() as $handler) {
@@ -33,6 +51,11 @@ class Job
         return false;
     }
 
+    /**
+     * Generate curl resource
+     *
+     * @return resource
+     */
     public function generateCurl()
     {
         $curl = curl_init();
@@ -43,6 +66,12 @@ class Job
         return $curl;
     }
 
+    /**
+     * Run the crawl job
+     *
+     * @param RequestResponse $requestResponse
+     * @param Crawler $crawler
+     */
     public function run(RequestResponse $requestResponse, Crawler $crawler)
     {
         foreach ($crawler->getParsers() as $parser) {

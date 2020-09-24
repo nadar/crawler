@@ -10,16 +10,35 @@ namespace Nadar\Crawler;
  */
 class RequestResponse
 {
+    /**
+     * @var string Contains the response content.
+     */
     protected $content;
     
+    /**
+     * @var string Contains the response content type
+     */
     protected $contentType;
 
+    /**
+     * Constructor
+     *
+     * @param string $content
+     * @param string $contentType
+     */
     public function __construct($content, $contentType)
     {
         $this->content = $content;
         $this->contentType = trim($contentType);
     }
 
+    /**
+     * Getter method fro the content.
+     * 
+     * > This might be a very very large string.
+     *
+     * @return string
+     */
     public function getContent()
     {
         return $this->content;
@@ -27,6 +46,11 @@ class RequestResponse
 
     private $_checksum;
 
+    /**
+     * Getter method for the checksum
+     *
+     * @return string
+     */
     public function getChecksum()
     {
         if ($this->_checksum === null) {
@@ -36,6 +60,11 @@ class RequestResponse
         return $this->_checksum;
     }
 
+    /**
+     * Getter method for content type
+     *
+     * @return string text/html or application/pdf
+     */
     public function getContentType()
     {
         return current(explode(";", $this->contentType));
