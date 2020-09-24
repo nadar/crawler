@@ -12,7 +12,8 @@ class ParserResult
 
     /**
      * @var array An array with links found on this parsers. The links are not validated whether they are on
-     * the curren site or not. Therefore this can also contain external links.
+     * the curren site or not. Therefore this can also contain external links. The key of the array is the link value the value is 
+     * the link content. f.e. <a href="https://luya.io">Go to Website</a> would be ['https://luya.io' => 'Go to Website'].
      */
     public $links = [];
 

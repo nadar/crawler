@@ -27,7 +27,7 @@ class HtmlParser implements ParserInterface
         $links = $dom->getElementsByTagName('a');
         $refs = [];
         foreach ($links as $link) {
-            $refs[] = $link->getAttribute('href');
+            $refs[$link->getAttribute('href')] = $link->nodeValue;
         }
 
         // body content

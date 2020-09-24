@@ -34,6 +34,9 @@ class Result
      */
     public $url;
 
+    /**
+     * @var string The language from html language attribute info, if available.
+     */
     public $language;
 
     public $title;
