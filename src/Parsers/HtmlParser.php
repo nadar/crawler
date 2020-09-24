@@ -20,6 +20,9 @@ class HtmlParser implements ParserInterface
 {
     public $stripTags = true;
 
+    /**
+     * {@inheritDoc}
+     */
     public function run(Job $job, RequestResponse $requestResponse) : ParserResult
     {
         if ($this->isCrawlFullIgnore($requestResponse->getContent())) {
@@ -59,11 +62,17 @@ class HtmlParser implements ParserInterface
         return $jobResult;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function validateUrl(Url $url) : bool
     {
         return in_array($url->getPathExtension(), ['', 'html', 'php', 'htm']);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function validateRequestResponse(RequestResponse $requestResponse): bool
     {
         return in_array($requestResponse->getContentType(), ['text/html']);

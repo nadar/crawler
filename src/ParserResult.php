@@ -10,11 +10,12 @@ namespace Nadar\Crawler;
  */
 class ParserResult
 {
+    use ResultPropertiesTrait;
+    /**
+     * @var boolean Whether the result should be ignored for any further processing. Ignored
+     * ParserResult will also not pushed to the `HandlerInterface::afterRun()` method.
+     */
     public $ignore = false;
-    
-    public $title;
-
-    public $content;
 
     /**
      * @var array An array with links found on this parsers. The links are not validated whether they are on
@@ -23,18 +24,12 @@ class ParserResult
      */
     public $links = [];
 
-    public $language;
-
-    public $keywords;
-
-    public $description;
-
-    public $group;
-
     /**
      * Trim whitespaces also inbetween the content.
+     * 
+     * This can be usefull when generate a result in order to safe memory.
      *
-     * @param string $string
+     * @param string $string The string to trim
      * @return string
      */
     public function trim($string)

@@ -149,7 +149,7 @@ class HtmlParserTest extends CrawlerTestCase
         $this->assertEmpty($run);
 
         // the domain in the content is another domain and there no further link to process
-        $this->assertSame([], $crawler->retrieveQueueJobs());
+        $this->assertSame([], $this->invokeMethod($crawler, 'retrieveQueueJobs'));
     }
 
     public function testCrawlTitle()

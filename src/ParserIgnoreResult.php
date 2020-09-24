@@ -10,5 +10,8 @@ namespace Nadar\Crawler;
  */
 class ParserIgnoreResult extends ParserResult
 {
+    /**
+     * {@inheritDoc}
+     */
     public $ignore = true;
 }

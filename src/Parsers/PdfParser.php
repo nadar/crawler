@@ -19,8 +19,16 @@ use Smalot\PdfParser\Parser;
  */
 class PdfParser implements ParserInterface
 {
+    /**
+     * @var boolean Whether utf8 encoding should be enabled or not.
+     */
     public $utf8Encoding = true;
 
+    /**
+     * Check whether the Parser class from Smalot exists or not.
+     * 
+     * @throws Exception
+     */
     public function __construct()
     {
         if (!class_exists(Parser::class)) {
@@ -28,6 +36,9 @@ class PdfParser implements ParserInterface
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function run(Job $job, RequestResponse $requestResponse) : ParserResult
     {
         try {
@@ -49,11 +60,17 @@ class PdfParser implements ParserInterface
         return $result;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function validateUrl(Url $url) : bool
     {
         return in_array($url->getPathExtension(), ['pdf']);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function validateRequestResponse(RequestResponse $requestResponse): bool
     {
         return in_array($requestResponse->getContentType(), ['application/pdf']);
