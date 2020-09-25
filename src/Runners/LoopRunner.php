@@ -13,6 +13,9 @@ use Nadar\Crawler\Interfaces\RunnerInterface;
  */
 class LoopRunner implements RunnerInterface
 {
+    /**
+     * {@inheritDoc}
+     */
     public function afterRun(Crawler $crawler)
     {
         $crawler->run();

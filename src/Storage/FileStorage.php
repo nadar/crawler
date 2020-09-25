@@ -10,6 +10,8 @@ use Nadar\Crawler\QueueItem;
 /**
  * File Storage
  * 
+ * Storage the current crawler process queue inside txt files.
+ * 
  * @author Basil Suter <git@nadar.io>
  * @since 1.0.0
  */
@@ -39,6 +41,9 @@ class FileStorage implements StorageInterface
         return $array;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function onSetup(Crawler $crawler)
     {
         file_put_contents($this->folder . $this->doneFileName, '');
@@ -46,6 +51,9 @@ class FileStorage implements StorageInterface
         file_put_contents($this->folder . $this->queueFileName, '');
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function onEnd(Crawler $crawler)
     {
         unlink($this->folder . $this->doneFileName);
@@ -53,26 +61,41 @@ class FileStorage implements StorageInterface
         unlink($this->folder . $this->queueFileName);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function isUrlDone($url) : bool
     {
         return in_array($url, $this->fileToArray($this->folder . $this->doneFileName));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function markUrlAsDone($url)
     {
         file_put_contents($this->folder . $this->doneFileName, $url . PHP_EOL, FILE_APPEND);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function isChecksumDone($checksum) : bool
     {
         return in_array($checksum, $this->fileToArray($this->folder . $this->checksumFileName));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function markChecksumAsDone($checksum)
     {
         file_put_contents($this->folder . $this->checksumFileName, $checksum . PHP_EOL, FILE_APPEND);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function pushQueue(QueueItem $queueItem)
     {
         file_put_contents($this->folder . $this->queueFileName, "$queueItem->url;$queueItem->referrerUrl" . PHP_EOL, FILE_APPEND);

@@ -42,6 +42,9 @@ class AsyncRunner implements RunnerInterface
         $this->callable = $callable;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function afterRun(Crawler $crawler)
     {
         call_user_func($this->callable, $crawler);
