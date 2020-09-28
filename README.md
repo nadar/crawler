@@ -3,7 +3,7 @@
 ![Tests](https://github.com/nadar/php-page-crawler/workflows/Tests/badge.svg)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/75ae58115a911edfb178/test_coverage)](https://codeclimate.com/github/nadar/crawler/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/75ae58115a911edfb178/maintainability)](https://codeclimate.com/github/nadar/crawler/maintainability)
-![Packagist Downloads](https://img.shields.io/packagist/dm/nadar/crawler)
+[![Packagist Downloads](https://img.shields.io/packagist/dm/nadar/crawler)](https://packagist.org/packages/nadar/crawler)
 
 A highly extendible, dependency free Crawler for HTML, PDFS or any other type of Documents.
 
