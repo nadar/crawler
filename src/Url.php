@@ -23,6 +23,11 @@ class Url
     protected $parsed;
 
     /**
+     * @var boolean Whether values should be encoded when retrieving values or not. By default this is disabled.
+     */
+    public $encode = false;
+
+    /**
      * Constructor
      *
      * @param string $url The url which should be objectified
@@ -79,7 +84,7 @@ class Url
      */
     public function getPath()
     {
-        return isset($this->parsed['path']) ? $this->parsed['path'] : false;
+        return isset($this->parsed['path']) ? $this->processEncoding($this->parsed['path']) : false;
     }
 
     /**
@@ -99,7 +104,7 @@ class Url
      */
     public function getPathFileName()
     {
-        return basename($this->getPath());
+        return $this->processEncoding(basename($this->getPath()));
     }
 
     /**
@@ -166,5 +171,17 @@ class Url
         }
 
         return $this;
+    }
+
+    /**
+     * Process a value which will be encoded when enabled. If not the value will be the same from input.
+     *
+     * @param string $value
+     * @return string If encoding is enabled the value will be encoded otherwise return original.
+     * @since 1.1
+     */
+    private function processEncoding($value)
+    {
+        return $this->encode ? urlencode($value) : $value;
     }
 }
