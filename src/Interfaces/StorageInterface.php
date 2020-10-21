@@ -2,7 +2,6 @@
 
 namespace Nadar\Crawler\Interfaces;
 
-use Nadar\Crawler\Crawler;
 use Nadar\Crawler\QueueItem;
 
 /**
@@ -14,7 +13,7 @@ use Nadar\Crawler\QueueItem;
  * Keep in mind this, data is only temporary required. Therefore before and after crawler run this data must be wiped
  * and is only valid for a **single crawler run**.
  *
- * To cleanup those temporary informations you might use `__construct()` and/or `__destruct()`
+ * To cleanup and/or initialize the storage system `onSetup(Crawler $crawler)` and `onEnd(Crawler $crawler)` should be used.
  * 
  * @author Basil Suter <git@nadar.io>
  * @since 1.0.0
