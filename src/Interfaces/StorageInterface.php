@@ -8,8 +8,11 @@ use Nadar\Crawler\QueueItem;
 /**
  * Runtime Stack
  *
- * The runtime stack is a storage system which is required when the parsers run in order to determine whether an
- * url is already parsed or not.
+ * The runtime storage is a system which is required when the parsers crawling in order to determine whether an
+ * url is already parsed or not. It also stores checksum and the current queue status.
+ *
+ * Keep in mind this, data is only temporary required. Therefore before and after crawler run this data must be wiped
+ * and is only valid for a **single crawler run**.
  * 
  * @author Basil Suter <git@nadar.io>
  * @since 1.0.0
