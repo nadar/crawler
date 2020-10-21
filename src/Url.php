@@ -24,6 +24,7 @@ class Url
 
     /**
      * @var boolean Whether values should be encoded when retrieving values or not. By default this is disabled.
+     * @since 1.1.0
      */
     public $encode = false;
 
