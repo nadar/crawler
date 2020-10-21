@@ -59,4 +59,12 @@ class UrlTest extends CrawlerTestCase
         $u->encode = true;
         $this->assertSame('https://luya.io/%2F%C3%A4%C3%A0', $u->getNormalized());
     }
+
+    public function testInvalidUrl()
+    {
+        $this->assertFalse((new Url('mailto:johndoe@example.com'))->isValid());
+        $this->assertFalse((new Url('tel:123123123'))->isValid());
+        $this->assertTrue((new Url('https://luya.io'))->isValid());
+        $this->assertTrue((new Url('/admin/path'))->isValid());
+    }
 }
