@@ -47,17 +47,24 @@ class UrlTest extends CrawlerTestCase
         // https://www.ahv-iv.ch/de/Merkblätter-Formulare/Formulare/Elektronische-Formulare/AHV-Formulare/318260-Anmeldung-für-einen-Versicherungsausweis
         // https://www.ahv-iv.ch/it/Opuscoli-Moduli/Moduli/Prestazioni-dellIPG-servizio-e-maternità
 
-        $u = new Url('https://www.ahv-iv.ch/de/Merkblätter-Formulare/Formulare/Elektronische-Formulare/AHV-Formulare/318260-Anmeldung-für-einen-Versicherungsausweis');
+        $u = new Url('https://www.ahv-iv.ch/de/Merkblätter/Versicherungsausweis');
         $u->encode = true;
 
-        $this->assertSame('%2Fde%2FMerkbl%C3%A4tter-Formulare%2FFormulare%2FElektronische-Formulare%2FAHV-Formulare%2F318260-Anmeldung-f%C3%BCr-einen-Versicherungsausweis', $u->getPath());
+        $this->assertSame('/de/Merkbl%C3%A4tter/Versicherungsausweis', $u->getPath());
 
         $u = new Url('https://luya.io/äà');
         $this->assertSame('https://luya.io/äà', $u->getNormalized());
 
         $u = new Url('https://luya.io/äà');
+        $this->assertSame('https://luya.io/äà', $u->getNormalized());
         $u->encode = true;
-        $this->assertSame('https://luya.io/%2F%C3%A4%C3%A0', $u->getNormalized());
+        $this->assertSame('https://luya.io/%C3%A4%C3%A0', $u->getNormalized());
+        $this->assertSame('/%C3%A4%C3%A0', $u->getPath());
+        $this->assertSame('https://luya.io/äà', urldecode($u->getNormalized()));
+
+        $u = new Url('https://luya.io/a/a');
+        $u->encode = true;
+        $this->assertSame('https://luya.io/a/a', $u->getNormalized());
     }
 
     public function testInvalidUrl()

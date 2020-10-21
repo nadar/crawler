@@ -181,6 +181,6 @@ class Url
      */
     private function processEncoding($value)
     {
-        return $this->encode ? urlencode($value) : $value;
+        return $this->encode ? implode("/", array_map("urlencode", explode("/", $value))) : $value;
     }
 }
