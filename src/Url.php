@@ -142,15 +142,13 @@ class Url
     /**
      * Whether the current url is a valid url.
      * 
-     * A valid url must be have a valid host to connect.
+     * A valid url must be have a valid host to connect. Check if scheme contains mailto or tel
      *
      * @return boolean
      */
     public function isValid()
     {
-        // filter out: mailto:, tel:
-        // @TODO
-        return true;
+        return !in_array($this->getScheme(), ['mailto', 'tel', 'ftp']);
     }
 
     /**
