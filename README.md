@@ -24,6 +24,12 @@ Composer is required to install this library:
 composer require nadar/crawler
 ```
 
+In order to use the PDF Parser, the optional library `smalot/pdfparser` must be installed:
+
+```sh
+smalot/pdfparser
+```
+
 ## Usage
 
 1. First we need to provide the crawler the information what should be done with the results from a crawler run:

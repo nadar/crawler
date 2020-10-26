@@ -8,13 +8,12 @@ use Nadar\Crawler\Storage\FileStorage;
 
 include 'vendor/autoload.php';
 
-
 $handler = new DebugHandler();
 
 $storage = new FileStorage(dirname(__FILE__) . '/runtime');
 //$storage = new ArrayStorage;
 
-$crawler = new Crawler('https://www.ak71.ch/', $storage, new LoopRunner);
+$crawler = new Crawler('https://luya.io/', $storage, new LoopRunner);
 $crawler->concurrentJobs = 30;
 $crawler->addParser(new HtmlParser);
 //$crawler->addParser(new PdfParser);
