@@ -10,12 +10,11 @@ class AsyncRunnerTest extends CrawlerTestCase
 {
     public function testAsyncRunnerCallable()
     {
-        $runner = new AsyncRunner(function() {
-            // run callable    
+        $runner = new AsyncRunner(function () {
+            // run callable
         });
 
         $crawler = new Crawler('localhost', new ArrayStorage, $runner);
         $this->assertEmpty($runner->afterRun($crawler));
-        
     }
 }

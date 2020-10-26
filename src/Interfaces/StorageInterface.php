@@ -14,7 +14,7 @@ use Nadar\Crawler\QueueItem;
  * and is only valid for a **single crawler run**.
  *
  * To cleanup and/or initialize the storage system `onSetup(Crawler $crawler)` and `onEnd(Crawler $crawler)` should be used.
- * 
+ *
  * @author Basil Suter <git@nadar.io>
  * @since 1.0.0
  */

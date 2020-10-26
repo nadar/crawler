@@ -4,9 +4,9 @@ namespace Nadar\Crawler;
 
 /**
  * Represents an URL.
- * 
+ *
  * In order to retrieve the url from an object use `getNormalized()`. This value is mainly used to identife and store.
- * 
+ *
  * @author Basil Suter <git@nadar.io>
  * @since 1.0.0
  */
@@ -44,7 +44,7 @@ class Url
      *
      * A normalized urls means that unnecessary url parts are removed but keep the
      * main informations in order to have a valid url.
-     * 
+     *
      * @return string https://luya.io/admin
      */
     public function getNormalized()
@@ -60,7 +60,7 @@ class Url
 
     /**
      * Generate an unique url with host, path and query params.
-     * 
+     *
      * @return string
      */
     public function getUniqueKey()
@@ -141,7 +141,7 @@ class Url
 
     /**
      * Whether the current url is a valid url.
-     * 
+     *
      * A valid url must be have a valid host to connect. Check if scheme contains mailto or tel
      *
      * @return boolean

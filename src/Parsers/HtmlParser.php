@@ -12,7 +12,7 @@ use Nadar\Crawler\Url;
 
 /**
  * Html Parser
- * 
+ *
  * @author Basil Suter <git@nadar.io>
  * @since 1.0.0
  */
@@ -108,21 +108,21 @@ class HtmlParser implements ParserInterface
 
     public function getCrawlTitle($content)
     {
-        preg_match_all("/\[CRAWL_TITLE\](.*?)\[\/CRAWL_TITLE\]/", $content, $results);	
+        preg_match_all("/\[CRAWL_TITLE\](.*?)\[\/CRAWL_TITLE\]/", $content, $results);
 
         if (!empty($results) && isset($results[1]) && isset($results[1][0])) {
-            return $results[1][0];	
-        }	
+            return $results[1][0];
+        }
 
         return null;
     }
 
     public function getCrawlGroup($content)
     {
-        preg_match_all("/\[CRAWL_GROUP\](.*?)\[\/CRAWL_GROUP\]/", $content, $results);	
+        preg_match_all("/\[CRAWL_GROUP\](.*?)\[\/CRAWL_GROUP\]/", $content, $results);
 
-        if (!empty($results) && isset($results[1]) && isset($results[1][0])) {	
-            return $results[1][0];	
+        if (!empty($results) && isset($results[1]) && isset($results[1][0])) {
+            return $results[1][0];
         }
 
         return null;
@@ -130,10 +130,10 @@ class HtmlParser implements ParserInterface
 
     public function stripCrawlIgnore($content)
     {
-        preg_match_all("/\[CRAWL_IGNORE\](.*?)\[\/CRAWL_IGNORE\]/s", $content, $output);	
-        if (isset($output[0]) && count($output[0]) > 0) {	
-            foreach ($output[0] as $ignorPartial) {	
-                $content = str_replace($ignorPartial, '', $content);	
+        preg_match_all("/\[CRAWL_IGNORE\](.*?)\[\/CRAWL_IGNORE\]/s", $content, $output);
+        if (isset($output[0]) && count($output[0]) > 0) {
+            foreach ($output[0] as $ignorPartial) {
+                $content = str_replace($ignorPartial, '', $content);
             }
         }
 
@@ -179,7 +179,7 @@ class HtmlParser implements ParserInterface
             return $tag->hasAttribute('lang') ? $tag->getAttribute('lang') : null;
         }
 
-        return null;	
+        return null;
     }
 
     public function getDomDescription(DOMDocument $dom)

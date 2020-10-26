@@ -9,9 +9,9 @@ use Nadar\Crawler\QueueItem;
 
 /**
  * File Storage
- * 
+ *
  * Storage the current crawler process queue inside txt files.
- * 
+ *
  * @author Basil Suter <git@nadar.io>
  * @since 1.0.0
  */

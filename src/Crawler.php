@@ -9,9 +9,9 @@ use Nadar\Crawler\Interfaces\StorageInterface;
 
 /**
  * Crawler
- * 
+ *
  * The main object holding the process informations.
- * 
+ *
  * @author Basil Suter <git@nadar.io>
  * @since 1.0.0
  */
@@ -131,7 +131,7 @@ class Crawler
 
     /**
      * Get all registered handlers.
-     * 
+     *
      * @return HandlerInterface[]
      * @see {{addHandler()}}
      */

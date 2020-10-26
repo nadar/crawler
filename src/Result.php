@@ -6,9 +6,9 @@ use Nadar\Crawler\Interfaces\ParserInterface;
 
 /**
  * Result
- * 
+ *
  * Represents the Result from a crawl job
- * 
+ *
  * @author Basil Suter <git@nadar.io>
  * @since 1.0.0
  */

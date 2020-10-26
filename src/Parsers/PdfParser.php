@@ -13,7 +13,7 @@ use Smalot\PdfParser\Parser;
 
 /**
  * PDF Parser
- * 
+ *
  * @author Basil Suter <git@nadar.io>
  * @since 1.0.0
  */
@@ -26,7 +26,7 @@ class PdfParser implements ParserInterface
 
     /**
      * Check whether the Parser class from Smalot exists or not.
-     * 
+     *
      * @throws Exception
      */
     public function __construct()

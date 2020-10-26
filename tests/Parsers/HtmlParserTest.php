@@ -70,7 +70,6 @@ class HtmlParserTest extends CrawlerTestCase
 
         $dom = $parser->generateDomDocuemnt('<!doctype html><html><head><title>title</title></head><body>content</body></html>');
         $this->assertSame(null, $parser->getDomLanguage($dom));
-        
     }
 
     public function testCrawlerTags()
@@ -161,8 +160,6 @@ class HtmlParserTest extends CrawlerTestCase
 
     public function testCrawlFullIgnore()
     {
-        
-
         $parser = new HtmlParser;
 
         $this->assertTrue($parser->isCrawlFullIgnore('Foo[CRAWL_FULL_IGNORE]title[/CRAWL_TITLE]Bar'));

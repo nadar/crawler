@@ -4,7 +4,7 @@ namespace Nadar\Crawler;
 
 /**
  * Parser Result which will be Ignored.
- * 
+ *
  * @author Basil Suter <git@nadar.io>
  * @since 1.0.0
  */

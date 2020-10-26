@@ -4,7 +4,7 @@ namespace Nadar\Crawler;
 
 /**
  * Stringable Properties which are Shared between ParserResult and Result
- * 
+ *
  * @author Basil Suter <git@nadar.io>
  * @since 1.0.0
  */

@@ -10,7 +10,7 @@ use Nadar\Crawler\Url;
 
 class PdfParserTest extends CrawlerTestCase
 {
-    // 
+    //
 
     public function testPdfUtf8Issue()
     {
@@ -25,7 +25,6 @@ class PdfParserTest extends CrawlerTestCase
         
         $this->assertTrue($parser->validateRequestResponse($requestResponse));
         $this->assertNotEmpty($result->content);
-        
     }
 
     public function testValidators()

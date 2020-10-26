@@ -9,15 +9,15 @@ use Nadar\Crawler\Url;
 
 /**
  * Parser Interface
- * 
+ *
  * The parser is the main task which is analysing the response from a given URL and return a result.
- * 
+ *
  * The parsers is triggered by the Job object and therfore cycles trough 3 steps.
- * 
+ *
  * 1. The url will be validated with validateUrl(), if validation succeed. A CURL request will be made
  * 2. The CURL Request will be passed to validateRequestResponse() in order to verify mime type / content type values. if validation succeed run will be invoken
  * 3. The run method will be invoken which needs to return a ParserResult (this can be either contain an ignore flag or not).
- * 
+ *
  * @author Basil Suter <git@nadar.io>
  * @since 1.0.0
  */

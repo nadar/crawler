@@ -6,9 +6,9 @@ use Nadar\Crawler\Crawler;
 
 /**
  * Runner Interface
- * 
+ *
  * The Runner determines the what should happen after a successfull crawler run iteration.
- * 
+ *
  * @author Basil Suter <git@nadar.io>
  * @since 1.0.0
  */

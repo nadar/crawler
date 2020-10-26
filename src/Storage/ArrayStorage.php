@@ -8,9 +8,9 @@ use Nadar\Crawler\QueueItem;
 
 /**
  * Array Storage
- * 
+ *
  * Store the current crawler process queue inside the memory (array).
- * 
+ *
  * @author Basil Suter <git@nadar.io>
  * @since 1.0.0
  */
