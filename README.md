@@ -9,22 +9,26 @@ A highly extendible, dependency free Crawler for HTML, PDFS or any other type of
 
 **Why another Page Crawler?** Yes, indeed, there are already very good Crawlers around, therefore those where my goals:
 
-+ **Dependency Free** - we don't want to use any HTTP client, as much PHP "native" code as possible in order to keep the overhead as small. It just requires CURL
++ **Dependency Free** - we don't want to use any HTTP client, as much "native" PHP code as possible in order to keep the overhead small. It just requires the CURL extension.
 + **Memory Efficent** - As memory efficient as possible, less overhead, full code control.
 + **Extendible** - Attach your own parsers in order to determine how html or any other format is parsed. We provided out of the box support for HTML and PDF.
-+ **Runtime Storage** - When the parers run, certain informations must be stored. This is extendible to suit your use case. Either use your database or take the built int array or file storage system.
-+ **Async** - It's possible to start the crawler and process any further run cycle in an asynchronus process.
++ **Runtime Storage** - When the crawler run, certain informations must be stored. This is extendible to suit your use case. Either use your database or take the built in array or file storage system.
++ **Async** - It's possible to start the crawler and process any further run cycle as an asynchronus process.
 
 
 ## Installation
 
-```
+Composer is required to install this library:
+
+```sh
 composer require nadar/crawler
 ```
 
 ## Usage
 
-Create your handler, this is the classes which will interact with the crawler in order to store your content/results somwehere. The afterRun() method will run whenever a url is crawled and contain the results:
+1. First we need to provide the crawler the information what should be done with the results from a crawler run:
+
+Create your handler, those are the classes which interact with the crawler in order to store your content/results somwehere. The afterRun() method will run whenever an URL is crawled and contains the results:
 
 ```php
 class MyCrawlHandler implements \Nadar\Crawler\Interfaces\HandlerInterface
@@ -47,14 +51,15 @@ class MyCrawlHandler implements \Nadar\Crawler\Interfaces\HandlerInterface
 }
 ```
 
-The handler class within the full setup:
+2. Then we attach the handler and setup all required informations for crawler:
 
 ```php
 $crawler = new Crawler('https://luya.io', new ArrayStorage, new LoopRunner);
 
 // what kind of document types would you like to parse?
 $crawler->addParser(new Nadar\Crawler\Parsers\Html);
-// need pdfs, increases memory usage! 
+
+// adding will increases memory consumption
 // $crawler->addParser(new Nadar\Crawler\Parsers\Pdf);
 
 // register your handler in order to interact with the results, maybe store them in a database?
@@ -67,7 +72,7 @@ $crawler->run();
 
 ## Benchmark
 
-Of course those benchmarks may vary depending on internet connection, bandwidth, servers but we made all the tests under the same circumstances. The memory peak varys strong when using the PDF parsers, therefore we test only with HTML parser
+Of course those benchmarks may vary depending on internet connection, bandwidth, servers but we made all the tests under the same circumstances. The memory peak varys strong when using the PDF parsers, therefore we test only with HTML parser:
 
 | Index Size     | Concurrent Requests    | Memory Peak     |Time               | Storage
 |-------------- |-------------------    |-----------        |----               | ---
@@ -75,26 +80,7 @@ Of course those benchmarks may vary depending on internet connection, bandwidth,
 | 308              | 30                    | 6MB               | 20s               | FileStorage
 
 
-> The benchmark website is https://demo.luya.io/, Looking for a better "static" website to benchmark... not finished here
-
-
-This is the example benchmark setup:
-
-```php
-use Nadar\Crawler\Crawler;
-use Nadar\Crawler\Handlers\DebugHandler;
-use Nadar\Crawler\Parsers\HtmlParser;
-use Nadar\Crawler\Parsers\PdfParser;
-
-include 'vendor/autoload.php';
-
-$crawler = new Crawler('.........YOUR_WEBSITE........', new ArrayStorage, new LoopRunner);
-$crawler->addParser(new HtmlParser);
-$crawler->addParser(new PdfParser);
-$crawler->addHandler(new DebugHandler());
-$crawler->setup();
-$crawler->run();
-```
+> Still looking for a good website to use for benchmarking. See the `benchmark.php` file for the test setup.
 
 ## Developer Informations
 
@@ -104,7 +90,8 @@ For a better understanding, here is en explenation of how the classes are capsul
 + Job: The job contains the url logic for the next "CURL"/Download Job
 + Parsers: The parsers will take the job informations in combination with the RequestResponse in order to generate a ParserResult
 + ParserResult: The Job result represents the result from a Parser.
-+ QueueItem: The queue item is extract from the job and is only used to store those informations with use of StorageInterface
++ QueueItem: The queue item is extracted from the job and is only used to store those informations with use of StorageInterface
 
+**Lifecycle**
 
 Crawler -> Job -> (ItemQueue -> Storage) -> RequestResponse -> Parser -> ParserResult -> Result
