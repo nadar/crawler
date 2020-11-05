@@ -2,6 +2,7 @@
 
 namespace Nadar\Crawler\Tests\Parsers;
 
+use DOMDocument;
 use Nadar\Crawler\Crawler;
 use Nadar\Crawler\Handlers\DebugHandler;
 use Nadar\Crawler\Job;
@@ -28,6 +29,9 @@ class HtmlParserTest extends CrawlerTestCase
 </html>');
 
         $this->assertSame('<body>between<p>the lines</p></body>', str_replace(['\n', '\r', PHP_EOL], '', $parser->getDomBodyContent($dom)));
+
+        $this->assertNull($parser->getDomBodyContent(new DOMDocument())
+    );
     }
 
     public function testFullIgnoreTag()
@@ -63,6 +67,8 @@ class HtmlParserTest extends CrawlerTestCase
 </html>');
         $this->assertSame('de', $parser->getDomLanguage($dom));
         $this->assertSame('title', $parser->getDomTitle($dom));
+        $this->assertNull($parser->getDomTitle(new DOMDocument()));
+        $this->assertNull($parser->getDomLanguage(new DOMDocument()));
         $this->assertSame('meta meta', $parser->getDomDescription($dom));
         $this->assertSame('kws kws', $parser->getDomKeywords($dom));
 
@@ -156,6 +162,8 @@ class HtmlParserTest extends CrawlerTestCase
         $parser = new HtmlParser;
 
         $this->assertSame('title', $parser->getCrawlTitle('Foo[CRAWL_TITLE]title[/CRAWL_TITLE]Bar'));
+
+        $this->assertNull($parser->getCrawlTitle('foobar'));
     }
 
     public function testCrawlFullIgnore()
@@ -163,5 +171,13 @@ class HtmlParserTest extends CrawlerTestCase
         $parser = new HtmlParser;
 
         $this->assertTrue($parser->isCrawlFullIgnore('Foo[CRAWL_FULL_IGNORE]title[/CRAWL_TITLE]Bar'));
+    }
+
+    public function testIgnoreContent()
+    {
+        $html = '<div><p>hallo</p><!-- [CRAWL_IGNORE] --></div><div class="page__content page__content--footer"><div class="wrapper"><div><br /> text</div></div><footer class="footer"><div class="footer__inner"><div class="wrapper"><div class="footer__row"><div class="footer__column footer__column--main"><div class="footer__column footer__column--left"><div class="footer__column footer__column--footernav"><ul class="footernav"><li class="footernav__item"><a class="footernav__link" href="/de/sites">Sitemap</a></li><li class="footernav__item"><a class="footernav__link" href="/de/impressum">Impressum</a></li><li class="footernav__item"><a class="footernav__link" href="/de/agb">AGB</a></li><li class="footernav__item"><a class="footernav__link" href="/de/datenschutzerklaerung">Datenschutzerklärung</a></li></ul></div></div><div class="footer__column footer__column--right"><div class="footer__column footer__column--copyright"> company </div></div></div><div class="footer__column footer__column--social"><ul class="footernav footernav--socials"><li class="footernav__item"><a class="footernav__link" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li><li class="footernav__item"><a class="footernav__link" href="https://www.linkedin.com/company/" target="_blank"><i class="fab fa-linkedin"></i></a></li></ul></div></div></div></div></footer></div></div><!-- Root element of PhotoSwipe. Must have class pswp. --><div class="pswp" tabindex="-1" role="dialog" aria-hidden="true"><!-- Background of PhotoSwipe. It\'s a separate element as animating opacity is faster than rgba(). --><div class="pswp__bg"></div><!-- Slides wrapper with overflow:hidden. --><div class="pswp__scroll-wrap"><!-- Container that holds slides. PhotoSwipe keeps only 3 of them in the DOM to save memory. Don\'t modify these 3 pswp__item elements, data is added later on. --><div class="pswp__container"><div class="pswp__item"></div><div class="pswp__item"></div><div class="pswp__item"></div></div><!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. --><div class="pswp__ui pswp__ui--hidden"><div class="pswp__top-bar"><!-- Controls are self-explanatory. Order can be changed. --><div class="pswp__counter"></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button><button class="pswp__button pswp__button--share" title="Share"></button><button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button><button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR --><!-- element will get class pswp__preloader--active when preloader is running --><div class="pswp__preloader"><div class="pswp__preloader__icn"><div class="pswp__preloader__cut"><div class="pswp__preloader__donut"></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class="pswp__share-tooltip"></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button><button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class="pswp__caption"><div class="pswp__caption__center"></div></div></div></div></div><!-- [/CRAWL_IGNORE] --></div>';
+        $parser = new HtmlParser;
+    
+        $this->assertSame('<div><p>hallo</p><!--  --></div>', $parser->stripCrawlIgnore($html));
     }
 }

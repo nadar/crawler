@@ -79,9 +79,9 @@ class HtmlParser implements ParserInterface
     }
 
     /**
-     * Undocumented function
+     * Generate DOMDocument from content.
      *
-     * @param [type] $content
+     * @param string $content
      * @return DOMDocument
      */
     public function generateDomDocuemnt($content)
@@ -95,6 +95,12 @@ class HtmlParser implements ParserInterface
         return $dom;
     }
 
+    /**
+     * Check if content contains full ignore flag
+     *
+     * @param string $content
+     * @return boolean
+     */
     public function isCrawlFullIgnore($content)
     {
         preg_match("/\[CRAWL_FULL_IGNORE\]/s", $content, $output);
@@ -106,6 +112,12 @@ class HtmlParser implements ParserInterface
         return false;
     }
 
+    /**
+     * Get the crawl title
+     *
+     * @param string $content
+     * @return string
+     */
     public function getCrawlTitle($content)
     {
         preg_match_all("/\[CRAWL_TITLE\](.*?)\[\/CRAWL_TITLE\]/", $content, $results);
@@ -117,6 +129,12 @@ class HtmlParser implements ParserInterface
         return null;
     }
 
+    /**
+     * Get the crawler group from content
+     *
+     * @param string $content
+     * @return string
+     */
     public function getCrawlGroup($content)
     {
         preg_match_all("/\[CRAWL_GROUP\](.*?)\[\/CRAWL_GROUP\]/", $content, $results);
@@ -128,6 +146,12 @@ class HtmlParser implements ParserInterface
         return null;
     }
 
+    /**
+     * Strip crawl ignore data from content
+     *
+     * @param string $content
+     * @return string
+     */
     public function stripCrawlIgnore($content)
     {
         preg_match_all("/\[CRAWL_IGNORE\](.*?)\[\/CRAWL_IGNORE\]/s", $content, $output);
@@ -140,6 +164,12 @@ class HtmlParser implements ParserInterface
         return $content;
     }
 
+    /**
+     * Get Body from DOMDocument
+     *
+     * @param DOMDocument $dom
+     * @return string
+     */
     public function getDomBodyContent(DOMDocument $dom)
     {
         foreach (iterator_to_array($dom->getElementsByTagName("script")) as $node) {
@@ -160,6 +190,12 @@ class HtmlParser implements ParserInterface
         return null;
     }
 
+    /**
+     * Get Title from DOMDocument
+     *
+     * @param DomDocument $dom
+     * @return string
+     */
     public function getDomTitle(DomDocument $dom)
     {
         $list = $dom->getElementsByTagName("title");
@@ -170,6 +206,12 @@ class HtmlParser implements ParserInterface
         return null;
     }
 
+    /**
+     * Get language info from DOMDocument
+     *
+     * @param DOMDocument $dom
+     * @return string
+     */
     public function getDomLanguage(DOMDocument $dom)
     {
         $html = $dom->getElementsByTagName('html');
@@ -182,6 +224,12 @@ class HtmlParser implements ParserInterface
         return null;
     }
 
+    /**
+     * Get Description from DOMDocument
+     *
+     * @param DOMDocument $dom
+     * @return string
+     */
     public function getDomDescription(DOMDocument $dom)
     {
         $metas = $dom->getElementsByTagName('meta');
@@ -195,6 +243,12 @@ class HtmlParser implements ParserInterface
         return null;
     }
 
+    /**
+     * Get keywords from DOMDocument
+     *
+     * @param DOMDocument $dom
+     * @return string
+     */
     public function getDomKeywords(DOMDocument $dom)
     {
         $metas = $dom->getElementsByTagName('meta');
