@@ -5,7 +5,7 @@ In order to read more about upgrading and BC breaks have a look at the [UPGRADE 
 
 ## 1.1.2 (12. November 2020)
 
-+ Decrase the CURL Request Timeout. A Site will now timeout after 5 seconds when before trying to crawl.
++ Decrease the CURL Request Timeout. A Site will now timeout after 5 seconds when before trying to crawl.
 
 ## 1.1.1 (21. October 2020)
 
