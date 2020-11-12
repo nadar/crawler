@@ -63,6 +63,8 @@ class Job
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_URL, $this->url->getNormalized());
         curl_setopt($curl, CURLOPT_HTTPGET, true);
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 0); 
+        curl_setopt($curl, CURLOPT_TIMEOUT, 5); // timeout after 5 seconds
         return $curl;
     }
 
