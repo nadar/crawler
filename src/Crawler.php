@@ -231,7 +231,6 @@ class Crawler
 
         // get content and remove handles
         foreach ($curlRequests as $queueKey => $ch) {
-
             if ($this->maxSize && curl_getinfo($ch, CURLINFO_SIZE_DOWNLOAD) > $this->maxSize) {
                 curl_multi_remove_handle($multiCurl, $ch);
                 unset($ch);

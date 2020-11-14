@@ -30,8 +30,9 @@ class HtmlParserTest extends CrawlerTestCase
 
         $this->assertSame('<body>between<p>the lines</p></body>', str_replace(['\n', '\r', PHP_EOL], '', $parser->getDomBodyContent($dom)));
 
-        $this->assertNull($parser->getDomBodyContent(new DOMDocument())
-    );
+        $this->assertNull(
+            $parser->getDomBodyContent(new DOMDocument())
+        );
     }
 
     public function testFullIgnoreTag()
