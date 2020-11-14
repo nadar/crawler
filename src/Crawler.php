@@ -18,16 +18,18 @@ use Nadar\Crawler\Interfaces\StorageInterface;
 class Crawler
 {
     /**
-     * Th@var integer The number of concurrent curl download requests, this can increase memory.
+     * @var integer The number of concurrent curl download requests, this can strong increase memory usage.
      */
-    public $concurrentJobs = 30;
+    public $concurrentJobs = 15;
 
     /**
-     * @var integer The download limit in Bytes. Every response which is higher then the above value will be skipped on not the passed to the parsers. (1000000 Bytes = 1 Mb)
-     * This can be helpfull that parsers won't run into large memory leaks. If the value false is provided, the limit is disabeld.
+     * @var integer The process limit in Bytes. Every response which is higher then the above value will be skipped on not the passed to the parsers. (5000000 Bytes = 5 Mb)
+     * This can be helpfull that parsers won't run into large memory leaks. If the value false is provided, the limit is disabeld. To be clear, this value won't stop the crawler
+     * from downloading any given url, it just won't passe the value to the parsers, especially the PDF parser requires a lot of memory for large files, this is why
+     * this property has been introduced
      * @since 1.2.0
      */
-    public $maxSize = 1000000;
+    public $maxSize = 5000000;
 
     /**
      * @var Url Contains the URL object with the base URL. Urls which are not matching the base url will not be crawled or added to the results page.
