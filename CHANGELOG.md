@@ -5,7 +5,7 @@ In order to read more about upgrading and BC breaks have a look at the [UPGRADE 
 
 ## 1.2.0 (14. November 2020)
 
-+ [#7](https://github.com/nadar/crawler/pull/7/files) By default, response content which is bigger then 5MB won't be passed to Parsers. In order to turn off this behavior use `'maxSize' => false` or increase the limit set `'maxSize' => 15000000` (which is 15MB). The value must be provided in Bytes.
++ [#7](https://github.com/nadar/crawler/pull/7/files) By default, response content which is bigger then 5MB won't be passed to Parsers. In order to turn off this behavior use `'maxSize' => false` or increase the limit `'maxSize' => 15000000` (which is 15MB for example). The value must be provided in Bytes. The main goal is to ensure that the PDF Parser won't run into very large memory consumption. This restriction won't stop the Crawler from downloading the URL (whether its large the the maxSize definition or not), but preventing memory leaks when the Parsers start to interact with the response content.
 
 ## 1.1.2 (12. November 2020)
 
