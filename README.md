@@ -76,6 +76,8 @@ $crawler->setup();
 $crawler->run();
 ```
 
+> Attention: Keep in mind that wen you enable the PDF Parser and have multiple concurrent requests this can drastically increases memory usage (Especially if there are large PDFs)! Therefore it's recommend to lower the concurrent value when enabling PDF Parser!  
+
 ## Benchmark
 
 Of course those benchmarks may vary depending on internet connection, bandwidth, servers but we made all the tests under the same circumstances. The memory peak varys strong when using the PDF parsers, therefore we test only with HTML parser:
