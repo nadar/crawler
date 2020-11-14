@@ -95,6 +95,7 @@ class Job
 
                 if ($parserResult->ignore) {
                     // for whatever reason the parser ignores this url
+                    unset($parserResult);
                     continue;
                 }
 
