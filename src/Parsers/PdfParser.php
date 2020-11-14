@@ -13,6 +13,9 @@ use Smalot\PdfParser\Parser;
 
 /**
  * PDF Parser
+ 
+ * > Attention: Keep in mind that wen you enable the PDF Parser and have multiple concurrent requests this can drastically increases memory 
+ * > usage (Especially if there are large PDFs)! Therefore it's recommend to lower the concurrent value when enabling PDF Parser!
  *
  * @author Basil Suter <git@nadar.io>
  * @since 1.0.0
