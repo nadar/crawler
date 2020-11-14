@@ -3,9 +3,13 @@
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 In order to read more about upgrading and BC breaks have a look at the [UPGRADE Document](UPGRADE.md).
 
+## 1.2.0 (14. November 2020)
+
++ [#7](https://github.com/nadar/crawler/pull/7/files) By default, response content which is bigger then 5MB won't be passed to Parsers. In order to turn off this behavior use `'maxSize' => false` or increase the limit set `'maxSize' => 15000000` (which is 15MB). The value must be provided in Bytes.
+
 ## 1.1.2 (12. November 2020)
 
-+ Decrease the CURL Request Timeout. A Site will now timeout after 5 seconds when before trying to crawl.
++ Decrease the CURL Request Timeout. A CURL request for a given URL will now timeout after 5 seconds.
 
 ## 1.1.1 (21. October 2020)
 
