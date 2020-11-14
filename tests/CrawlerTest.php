@@ -23,6 +23,19 @@ class CrawlerTest extends CrawlerTestCase
         $this->assertNotEmpty($debug->elapsedTime());
     }
 
+    public function testRunCrawlerButSkipResponseDueToVerySmallLimit()
+    {
+        $debug = new DebugHandler();
+
+        $crawler = new Crawler('https://luya.io', new ArrayStorage, new LoopRunner);
+        $crawler->maxSize = 1; // 1 byte is required
+        $crawler->addParser(new HtmlParser);
+        $crawler->addHandler($debug);
+        $this->assertEmpty($crawler->setup());
+        $this->assertEmpty($crawler->run());
+        $this->assertNotEmpty($debug->elapsedTime());
+    }
+
     public function testCrawlWithFilteredMainDomain()
     {
         $debug = new DebugHandler();

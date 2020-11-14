@@ -235,6 +235,7 @@ class Crawler
             if ($this->maxSize && curl_getinfo($ch, CURLINFO_SIZE_DOWNLOAD) > $this->maxSize) {
                 curl_multi_remove_handle($multiCurl, $ch);
                 unset($ch);
+                continue;
             }
 
             $requestResponse = new RequestResponse(curl_multi_getcontent($ch), curl_getinfo($ch, CURLINFO_CONTENT_TYPE));
