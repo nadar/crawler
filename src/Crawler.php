@@ -17,7 +17,17 @@ use Nadar\Crawler\Interfaces\StorageInterface;
  */
 class Crawler
 {
+    /**
+     * Th@var integer The number of concurrent curl download requests, this can increase memory.
+     */
     public $concurrentJobs = 30;
+
+    /**
+     * @var integer The download limit in Bytes. Every response which is higher then the above value will be skipped on not the passed to the parsers. (1000000 Bytes = 1 Mb)
+     * This can be helpfull that parsers won't run into large memory leaks. If the value false is provided, the limit is disabeld.
+     * @since 1.2.0
+     */
+    public $maxSize = 1000000;
 
     /**
      * @var Url Contains the URL object with the base URL. Urls which are not matching the base url will not be crawled or added to the results page.
@@ -219,6 +229,12 @@ class Crawler
 
         // get content and remove handles
         foreach ($curlRequests as $queueKey => $ch) {
+
+            if ($this->maxSize && curl_getinfo($ch, CURLINFO_SIZE_DOWNLOAD) > $this->maxSize) {
+                curl_multi_remove_handle($multiCurl, $ch);
+                unset($ch);
+            }
+
             $requestResponse = new RequestResponse(curl_multi_getcontent($ch), curl_getinfo($ch, CURLINFO_CONTENT_TYPE));
 
             $checksum = $requestResponse->getChecksum();
