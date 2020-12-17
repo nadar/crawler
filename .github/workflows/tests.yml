@@ -28,6 +28,7 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: apc, curl, dom, intl, mbstring, mcrypt
           ini-values: date.timezone='UTC'
+          coverage: xdebug
 
       ## install composer
       - name: Install dependencies
