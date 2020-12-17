@@ -19,7 +19,7 @@ class HtmlParserTest extends CrawlerTestCase
     {
         $parser = new HtmlParser;
 
-        $dom = $parser->generateDomDocuemnt('<!doctype html><html lang="de">
+        $dom = $parser->generateDomDocument('<!doctype html><html lang="de">
         <head>
             <meta name="description" content="meta meta">
             <meta name="keywords" content="kws kws">
@@ -58,7 +58,7 @@ class HtmlParserTest extends CrawlerTestCase
     {
         $parser = new HtmlParser;
 
-        $dom = $parser->generateDomDocuemnt('<!doctype html><html lang="de">
+        $dom = $parser->generateDomDocument('<!doctype html><html lang="de">
         <head>
             <meta name="description" content="meta meta">
             <meta name="keywords" content="kws kws">
@@ -75,7 +75,7 @@ class HtmlParserTest extends CrawlerTestCase
 
         // test with invalid or none existing html lang attribute
 
-        $dom = $parser->generateDomDocuemnt('<!doctype html><html><head><title>title</title></head><body>content</body></html>');
+        $dom = $parser->generateDomDocument('<!doctype html><html><head><title>title</title></head><body>content</body></html>');
         $this->assertSame(null, $parser->getDomLanguage($dom));
     }
 

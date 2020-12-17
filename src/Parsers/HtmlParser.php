@@ -30,13 +30,13 @@ class HtmlParser implements ParserInterface
         }
         
         $content = $requestResponse->getContent();
-        $dom = $this->generateDomDocuemnt($content);
+        $dom = $this->generateDomDocument($content);
 
         // follow links
         $links = $dom->getElementsByTagName('a');
         $refs = [];
         foreach ($links as $link) {
-            $refs[$link->getAttribute('href')] = $link->nodeValue;
+            $refs[$link->getAttribute('href')] = trim($link->nodeValue);
         }
 
         // body content
@@ -45,8 +45,9 @@ class HtmlParser implements ParserInterface
             $content = $body;
         }
 
-        $content = $this->stripTags ? strip_tags($content) : $content;
+        
         $content = $this->stripCrawlIgnore($content);
+        $content = $this->stripTags ? strip_tags($content) : $content;
 
         $jobResult = new ParserResult();
         $jobResult->content = $jobResult->trim($content); // get only the content between "body" tags
@@ -84,7 +85,7 @@ class HtmlParser implements ParserInterface
      * @param string $content
      * @return DOMDocument
      */
-    public function generateDomDocuemnt($content)
+    public function generateDomDocument($content)
     {
         $dom = new DOMDocument();
 
