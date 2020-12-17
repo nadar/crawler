@@ -40,7 +40,7 @@ jobs:
 
       ## unit test with coverage
       - name: PHP Unit tests for PHP 7.3
-        run: vendor/bin/phpunit --verbose --coverage-clover=clover.xml --configuration actions.phpunit.xml
+        run: XDEBUG_MODE=coverage vendor/bin/phpunit --verbose --coverage-clover=clover.xml --configuration actions.phpunit.xml
         if: matrix.php == '7.3'
 
       ## coverage

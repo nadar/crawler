@@ -5,7 +5,7 @@ In order to read more about upgrading and BC breaks have a look at the [UPGRADE 
 
 ## 1.2.1 (17. December 2020)
 
-+ [#]() Fix issue where `CRAWL_IGNORE` tag had no effect. Trim the value of a links.
++ [#9](https://github.com/nadar/crawler/pull/9) Fix issue where `CRAWL_IGNORE` tag had no effect. Trim the value of a links.
 
 ## 1.2.0 (14. November 2020)
 

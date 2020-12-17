@@ -26,6 +26,6 @@
         "smalot/pdfparser": "^0.16.1"
     },
     "suggest": {
-        "smalot/pdfparser" : "In order to use the PdfParser this library is required."
+        "smalot/pdfparser" : "In order to use the PdfParser the smalot/pdfparser library is required."
     }
 }
