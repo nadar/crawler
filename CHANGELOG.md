@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 In order to read more about upgrading and BC breaks have a look at the [UPGRADE Document](UPGRADE.md).
 
+## 1.3.0
+
++ [#10](https://github.com/nadar/crawler/issues/10) Add relative url check to `Url` class.
+
 ## 1.2.1 (17. December 2020)
 
 + [#9](https://github.com/nadar/crawler/pull/9) Fix issue where `CRAWL_IGNORE` tag had no effect. Trim the array value for found linkes, which is equals to the link title.

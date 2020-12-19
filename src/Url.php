@@ -165,7 +165,7 @@ class Url
     }
     
     /**
-     * Whether the original url is a relativ url or not
+     * Whether the original url is a relative url or not
      *
      * @return boolean
      * @since 1.3.0
