@@ -74,4 +74,13 @@ class UrlTest extends CrawlerTestCase
         $this->assertTrue((new Url('https://luya.io'))->isValid());
         $this->assertTrue((new Url('/admin/path'))->isValid());
     }
+
+    public function testIsRelative()
+    {
+        $this->assertFalse((new Url('https://luya.io'))->isRelative());
+        $this->assertFalse((new Url('https://luya.io/path//double'))->isRelative());
+        $this->assertFalse((new Url('//path-without-host'))->isRelative());
+        $this->assertTrue((new Url('/path-without-host'))->isRelative());
+        $this->assertTrue((new Url('path-without-host/base-path-info-required'))->isRelative());
+    }
 }
