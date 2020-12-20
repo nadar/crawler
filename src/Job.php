@@ -79,11 +79,12 @@ class Job
         foreach ($crawler->getParsers() as $parser) {
             if ($parser->validateRequestResponse($requestResponse)) {
                 $parserResult = $parser->run($this, $requestResponse);
-
                 foreach ($parserResult->links as $url => $linkTitle) {
+                    // create new url object for all found urls
                     $url = new Url($url);
-                    $url->merge($crawler->baseUrl);
-
+                    // merge the current url (which is equals to the referrer in this case)
+                    // in order to ensure correct relative paths
+                    $url->merge($this->url);
                     if ($url->isValid() && $crawler->baseUrl->sameHost($url)) {
                         $job = new Job($url, $this->url);
                         $crawler->push($job);

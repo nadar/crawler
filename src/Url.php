@@ -176,10 +176,16 @@ class Url
     }
 
     /**
-     * If the current URL is missing informations, it cain obtain informations from the to merge url
-     *
-     * Will only merge the host and scheme of the current object with the provided url. Only if those informations are missing.
-     *
+     * If the current URL is missing informations, it cain obtain informations from the merge url.
+     * 
+     * > By `current URL` it means the value from $this->url.
+     * 
+     * The following parts will be merged:
+     * 
+     * + host: If missing in current URL
+     * + scheme: If missing in current URL
+     * + path: If the current URL is a query parameter only, the path can be merged
+     * 
      * @param Url $url
      * @return static
      */
@@ -191,6 +197,14 @@ class Url
 
         if (empty($this->getScheme())) {
             $this->parsed['scheme'] = $url->getScheme();
+        }
+
+        // if the url is relative and contains only a query param, the path should be mmerged
+        // from the url as well. This ensures urls like `?foo=bar` will be converted to the
+        // full path including its path, which is in most cases also the relativ url.
+        // @see https://github.com/nadar/crawler/issues/8
+        if (empty($this->getPath()) && $this->isRelative() && !empty($this->getQuery())) {
+            $this->parsed['path'] = $url->getPath();
         }
 
         return $this;

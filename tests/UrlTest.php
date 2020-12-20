@@ -83,4 +83,13 @@ class UrlTest extends CrawlerTestCase
         $this->assertTrue((new Url('/path-without-host'))->isRelative());
         $this->assertTrue((new Url('path-without-host/base-path-info-required'))->isRelative());
     }
+
+    public function testQueryParamOnly()
+    {
+        $url = new Url('?foo=bar');
+        $this->assertTrue($url->isRelative());
+
+        $url->merge(new Url('https://luya.io/current/path'));
+        $this->assertSame('https://luya.io/current/path?foo=bar', $url->getNormalized());
+    }
 }
