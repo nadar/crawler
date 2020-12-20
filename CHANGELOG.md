@@ -3,9 +3,10 @@
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 In order to read more about upgrading and BC breaks have a look at the [UPGRADE Document](UPGRADE.md).
 
-## 1.3.0
+## 1.3.0 (20. December 2020)
 
 + [#10](https://github.com/nadar/crawler/issues/10) Add relative url check to `Url` class.
++ [#8](https://github.com/nadar/crawler/issues/8) Merge the path of an url when only a query param is provided.
 
 ## 1.2.1 (17. December 2020)
 
