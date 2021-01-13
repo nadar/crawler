@@ -78,6 +78,12 @@ class Crawler
     protected $runner;
 
     /**
+     * @var integer Contains the number of cycles where run() was called.
+     * @since 1.4.0
+     */
+    protected $cycles = 0;
+
+    /**
      * Constructor
      *
      * @param string $baseUrl The base url f.e. `https://luya.io`
@@ -174,6 +180,17 @@ class Crawler
     }
 
     /**
+     * Returns the number of cycles where run() was called.
+     *
+     * @return integer
+     * @since 1.4.0
+     */
+    public function getCycles()
+    {
+        return $this->cycles;
+    }
+
+    /**
      * Get all upcoming jobs from the queue and parse them into a Job object
      *
      * @return Job[] An array with Job objects
@@ -206,6 +223,7 @@ class Crawler
      */
     public function run()
     {
+        $this->cycles++;
         $curlRequests = [];
         $multiCurl = curl_multi_init();
 

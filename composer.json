@@ -1,4 +1,5 @@
 {
+    "description": "A highly extendible, dependency free Crawler for HTML, PDFS or any other type of Documents.",
     "name": "nadar/crawler",
     "type": "library",
     "authors": [
