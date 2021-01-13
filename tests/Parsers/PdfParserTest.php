@@ -18,7 +18,7 @@ class PdfParserTest extends CrawlerTestCase
 
         $pdf = 'https://www.rehab.ch/files/7_Das_REHAB_im_Dialog/Anreisekarte_DE_190923.pdf';
 
-        $requestResponse = new RequestResponse(file_get_contents($pdf), 'application/pdf');
+        $requestResponse = new RequestResponse(file_get_contents($pdf), 'application/pdf', 200);
 
         $parser = new PdfParser();
         $result = $parser->run($job, $requestResponse);

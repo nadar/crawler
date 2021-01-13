@@ -76,7 +76,7 @@ class HtmlParser implements ParserInterface
      */
     public function validateRequestResponse(RequestResponse $requestResponse): bool
     {
-        return in_array($requestResponse->getContentType(), ['text/html']);
+        return $requestResponse->getStatusCode() == 200 && in_array($requestResponse->getContentType(), ['text/html']);
     }
 
     /**

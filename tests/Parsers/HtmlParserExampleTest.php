@@ -14,7 +14,7 @@ class HtmlParserExampleTest extends CrawlerTestCase
     {
         $job = new Job(new Url('https://example.com/'), new Url('https://example.com/'));
 
-        $requestResponse = new RequestResponse($this->html, 'text/html');
+        $requestResponse = new RequestResponse($this->html, 'text/html', 200);
 
         $parser = new HtmlParser();
         $result = $parser->run($job, $requestResponse);

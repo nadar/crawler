@@ -21,15 +21,23 @@ class RequestResponse
     protected $contentType;
 
     /**
+     * @var integer Contains the status code of the current request response.
+     * @since 1.5.0
+     */
+    protected $statusCode;
+
+    /**
      * Constructor
      *
      * @param string $content
      * @param string $contentType
+     * @param integer $statusCode {@since 1.5.0}
      */
-    public function __construct($content, $contentType)
+    public function __construct($content, $contentType, $statusCode)
     {
         $this->content = $content;
         $this->contentType = trim($contentType);
+        $this->statusCode = (int) $statusCode;
     }
 
     /**
@@ -42,6 +50,16 @@ class RequestResponse
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * Returns the request response status code.
+     *
+     * @return integer Example status code would be 200
+     */
+    public function getStatusCode()
+    {
+        return $this->statusCode;
     }
 
     private $_checksum;
