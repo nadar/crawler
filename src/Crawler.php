@@ -255,7 +255,7 @@ class Crawler
                 continue;
             }
 
-            $requestResponse = new RequestResponse(curl_multi_getcontent($ch), curl_getinfo($ch, CURLINFO_CONTENT_TYPE));
+            $requestResponse = new RequestResponse(curl_multi_getcontent($ch), curl_getinfo($ch, CURLINFO_CONTENT_TYPE), curl_getinfo($ch, CURLINFO_HTTP_CODE));
 
             $checksum = $requestResponse->getChecksum();
             if (!$this->storage->isChecksumDone($checksum)) {

@@ -43,7 +43,7 @@ class HtmlParserTest extends CrawlerTestCase
         <head>
         </head>
         <body>test [CRAWL_FULL_IGNORE]</body>
-</html>', 'text/html');
+</html>', 'text/html', 200);
 
         $crawler = new Crawler('https://example.com/', new ArrayStorage, new LoopRunner);
         $debug = new DebugHandler;
@@ -137,7 +137,7 @@ class HtmlParserTest extends CrawlerTestCase
         </div>
         </body>
         </html>
-        ', 'text/html');
+        ', 'text/html', 200);
 
         $parser = new HtmlParser();
         $parser->stripTags = false;

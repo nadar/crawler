@@ -76,6 +76,6 @@ class PdfParser implements ParserInterface
      */
     public function validateRequestResponse(RequestResponse $requestResponse): bool
     {
-        return in_array($requestResponse->getContentType(), ['application/pdf']);
+        return $requestResponse->getStatusCode() == 200 && in_array($requestResponse->getContentType(), ['application/pdf']);
     }
 }
