@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 In order to read more about upgrading and BC breaks have a look at the [UPGRADE Document](UPGRADE.md).
 
+## 1.4.0 (13. January 2020)
+
++ [#13](https://github.com/nadar/crawler/pull/13) New Crawler method `getCycles()` returns the number of times the `run()` method was called.
+
 ## 1.3.0 (20. December 2020)
 
 + [#10](https://github.com/nadar/crawler/issues/10) Add relative url check to `Url` class.
