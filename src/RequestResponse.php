@@ -56,6 +56,7 @@ class RequestResponse
      * Returns the request response status code.
      *
      * @return integer Example status code would be 200
+     * @since 1.5.0
      */
     public function getStatusCode()
     {
