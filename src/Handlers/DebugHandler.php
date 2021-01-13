@@ -94,7 +94,7 @@ class DebugHandler implements HandlerInterface
      */
     public function onEnd(Crawler $crawler)
     {
-        $this->summary();
+        $this->summary($crawler->getCycles());
     }
 
     /**
@@ -109,9 +109,10 @@ class DebugHandler implements HandlerInterface
     /**
      * Generates and prints a summary
      */
-    public function summary()
+    public function summary($cycles)
     {
         echo "==================" . PHP_EOL;
+        echo "run cycles: " . $cycles . PHP_EOL;
         echo "index size: " . ($this->counter) . PHP_EOL;
         echo "time: " . ($this->elapsedTime()) . PHP_EOL;
         echo "memory peak: " . $this->memoryPeak() . PHP_EOL;
