@@ -11,9 +11,9 @@ A highly extendible, dependency free Crawler for HTML, PDFS or any other type of
 
 + **Dependency Free** - we don't want to use any HTTP client, as much "native" PHP code as possible in order to keep the overhead small. It just requires the CURL extension.
 + **Memory Efficent** - As memory efficient as possible, less overhead, full code control.
-+ **Extendible** - Attach your own parsers in order to determine how html or any other format is parsed. We provided out of the box support for HTML and PDF.
-+ **Runtime Storage** - When the crawler run, certain informations must be stored. This is extendible to suit your use case. Either use your database or take the built in array or file storage system.
-+ **Async** - It's possible to start the crawler and process any further run cycle as an asynchronus process.
++ **Extendible** - Attach your own parsers in order to determine how html or any other format is parsed. There are out of the box parsers for HTML and PDF. Its very easy to build your own data type parser.
++ **Runtime Storage** - When the crawler runs, certain informations must be stored. This is extendible to suit your use case. Either use your database or take the built in array or file storage system.
++ **Async** - It's possible to start the crawler and process any further run cycle as an asynchronus process, f.e. with a PHP queue system like [Yii2 Queue](https://github.com/yiisoft/yii2-queue).
 
 
 ## Installation
