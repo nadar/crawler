@@ -16,7 +16,7 @@ class PdfParserTest extends CrawlerTestCase
     {
         $job = new Job(new Url('https://example.com/'), new Url('https://example.com/'));
 
-        $pdf = 'https://www.rehab.ch/files/7_Das_REHAB_im_Dialog/Anreisekarte_DE_190923.pdf';
+        $pdf = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
 
         $requestResponse = new RequestResponse(file_get_contents($pdf), 'application/pdf', 200);
 
@@ -24,7 +24,7 @@ class PdfParserTest extends CrawlerTestCase
         $result = $parser->run($job, $requestResponse);
         
         $this->assertTrue($parser->validateRequestResponse($requestResponse));
-        $this->assertNotEmpty($result->content);
+        $this->assertStringContainsString('Dumm y PDF file', $result->content);
     }
 
     public function testValidators()

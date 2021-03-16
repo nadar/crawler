@@ -1,10 +1,7 @@
 name: Tests
-
 on: [push, pull_request]
-
 env:
   DEFAULT_COMPOSER_FLAGS: "--prefer-dist --no-interaction --ignore-platform-reqs"
-  PHPUNIT_EXCLUDE_GROUP: mssql,oci,wincache,xcache,zenddata,cubrid
   CC_TEST_REPORTER_ID: 106fb842ef18f24de395ad9b8469c4eeac8f7a18026c7e8c59f969ec6885a83c
 jobs:
   phpunit:
@@ -15,7 +12,6 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         php: ['7.3', '7.4', '8.0']
-
     steps:
       ## checkout the repoistory 
       - name: Checkout Repo
