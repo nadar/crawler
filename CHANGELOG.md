@@ -5,7 +5,7 @@ In order to read more about upgrading and BC breaks have a look at the [UPGRADE 
 
 ## 1.6.0 (16. March 2021)
 
-+ [#16](https://github.com/nadar/crawler/issues/16) Do not follow links which have `rel="nofollow"` by default. This can be configured in the `HtmlParser::$ignoreRels` property.
++ [#15](https://github.com/nadar/crawler/issues/15) Do not follow links which have `rel="nofollow"` by default. This can be configured in the `HtmlParser::$ignoreRels` property.
 
 ## 1.5.0 (13. January 2021)
 
