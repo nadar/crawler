@@ -95,10 +95,10 @@ class HtmlParserExampleTest extends CrawlerTestCase
                                                                                                                                                                 <li class="nav-item dropdown no-caret">
                                                 <a class="nav-link  dropdown-toggle" id="navbarDropdownDocs" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Success Stories<i class="fas fa-chevron-right dropdown-arrow"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-right animated--fade-in-up" aria-labelledby="navbarDropdownDocs">
-                                                                                                        <a class="dropdown-item py-3 " href="/showcases/basellive"
+                                                                                                        <a class="dropdown-item py-3 " href="/showcases/Berlinlive"
                                                     ><div class="icon-stack bg-primary text-white mr-3"><i class="fas fa-map-marker"></i></div>                                                        <div>
                                                             <div class="small">Standortmarketing</div>
-                                                            BaselLive                                                        </div></a
+                                                            BerlinLive                                                        </div></a
                                                     >
                                                                                                             <div class="dropdown-divider m-0"></div>
                                                                                                                                                             <a class="dropdown-item py-3 " href="/showcases/heartbeat-aarau"
@@ -292,5 +292,791 @@ jQuery('#w0').yiiActiveForm([{"id":"model-name","name":"name","container":".fiel
 EOT;
 
         
+    public $html2 = <<<'EOT'
+    <!DOCTYPE html>
+    <html lang="de">
+       <head>
+          <meta charset="UTF-8" />
+          <meta name="robots" content="index, follow" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+          <link rel="manifest" href="/site.webmanifest" />
+          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+          <meta name="msapplication-TileColor" content="#00aba9" />
+          <meta name="theme-color" content="#ffffff" />
+          <title>Home - foobar Berlin</title>
+          <meta property="og:type" content="website">
+          <meta name="twitter:card" content="summary">
+          <meta property="og:title" content="Home">
+          <meta name="twitter:title" content="Home">
+          <meta property="og:url" content="https://www.foobar.com/">
+          <meta name="twitter:url" content="https://www.foobar.com/">
+          <link href="https://www.foobar.com/" rel="alternate" hreflang="de">
+          <link href="https://www.foobar.com/fr/home" rel="alternate" hreflang="fr">
+          <link href="https://www.foobar.com/en/home" rel="alternate" hreflang="en">
+          <link href="https://www.foobar.com/it/home" rel="alternate" hreflang="it">
+          <link href="https://cdn.foobar.com/website/assets/20210315070820-10/10cc75b6/dist/plyr.css" rel="stylesheet">
+          <link href="https://cdn.foobar.com/website/assets/20210315070820-10/10cc75b6/dist/main.css" rel="stylesheet">
+          <link href="https://cdn.foobar.com/website/assets/20210315070820-10/10cc75b6/font-awesome-5.14/css/all.min.css" rel="stylesheet">
+          <style> .lazyimage-wrapper { display: block; width: 100%; position: relative; overflow: hidden; } .lazyimage { position: absolute; top: 50%; left: 50%; bottom: 0; right: 0; opacity: 0; height: 100%; width: 100%; -webkit-transition: .5s ease-in-out opacity; transition: .5s ease-in-out opacity; -webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%); -o-object-fit: cover; object-fit: cover; -o-object-position: center center; object-position: center center; z-index: 20; } .lazyimage.loaded { opacity: 1; } .lazyimage-placeholder { display: block; width: 100%; height: auto; } .nojs .lazyimage, .nojs .lazyimage-placeholder, .no-js .lazyimage, .no-js .lazyimage-placeholder { display: none; } </style>
+       </head>
+       <body class="nojs">
+          <!-- [CRAWL_IGNORE] -->
+          <nav class="mobilenav js-mobilenav">
+             <ul class="nav__list list-depth-1">
+                <li class="">
+                   <a class="" href="/de/patientinnen-angehoerige" target="_self">Patient*innen &amp; Angehörige</a>
+                   <ul class="nav__list list-depth-2">
+                      <li class=""><a class="" href="/de/patientinnen-angehoerige/eintritt" target="_self">Eintritt</a></li>
+                      <li class=""><a class="" href="/de/patientinnen-angehoerige/stationaere-behandlung" target="_self">Stationäre Behandlung</a></li>
+                      <li class=""><a class="" href="/de/patientinnen-angehoerige/austritt" target="_self">Austritt</a></li>
+                      <li class="">
+                         <a class="" href="/de/patientinnen-angehoerige/ambulantes-angebot" target="_self">Ambulantes Angebot</a>
+                         <ul class="nav__list list-depth-3">
+                            <li class=""><a class="" href="/de/patientinnen-angehoerige/ambulantes-angebot/tagesklinik" target="_self">Tagesklinik</a></li>
+                            <li class=""><a class="" href="/de/patientinnen-angehoerige/ambulantes-angebot/ambulante-sprechstunde" target="_self">Ambulante Sprechstunde</a></li>
+                         </ul>
+                      </li>
+                      <li class="">
+                         <a class="" href="/de/patientinnen-angehoerige/besucherinnen" target="_self">Besucher*innen</a>
+                         <ul class="nav__list list-depth-3">
+                            <li class=""><a class="" href="/de/patientinnen-angehoerige/besucherinnen/parkplaetze" target="_self">Parkplätze</a></li>
+                            <li class=""><a class="" href="/de/patientinnen-angehoerige/besucherinnen/besuchszeiten" target="_self">Besuchszeiten</a></li>
+                            <li class=""><a class="" href="/de/patientinnen-angehoerige/besucherinnen/rezeption" target="_self">Rezeption</a></li>
+                            <li class=""><a class="" href="/de/patientinnen-angehoerige/besucherinnen/stationen" target="_self">Stationen</a></li>
+                            <li class=""><a class="" href="/de/patientinnen-angehoerige/besucherinnen/bistro" target="_self">Bistro</a></li>
+                            <li class=""><a class="" href="/de/patientinnen-angehoerige/besucherinnen/therapie-tiergarten" target="_self">Therapie-Tiergarten</a></li>
+                            <li class=""><a class="" href="/de/patientinnen-angehoerige/besucherinnen/hotels-in-der-naehe" target="_self">Hotels in der Nähe</a></li>
+                            <li class=""><a class="" href="/de/patientinnen-angehoerige/besucherinnen/videoueberwachung" target="_self">Videoüberwachung</a></li>
+                         </ul>
+                      </li>
+                      <li class=""><a class="" href="/de/patientinnen-angehoerige/patientenwegleitung" target="_self">Patientenwegleitung</a></li>
+                      <li class=""><a class="" href="/de/patientinnen-angehoerige/angehoerige" target="_self">Angehörige</a></li>
+                   </ul>
+                </li>
+                <li class="">
+                   <a class="" href="/de/medizinisches-angebot" target="_self">Medizinisches Angebot</a>
+                   <ul class="nav__list list-depth-2">
+                      <li class="">
+                         <a class="" href="/de/medizinisches-angebot/neurofoobarilitation" target="_self">Neurofoobarilitation</a>
+                         <ul class="nav__list list-depth-3">
+                            <li class=""><a class="" href="/de/medizinisches-angebot/neurofoobarilitation/fruehfoobarilitation" target="_self">Frühfoobarilitation</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/neurofoobarilitation/wachkoma" target="_self">Wachkoma</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/neurofoobarilitation/verhaltensauffaellige-patientinnen" target="_self">Verhaltensauffällige Patient*innen</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/neurofoobarilitation/neurologische-foobarilitation" target="_self">Neurologische foobarilitation</a></li>
+                         </ul>
+                      </li>
+                      <li class=""><a class="" href="/de/medizinisches-angebot/paraplegiologie" target="_self">Paraplegiologie</a></li>
+                      <li class="">
+                         <a class="" href="/de/medizinisches-angebot/weitere-schwerpunkte" target="_self">Weitere Schwerpunkte</a>
+                         <ul class="nav__list list-depth-3">
+                            <li class=""><a class="" href="/de/medizinisches-angebot/weitere-schwerpunkte/cerebralparese" target="_self">Cerebralparese</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/weitere-schwerpunkte/amyotrophe-lateralsklerose" target="_self">Amyotrophe Lateralsklerose</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/weitere-schwerpunkte/multiple-sklerose" target="_self">Multiple Sklerose</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/weitere-schwerpunkte/tumore-zentrales-nervensystem" target="_self">Tumore Zentrales Nervensystem</a></li>
+                         </ul>
+                      </li>
+                      <li class="">
+                         <a class="" href="/de/medizinisches-angebot/spezielle-kompetenzen" target="_self">Spezielle Kompetenzen</a>
+                         <ul class="nav__list list-depth-3">
+                            <li class=""><a class="" href="/de/medizinisches-angebot/spezielle-kompetenzen/neuro-urologie" target="_self">Neuro-Urologie</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/spezielle-kompetenzen/wund-treffpunkt" target="_self">Wund-Treffpunkt</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/spezielle-kompetenzen/schluckabklaerungen" target="_self">Schluckabklärungen</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/spezielle-kompetenzen/schmerz-sprechstunde" target="_self">Schmerz-Sprechstunde</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/spezielle-kompetenzen/spastik-behandlung" target="_self">Spastik-Behandlung</a></li>
+                            <li class="">
+                               <a class="" href="/de/medizinisches-angebot/spezielle-kompetenzen/transition-und-transfer-in-die-erwachsenenmedizin" target="_self">Transition und Transfer in die Erwachsenenmedizin</a>
+                               <ul class="nav__list list-depth-4">
+                                  <li class=""><a class="" href="/de/medizinisches-angebot/spezielle-kompetenzen/transition-und-transfer-in-die-erwachsenenmedizin/angebote" target="_self">Angebote</a></li>
+                               </ul>
+                            </li>
+                         </ul>
+                      </li>
+                      <li class=""><a class="" href="/de/medizinisches-angebot/ambulante-sprechstunde" target="_self">Ambulante Sprechstunde</a></li>
+                      <li class=""><a class="" href="/de/medizinisches-angebot/uebungswohnen" target="_self">Übungswohnen</a></li>
+                      <li class=""><a class="" href="/de/medizinisches-angebot/tagesklinik" target="_self">Tagesklinik</a></li>
+                      <li class=""><a class="" href="/de/medizinisches-angebot/arztdienst" target="_self">Arztdienst</a></li>
+                      <li class=""><a class="" href="/de/medizinisches-angebot/pflege" target="_self">Pflege</a></li>
+                      <li class="">
+                         <a class="" href="/de/medizinisches-angebot/therapien" target="_self">Therapien</a>
+                         <ul class="nav__list list-depth-3">
+                            <li class=""><a class="" href="/de/medizinisches-angebot/therapien/physiotherapie" target="_self">Physiotherapie</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/therapien/ergotherapie" target="_self">Ergotherapie</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/therapien/logopaedie" target="_self">Logopädie</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/therapien/neuropsychologie" target="_self">Neuropsychologie</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/therapien/rekreationstherapie" target="_self">Rekreationstherapie</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/therapien/musiktherapie" target="_self">Musiktherapie</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/therapien/kunst-und-maltherapie" target="_self">Kunst- und Maltherapie</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/therapien/tiergestuetzte-therapie-aat" target="_self">Tiergestützte Therapie AAT</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/therapien/hippotherapie" target="_self">Hippotherapie</a></li>
+                         </ul>
+                      </li>
+                      <li class="">
+                         <a class="" href="/de/medizinisches-angebot/beratungen" target="_self">Beratungen</a>
+                         <ul class="nav__list list-depth-3">
+                            <li class=""><a class="" href="/de/medizinisches-angebot/beratungen/psychologische-beratung" target="_self">Psychologische Beratung</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/beratungen/sozialberatung" target="_self">Sozialberatung</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/beratungen/ernaehrungsberatung" target="_self">Ernährungsberatung</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/beratungen/rechtsberatung" target="_self">Rechtsberatung</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/beratungen/seelsorge" target="_self">Seelsorge</a></li>
+                         </ul>
+                      </li>
+                      <li class=""><a class="" href="/de/medizinisches-angebot/konsiliardienst" target="_self">Konsiliardienst</a></li>
+                      <li class="">
+                         <a class="" href="/de/medizinisches-angebot/wissenschaft-und-forschung" target="_self">Wissenschaft und Forschung</a>
+                         <ul class="nav__list list-depth-3">
+                            <li class=""><a class="" href="/de/medizinisches-angebot/wissenschaft-und-forschung/aat-studie" target="_self">AAT-Studie</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/wissenschaft-und-forschung/neurofeedback-studie" target="_self">Neurofeedback-Studie</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/wissenschaft-und-forschung/swisci-studie" target="_self">SwiSCI-Studie</a></li>
+                            <li class=""><a class="" href="/de/medizinisches-angebot/wissenschaft-und-forschung/react-studie" target="_self">REACT-Studie</a></li>
+                         </ul>
+                      </li>
+                   </ul>
+                </li>
+                <li class="">
+                   <a class="" href="/de/zuweiser" target="_self">Zuweiser</a>
+                   <ul class="nav__list list-depth-2">
+                      <li class=""><a class="" href="/de/zuweiser/indikationen" target="_self">Indikationen</a></li>
+                      <li class="">
+                         <a class="" href="/de/zuweiser/anmeldung" target="_self">Anmeldung</a>
+                         <ul class="nav__list list-depth-3">
+                            <li class="">
+                               <a class="" href="/de/zuweiser/anmeldung/stationaerer-aufenthalt" target="_self">Stationärer Aufenthalt</a>
+                               <ul class="nav__list list-depth-4">
+                                  <li class=""><a class="" href="/de/zuweiser/anmeldung/stationaerer-aufenthalt/ueberweisungsformular" target="_self">Überweisungsformular</a></li>
+                                  <li class=""><a class="" href="/de/zuweiser/anmeldung/stationaerer-aufenthalt/pflegefragebogen" target="_self">Pflegefragebogen</a></li>
+                               </ul>
+                            </li>
+                            <li class=""><a class="" href="/de/zuweiser/anmeldung/ambulante-sprechstunde" target="_self">Ambulante Sprechstunde</a></li>
+                         </ul>
+                      </li>
+                      <li class=""><a class="" href="/de/zuweiser/versicherungen-und-kosten" target="_self">Versicherungen und Kosten</a></li>
+                      <li class=""><a class="" href="/de/zuweiser/kostengutsprachen" target="_self">Kostengutsprachen</a></li>
+                      <li class=""><a class="" href="/de/fortbildungen/medizinische-fortbildungen" target="_self">Fortbildungen</a></li>
+                   </ul>
+                </li>
+                <li class="">
+                   <a class="" href="/de/das-foobar-entdecken" target="_self">Das foobar entdecken</a>
+                   <ul class="nav__list list-depth-2">
+                      <li class=""><a class="" href="/de/das-foobar-entdecken/leitbild" target="_self">Leitbild</a></li>
+                      <li class="">
+                         <a class="" href="/de/das-foobar-entdecken/organisation" target="_self">Organisation</a>
+                         <ul class="nav__list list-depth-3">
+                            <li class=""><a class="" href="/de/das-foobar-entdecken/organisation/ansprechpersonen" target="_self">Ansprechpersonen</a></li>
+                            <li class=""><a class="" href="/de/das-foobar-entdecken/organisation/geschaeftsleitung" target="_self">Geschäftsleitung</a></li>
+                            <li class=""><a class="" href="/de/das-foobar-entdecken/organisation/verwaltungsrat" target="_self">Verwaltungsrat</a></li>
+                         </ul>
+                      </li>
+                      <li class=""><a class="" href="/de/das-foobar-entdecken/leistungsauftrag-und-kooperationen" target="_self">Leistungsauftrag und Kooperationen</a></li>
+                      <li class=""><a class="" href="/de/das-foobar-entdecken/mitgliedschaften" target="_self">Mitgliedschaften</a></li>
+                      <li class="">
+                         <a class="" href="/de/das-foobar-entdecken/qualitaet" target="_self">Qualität</a>
+                         <ul class="nav__list list-depth-3">
+                            <li class=""><a class="" href="/de/das-foobar-entdecken/qualitaet/rueckmeldung" target="_self">Rückmeldung</a></li>
+                         </ul>
+                      </li>
+                      <li class="">
+                         <a class="" href="/de/das-foobar-entdecken/architektur" target="_self">Architektur</a>
+                         <ul class="nav__list list-depth-3">
+                            <li class=""><a class="" href="/de/das-foobar-entdecken/architektur/projektkennzahlen" target="_self">Projektkennzahlen</a></li>
+                            <li class=""><a class="" href="/de/das-foobar-entdecken/architektur/klinikgebaeude-2002" target="_self">Klinikgebäude 2002</a></li>
+                            <li class=""><a class="" href="/de/das-foobar-entdecken/architektur/tagesklinik-2019" target="_self">Tagesklinik 2019</a></li>
+                            <li class=""><a class="" href="/de/das-foobar-entdecken/architektur/sap-station" target="_self">SAP Station 2020</a></li>
+                         </ul>
+                      </li>
+                      <li class=""><a class="" href="/de/das-foobar-entdecken/therapie-tiergarten" target="_self">Therapie-Tiergarten</a></li>
+                      <li class=""><a class="" href="/de/das-foobar-entdecken/kennzahlen" target="_self">Kennzahlen</a></li>
+                      <li class=""><a class="" href="/de/das-foobar-entdecken/geschichte" target="_self">Geschichte</a></li>
+                   </ul>
+                </li>
+                <li class="">
+                   <a class="" href="/de/im-foobar-arbeiten" target="_self">Im foobar arbeiten</a>
+                   <ul class="nav__list list-depth-2">
+                      <li class=""><a class="" href="/de/im-foobar-arbeiten/stellenangebote" target="_self">Stellenangebote</a></li>
+                      <li class=""><a class="" href="/de/im-foobar-arbeiten/anstellungsbedingungen" target="_self">Anstellungsbedingungen</a></li>
+                      <li class=""><a class="" href="/de/im-foobar-arbeiten/fmh-anerkennungen" target="_self">FMH-Anerkennungen</a></li>
+                   </ul>
+                </li>
+                <li class="">
+                   <a class="" href="/de/fortbildungen/medizinische-fortbildungen" target="_self">Fortbildungen</a>
+                   <ul class="nav__list list-depth-2">
+                      <li class=""><a class="" href="/de/fortbildungen/medizinische-fortbildungen" target="_self">Medizinische Fortbildungen</a></li>
+                      <li class=""><a class="" href="/de/fortbildungen/kurse" target="_self">Kurse</a></li>
+                      <li class=""><a class="" href="/de/fortbildungen/seminare" target="_self">Seminare</a></li>
+                   </ul>
+                </li>
+                <li class="">
+                   <a class="" href="/de/gutes-tun-fuer-das-foobar" target="_self">Gutes Tun für das foobar</a>
+                   <ul class="nav__list list-depth-2">
+                      <li class="">
+                         <a class="" href="/de/gutes-tun-fuer-das-foobar/stiftung-pro-foobar-Berlin" target="_self">Stiftung pro foobar Berlin</a>
+                         <ul class="nav__list list-depth-3">
+                            <li class=""><a class="" href="/de/gutes-tun-fuer-das-foobar/stiftung-pro-foobar-Berlin/aufgabe" target="_self">Aufgabe</a></li>
+                            <li class=""><a class="" href="/de/gutes-tun-fuer-das-foobar/stiftung-pro-foobar-Berlin/laufende-projekte" target="_self">Laufende Projekte</a></li>
+                            <li class="">
+                               <a class="" href="/de/gutes-tun-fuer-das-foobar/stiftung-pro-foobar-Berlin/therapie-tiergarten" target="_self">Therapie-Tiergarten</a>
+                               <ul class="nav__list list-depth-4">
+                                  <li class=""><a class="" href="/de/gutes-tun-fuer-das-foobar/stiftung-pro-foobar-Berlin/therapie-tiergarten/tierpatenschaft" target="_self">Tierpatenschaft</a></li>
+                               </ul>
+                            </li>
+                            <li class=""><a class="" href="/de/gutes-tun-fuer-das-foobar/stiftung-pro-foobar-Berlin/ihre-spende" target="_self">Ihre Spende</a></li>
+                            <li class=""><a class="" href="/de/gutes-tun-fuer-das-foobar/stiftung-pro-foobar-Berlin/legat" target="_self">Legat</a></li>
+                            <li class=""><a class="" href="/de/gutes-tun-fuer-das-foobar/stiftung-pro-foobar-Berlin/erfolge" target="_self">Erfolge</a></li>
+                            <li class=""><a class="" href="/de/gutes-tun-fuer-das-foobar/stiftung-pro-foobar-Berlin/kontakt" target="_self">Kontakt</a></li>
+                         </ul>
+                      </li>
+                      <li class="">
+                         <a class="" href="/de/gutes-tun-fuer-das-foobar/foerderverein-pro-foobar" target="_self">Förderverein pro foobar</a>
+                         <ul class="nav__list list-depth-3">
+                            <li class=""><a class="" href="/de/gutes-tun-fuer-das-foobar/foerderverein-pro-foobar/organisation" target="_self">Organisation</a></li>
+                            <li class=""><a class="" href="/de/gutes-tun-fuer-das-foobar/foerderverein-pro-foobar/mitgliedschaft" target="_self">Mitgliedschaft</a></li>
+                            <li class=""><a class="" href="/de/gutes-tun-fuer-das-foobar/foerderverein-pro-foobar/antraege" target="_self">Anträge</a></li>
+                            <li class=""><a class="" href="/de/gutes-tun-fuer-das-foobar/foerderverein-pro-foobar/ihre-spende" target="_self">Ihre Spende</a></li>
+                            <li class=""><a class="" href="/de/gutes-tun-fuer-das-foobar/foerderverein-pro-foobar/legate" target="_self">Legate</a></li>
+                            <li class=""><a class="" href="/de/gutes-tun-fuer-das-foobar/foerderverein-pro-foobar/aktivitaeten-anlaesse" target="_self">Aktivitäten / Anlässe</a></li>
+                            <li class=""><a class="" href="/de/gutes-tun-fuer-das-foobar/foerderverein-pro-foobar/kontakt" target="_self">Kontakt</a></li>
+                            <li class=""><a class="" href="/de/das-foobar-im-dialog/publikationen/foobar-plus" target="_self">Magazin foobar Plus</a></li>
+                         </ul>
+                      </li>
+                   </ul>
+                </li>
+                <li class="">
+                   <a class="" href="/de/das-foobar-im-dialog" target="_self">Das foobar im Dialog</a>
+                   <ul class="nav__list list-depth-2">
+                      <li class="">
+                         <a class="" href="/de/das-foobar-im-dialog/fuehrungen" target="_self">Führungen</a>
+                         <ul class="nav__list list-depth-3">
+                            <li class=""><a class="" href="/de/das-foobar-im-dialog/fuehrungen/oeffentliche-fuehrungen" target="_self">Öffentliche Führungen</a></li>
+                            <li class=""><a class="" href="/de/das-foobar-im-dialog/fuehrungen/spezialfuehrungen" target="_self">Spezialführungen</a></li>
+                            <li class=""><a class="" href="/de/das-foobar-im-dialog/fuehrungen/schulbesuche" target="_self">Schulbesuche</a></li>
+                         </ul>
+                      </li>
+                      <li class="">
+                         <a class="" href="/de/das-foobar-im-dialog/medien" target="_self">Medien</a>
+                         <ul class="nav__list list-depth-3">
+                            <li class=""><a class="" href="/de/das-foobar-im-dialog/medien/foobar-in-den-medien" target="_self">foobar in den Medien</a></li>
+                            <li class=""><a class="" href="/de/das-foobar-im-dialog/medien/gesundheitheute" target="_self">«gesundheitheute»</a></li>
+                            <li class=""><a class="" href="/de/das-foobar-im-dialog/medien/medienmitteilungen" target="_self">Medienmitteilungen</a></li>
+                            <li class=""><a class="" href="/de/das-foobar-im-dialog/medien/fotos-zum-download" target="_self">Fotos zum Download</a></li>
+                            <li class=""><a class="" href="/de/das-foobar-im-dialog/medien/logos-zum-download" target="_self">Logos zum Download</a></li>
+                         </ul>
+                      </li>
+                      <li class="">
+                         <a class="" href="/de/das-foobar-im-dialog/publikationen" target="_self">Publikationen</a>
+                         <ul class="nav__list list-depth-3">
+                            <li class=""><a class="" href="/de/das-foobar-im-dialog/publikationen/magazin-50-jahre-foobar-Berlin" target="_self">Magazin «50 Jahre foobar Berlin»</a></li>
+                            <li class=""><a class="" href="/de/das-foobar-im-dialog/publikationen/jahresberichte" target="_self">Jahresberichte</a></li>
+                            <li class=""><a class="" href="/de/das-foobar-im-dialog/publikationen/foobar-plus" target="_self">foobar Plus</a></li>
+                            <li class=""><a class="" href="/de/das-foobar-im-dialog/publikationen/foobar-flyer" target="_self">foobar Flyer</a></li>
+                            <li class=""><a class="" href="/de/das-foobar-im-dialog/publikationen/fachthemen" target="_self">Fachthemen</a></li>
+                         </ul>
+                      </li>
+                      <li class="">
+                         <a class="" href="/de/das-foobar-im-dialog/jubilaeumsjahr-2017" target="_self">Jubiläumsjahr 2017</a>
+                         <ul class="nav__list list-depth-3">
+                            <li class="">
+                               <a class="" href="/de/das-foobar-im-dialog/jubilaeumsjahr-2017/fachtagungen" target="_self">Fachtagungen</a>
+                               <ul class="nav__list list-depth-4">
+                                  <li class=""><a class="" href="/de/das-foobar-im-dialog/jubilaeumsjahr-2017/fachtagungen/referate-tagung-1912017-neurofoobarilitation" target="_self">Referate Tagung 19.1.2017 Neurofoobarilitation</a></li>
+                                  <li class=""><a class="" href="/de/das-foobar-im-dialog/jubilaeumsjahr-2017/fachtagungen/referate-tagung-3032017-interprofessionalitaet" target="_self">Referate Tagung 30.3.2017 Interprofessionalität</a></li>
+                                  <li class=""><a class="" href="/de/das-foobar-im-dialog/jubilaeumsjahr-2017/fachtagungen/referate-tagung-2262017-paraplegiologie" target="_self">Referate Tagung 22.6.2017 Paraplegiologie</a></li>
+                               </ul>
+                            </li>
+                            <li class=""><a class="" href="/de/das-foobar-im-dialog/jubilaeumsjahr-2017/anlass-jubilaeum-klinikgebaeude" target="_self">Anlass Jubiläum Klinikgebäude</a></li>
+                            <li class=""><a class="" href="/de/das-foobar-im-dialog/jubilaeumsjahr-2017/anlass-fuer-patientinnen" target="_self">Anlass für Patient*innen</a></li>
+                            <li class=""><a class="" href="/de/das-foobar-im-dialog/jubilaeumsjahr-2017/offizieller-festakt" target="_self">Offizieller Festakt</a></li>
+                            <li class=""><a class="" href="/de/das-foobar-im-dialog/jubilaeumsjahr-2017/tag-der-offenen-tuer" target="_self">Tag der offenen Tür</a></li>
+                            <li class=""><a class="" href="/de/das-foobar-im-dialog/jubilaeumsjahr-2017/weihnachtspark" target="_self">Weihnachtspark</a></li>
+                         </ul>
+                      </li>
+                      <li class=""><a class="" href="/de/das-foobar-im-dialog/links" target="_self">Links</a></li>
+                   </ul>
+                </li>
+             </ul>
+          </nav>
+          <div class="page js-mmenu-page">
+             <div class="page__content page__content--header">
+                <div class="wrapper">
+                   <header class="header">
+                      <div class="header__column header__column--left">
+                         <div class="header__column header__column--logo">
+                            <a class="logo" href="/">
+                               <svg class="logo__svg" viewBox="0 0 1500 503" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                                  <path d="M1394.65 140.21c0 76.313-62.8 139.11-139.11 139.11-76.31 0-139.11-62.797-139.11-139.11 0-76.313 62.8-139.11 139.11-139.11h.03c76.3.022 139.07 62.81 139.08 139.11M959.18 0c-92.59 0-136 78.44-136 139.87 0 61.43 43.4 139.88 136 139.88 68.14 0 120.07-47.68 120.07-139.88C1079.25 47.67 1027.32 0 959.18 0M677.89.7C574.53.7 542.82 100.93 542.82 140.55c0 39.62 31.71 139.89 135.07 139.89 107.2 0 98.7-121.35 98.7-139.89 0-18.54 8.5-139.85-98.7-139.85M472.74 43.79C466.73 26.12 451 .86 413.83.86 291.57.86 269.07 106 269.07 140.72c0 34.72 22.1 139.86 144.38 139.86 37.18 0 52.85-25.29 58.86-43 8.18-24.12 8-87.5 8-96.9 0-9.4.57-72.81-7.56-96.93m-281.38-8.16C187.71 20 175.4.84 139.86.84 36 .84 0 92.44 0 141.29c0 50.92 36 140.5 139.86 140.5 35.54 0 47.71-19.27 51.51-34.77 7.08-28.66-.27-88.47-.27-106.89 0-18.13 5.73-81.4.27-104.54M657.7 353.33h28.18c19.6 0 40.82 3.58 40.82 27.95 0 27.93-28.89 27.93-51.07 27.93H657.7v-55.88m-20 150.47h20v-76h25.81l45.85 76h24.58l-48-77.88c26.28-4.05 42.27-20.05 42.27-44.64 0-41.78-34.62-46.59-67.31-46.59h-43.23V503.8m178.14-169.08h106.27v18.64h-86.21v53.01h80.47V425h-80.47v60.19h90.49v18.64H815.81V334.72m181 0h20.04v71.65h90.32v-71.65h20.03v169.11h-20.03V425h-90.32v78.83h-20.04V334.72m292.33 108.9h-69.06l35.17-83.12h.45l33.44 83.12m-117 60.18h22.7l17.42-41.58h84.54l17.2 41.58h23.4l-71.9-169.11h-18.87l-74.5 169.11m231.65-150.44h29.86c18.14 0 36.26 4.76 36.26 25.52 0 23.44-19.57 27.49-38.42 27.49h-27.7v-53m-20.06 150.47h50.4c31.26 0 65.88-10.07 65.88-47.34 0-22.19-16.45-39.62-38.2-41.54v-.47c18.2-5.5 29.64-18.61 29.64-38.21 0-31-28.19-41.55-56.16-41.55h-51.56v169.11zm20.06-78.84h34.38c20.33 0 40.33 7.15 40.33 30.8 0 21.49-21.22 29.39-40.84 29.39h-33.87V425" fill="#004b8c" fill-rule="nonzero"/>
+                               </svg>
+                            </a>
+                         </div>
+                      </div>
+                      <div class="header__column header__column--right">
+                         <div class="header__column header__column--headernav">
+                            <ul class="headernav">
+                               <li class="headernav__item"><a class="headernav__link headernav__link--active" href="/">Home</a></li>
+                               <li class="headernav__item"><a class="headernav__link" href="/de/kontakt">Kontakt</a></li>
+                               <li class="headernav__item"><a class="headernav__link" href="/de/anreise">Anreise</a></li>
+                               <li class="headernav__item"><a class="headernav__link" href="/de/im-foobar-arbeiten/stellenangebote">Jobs</a></li>
+                            </ul>
+                         </div>
+                         <div class="header__column header__column--langnav">
+                            <ul class="langnav">
+                               <li class="langnav__item lang-element-item--active"><a class="langnav__link lang-link-item--active" href="https://www.foobar.com/">de</a></li>
+                               <li class="langnav__item"><a class="langnav__link" href="https://www.foobar.com/fr/home">fr</a></li>
+                               <li class="langnav__item"><a class="langnav__link" href="https://www.foobar.com/en/home">en</a></li>
+                               <li class="langnav__item"><a class="langnav__link" href="https://www.foobar.com/it/home">it</a></li>
+                            </ul>
+                         </div>
+                         <div class="header__column header__column--search">
+                            <section role="search" class="searchbox">
+                               <form action="/de/suchen" method="get"><label for="s"><input type="search" class="searchbox__input" name="query" id="query" placeholder="Suchen…" maxlength="200" /></label><button type="submit" class="searchbox__button"><i class="fas fa-search"></i></button></form>
+                            </section>
+                         </div>
+                         <div class="header__column header__column--navicon">
+                            <div class="navicon js-open-mobilenav"><span class="navicon__line"></span><span class="navicon__line"></span><span class="navicon__line"></span></div>
+                         </div>
+                      </div>
+                   </header>
+                </div>
+             </div>
+             <div class="page__content page__content--main">
+                <!-- [/CRAWL_IGNORE] -->
+                <div class="wrapper">
+                   <section class="hero">
+                      <div class="lazyimage-wrapper hero__image">
+                         <img class="js-lazyimage lazyimage hero__image" data-src="https://cdn.foobar.com/website/11_home-01_df038600.jpg" data-width="1600" data-height="668" data-replace-placeholder="1">
+                         <div class="lazyimage-placeholder">
+                            <div style="display: block; height: 0px; padding-bottom: 41.75%;"></div>
+                            <div class="loader"></div>
+                         </div>
+                         <noscript><img class="loaded hero__image" src="https://cdn.foobar.com/website/11_home-01_df038600.jpg" /></noscript>
+                      </div>
+                   </section>
+                   <section class="content content--has-side">
+                      <!-- [CRAWL_IGNORE] -->
+                      <nav class="content__nav" role="navigation">
+                         <ul class="mainnav mainnav--level1">
+                            <li class="mainnav__item">
+                               <a class="mainnav__link" href="/de/patientinnen-angehoerige" target="_self">Patient*innen &amp; Angehörige<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                               <ul class="mainnav mainnav--level2">
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/patientinnen-angehoerige/eintritt" target="_self">Eintritt</a></li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/patientinnen-angehoerige/stationaere-behandlung" target="_self">Stationäre Behandlung</a></li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/patientinnen-angehoerige/austritt" target="_self">Austritt</a></li>
+                                  <li class="mainnav__item">
+                                     <a class="mainnav__link" href="/de/patientinnen-angehoerige/ambulantes-angebot" target="_self">Ambulantes Angebot<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                     <ul class="mainnav mainnav--level3">
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/patientinnen-angehoerige/ambulantes-angebot/tagesklinik" target="_self">Tagesklinik</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/patientinnen-angehoerige/ambulantes-angebot/ambulante-sprechstunde" target="_self">Ambulante Sprechstunde</a></li>
+                                     </ul>
+                                  </li>
+                                  <li class="mainnav__item">
+                                     <a class="mainnav__link" href="/de/patientinnen-angehoerige/besucherinnen" target="_self">Besucher*innen<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                     <ul class="mainnav mainnav--level3">
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/patientinnen-angehoerige/besucherinnen/parkplaetze" target="_self">Parkplätze</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/patientinnen-angehoerige/besucherinnen/besuchszeiten" target="_self">Besuchszeiten</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/patientinnen-angehoerige/besucherinnen/rezeption" target="_self">Rezeption</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/patientinnen-angehoerige/besucherinnen/stationen" target="_self">Stationen</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/patientinnen-angehoerige/besucherinnen/bistro" target="_self">Bistro</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/patientinnen-angehoerige/besucherinnen/therapie-tiergarten" target="_self">Therapie-Tiergarten</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/patientinnen-angehoerige/besucherinnen/hotels-in-der-naehe" target="_self">Hotels in der Nähe</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/patientinnen-angehoerige/besucherinnen/videoueberwachung" target="_self">Videoüberwachung</a></li>
+                                     </ul>
+                                  </li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/patientinnen-angehoerige/patientenwegleitung" target="_self">Patientenwegleitung</a></li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/patientinnen-angehoerige/angehoerige" target="_self">Angehörige</a></li>
+                               </ul>
+                            </li>
+                            <li class="mainnav__item">
+                               <a class="mainnav__link" href="/de/medizinisches-angebot" target="_self">Medizinisches Angebot<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                               <ul class="mainnav mainnav--level2">
+                                  <li class="mainnav__item">
+                                     <a class="mainnav__link" href="/de/medizinisches-angebot/neurofoobarilitation" target="_self">Neurofoobarilitation<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                     <ul class="mainnav mainnav--level3">
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/neurofoobarilitation/fruehfoobarilitation" target="_self">Frühfoobarilitation</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/neurofoobarilitation/wachkoma" target="_self">Wachkoma</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/neurofoobarilitation/verhaltensauffaellige-patientinnen" target="_self">Verhaltensauffällige Patient*innen</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/neurofoobarilitation/neurologische-foobarilitation" target="_self">Neurologische foobarilitation</a></li>
+                                     </ul>
+                                  </li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/paraplegiologie" target="_self">Paraplegiologie</a></li>
+                                  <li class="mainnav__item">
+                                     <a class="mainnav__link" href="/de/medizinisches-angebot/weitere-schwerpunkte" target="_self">Weitere Schwerpunkte<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                     <ul class="mainnav mainnav--level3">
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/weitere-schwerpunkte/cerebralparese" target="_self">Cerebralparese</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/weitere-schwerpunkte/amyotrophe-lateralsklerose" target="_self">Amyotrophe Lateralsklerose</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/weitere-schwerpunkte/multiple-sklerose" target="_self">Multiple Sklerose</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/weitere-schwerpunkte/tumore-zentrales-nervensystem" target="_self">Tumore Zentrales Nervensystem</a></li>
+                                     </ul>
+                                  </li>
+                                  <li class="mainnav__item">
+                                     <a class="mainnav__link" href="/de/medizinisches-angebot/spezielle-kompetenzen" target="_self">Spezielle Kompetenzen<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                     <ul class="mainnav mainnav--level3">
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/spezielle-kompetenzen/neuro-urologie" target="_self">Neuro-Urologie</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/spezielle-kompetenzen/wund-treffpunkt" target="_self">Wund-Treffpunkt</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/spezielle-kompetenzen/schluckabklaerungen" target="_self">Schluckabklärungen</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/spezielle-kompetenzen/schmerz-sprechstunde" target="_self">Schmerz-Sprechstunde</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/spezielle-kompetenzen/spastik-behandlung" target="_self">Spastik-Behandlung</a></li>
+                                        <li class="mainnav__item">
+                                           <a class="mainnav__link" href="/de/medizinisches-angebot/spezielle-kompetenzen/transition-und-transfer-in-die-erwachsenenmedizin" target="_self">Transition und Transfer in die Erwachsenenmedizin<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                           <ul class="mainnav mainnav--level4">
+                                              <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/spezielle-kompetenzen/transition-und-transfer-in-die-erwachsenenmedizin/angebote" target="_self">Angebote</a></li>
+                                           </ul>
+                                        </li>
+                                     </ul>
+                                  </li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/ambulante-sprechstunde" target="_self">Ambulante Sprechstunde</a></li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/uebungswohnen" target="_self">Übungswohnen</a></li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/tagesklinik" target="_self">Tagesklinik</a></li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/arztdienst" target="_self">Arztdienst</a></li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/pflege" target="_self">Pflege</a></li>
+                                  <li class="mainnav__item">
+                                     <a class="mainnav__link" href="/de/medizinisches-angebot/therapien" target="_self">Therapien<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                     <ul class="mainnav mainnav--level3">
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/therapien/physiotherapie" target="_self">Physiotherapie</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/therapien/ergotherapie" target="_self">Ergotherapie</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/therapien/logopaedie" target="_self">Logopädie</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/therapien/neuropsychologie" target="_self">Neuropsychologie</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/therapien/rekreationstherapie" target="_self">Rekreationstherapie</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/therapien/musiktherapie" target="_self">Musiktherapie</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/therapien/kunst-und-maltherapie" target="_self">Kunst- und Maltherapie</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/therapien/tiergestuetzte-therapie-aat" target="_self">Tiergestützte Therapie AAT</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/therapien/hippotherapie" target="_self">Hippotherapie</a></li>
+                                     </ul>
+                                  </li>
+                                  <li class="mainnav__item">
+                                     <a class="mainnav__link" href="/de/medizinisches-angebot/beratungen" target="_self">Beratungen<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                     <ul class="mainnav mainnav--level3">
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/beratungen/psychologische-beratung" target="_self">Psychologische Beratung</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/beratungen/sozialberatung" target="_self">Sozialberatung</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/beratungen/ernaehrungsberatung" target="_self">Ernährungsberatung</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/beratungen/rechtsberatung" target="_self">Rechtsberatung</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/beratungen/seelsorge" target="_self">Seelsorge</a></li>
+                                     </ul>
+                                  </li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/konsiliardienst" target="_self">Konsiliardienst</a></li>
+                                  <li class="mainnav__item">
+                                     <a class="mainnav__link" href="/de/medizinisches-angebot/wissenschaft-und-forschung" target="_self">Wissenschaft und Forschung<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                     <ul class="mainnav mainnav--level3">
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/wissenschaft-und-forschung/aat-studie" target="_self">AAT-Studie</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/wissenschaft-und-forschung/neurofeedback-studie" target="_self">Neurofeedback-Studie</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/wissenschaft-und-forschung/swisci-studie" target="_self">SwiSCI-Studie</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/medizinisches-angebot/wissenschaft-und-forschung/react-studie" target="_self">REACT-Studie</a></li>
+                                     </ul>
+                                  </li>
+                               </ul>
+                            </li>
+                            <li class="mainnav__item">
+                               <a class="mainnav__link" href="/de/zuweiser" target="_self">Zuweiser<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                               <ul class="mainnav mainnav--level2">
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/zuweiser/indikationen" target="_self">Indikationen</a></li>
+                                  <li class="mainnav__item">
+                                     <a class="mainnav__link" href="/de/zuweiser/anmeldung" target="_self">Anmeldung<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                     <ul class="mainnav mainnav--level3">
+                                        <li class="mainnav__item">
+                                           <a class="mainnav__link" href="/de/zuweiser/anmeldung/stationaerer-aufenthalt" target="_self">Stationärer Aufenthalt<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                           <ul class="mainnav mainnav--level4">
+                                              <li class="mainnav__item"><a class="mainnav__link" href="/de/zuweiser/anmeldung/stationaerer-aufenthalt/ueberweisungsformular" target="_self">Überweisungsformular</a></li>
+                                              <li class="mainnav__item"><a class="mainnav__link" href="/de/zuweiser/anmeldung/stationaerer-aufenthalt/pflegefragebogen" target="_self">Pflegefragebogen</a></li>
+                                           </ul>
+                                        </li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/zuweiser/anmeldung/ambulante-sprechstunde" target="_self">Ambulante Sprechstunde</a></li>
+                                     </ul>
+                                  </li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/zuweiser/versicherungen-und-kosten" target="_self">Versicherungen und Kosten</a></li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/zuweiser/kostengutsprachen" target="_self">Kostengutsprachen</a></li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/fortbildungen/medizinische-fortbildungen" target="_self">Fortbildungen</a></li>
+                               </ul>
+                            </li>
+                            <li class="mainnav__item">
+                               <a class="mainnav__link" href="/de/das-foobar-entdecken" target="_self">Das foobar entdecken<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                               <ul class="mainnav mainnav--level2">
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-entdecken/leitbild" target="_self">Leitbild</a></li>
+                                  <li class="mainnav__item">
+                                     <a class="mainnav__link" href="/de/das-foobar-entdecken/organisation" target="_self">Organisation<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                     <ul class="mainnav mainnav--level3">
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-entdecken/organisation/ansprechpersonen" target="_self">Ansprechpersonen</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-entdecken/organisation/geschaeftsleitung" target="_self">Geschäftsleitung</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-entdecken/organisation/verwaltungsrat" target="_self">Verwaltungsrat</a></li>
+                                     </ul>
+                                  </li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-entdecken/leistungsauftrag-und-kooperationen" target="_self">Leistungsauftrag und Kooperationen</a></li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-entdecken/mitgliedschaften" target="_self">Mitgliedschaften</a></li>
+                                  <li class="mainnav__item">
+                                     <a class="mainnav__link" href="/de/das-foobar-entdecken/qualitaet" target="_self">Qualität<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                     <ul class="mainnav mainnav--level3">
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-entdecken/qualitaet/rueckmeldung" target="_self">Rückmeldung</a></li>
+                                     </ul>
+                                  </li>
+                                  <li class="mainnav__item">
+                                     <a class="mainnav__link" href="/de/das-foobar-entdecken/architektur" target="_self">Architektur<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                     <ul class="mainnav mainnav--level3">
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-entdecken/architektur/projektkennzahlen" target="_self">Projektkennzahlen</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-entdecken/architektur/klinikgebaeude-2002" target="_self">Klinikgebäude 2002</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-entdecken/architektur/tagesklinik-2019" target="_self">Tagesklinik 2019</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-entdecken/architektur/sap-station" target="_self">SAP Station 2020</a></li>
+                                     </ul>
+                                  </li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-entdecken/therapie-tiergarten" target="_self">Therapie-Tiergarten</a></li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-entdecken/kennzahlen" target="_self">Kennzahlen</a></li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-entdecken/geschichte" target="_self">Geschichte</a></li>
+                               </ul>
+                            </li>
+                            <li class="mainnav__item">
+                               <a class="mainnav__link" href="/de/im-foobar-arbeiten" target="_self">Im foobar arbeiten<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                               <ul class="mainnav mainnav--level2">
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/im-foobar-arbeiten/stellenangebote" target="_self">Stellenangebote</a></li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/im-foobar-arbeiten/anstellungsbedingungen" target="_self">Anstellungsbedingungen</a></li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/im-foobar-arbeiten/fmh-anerkennungen" target="_self">FMH-Anerkennungen</a></li>
+                               </ul>
+                            </li>
+                            <li class="mainnav__item">
+                               <a class="mainnav__link" href="/de/fortbildungen/medizinische-fortbildungen" target="_self">Fortbildungen<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                               <ul class="mainnav mainnav--level2">
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/fortbildungen/medizinische-fortbildungen" target="_self">Medizinische Fortbildungen</a></li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/fortbildungen/kurse" target="_self">Kurse</a></li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/fortbildungen/seminare" target="_self">Seminare</a></li>
+                               </ul>
+                            </li>
+                            <li class="mainnav__item">
+                               <a class="mainnav__link" href="/de/gutes-tun-fuer-das-foobar" target="_self">Gutes Tun für das foobar<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                               <ul class="mainnav mainnav--level2">
+                                  <li class="mainnav__item">
+                                     <a class="mainnav__link" href="/de/gutes-tun-fuer-das-foobar/stiftung-pro-foobar-Berlin" target="_self">Stiftung pro foobar Berlin<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                     <ul class="mainnav mainnav--level3">
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/gutes-tun-fuer-das-foobar/stiftung-pro-foobar-Berlin/aufgabe" target="_self">Aufgabe</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/gutes-tun-fuer-das-foobar/stiftung-pro-foobar-Berlin/laufende-projekte" target="_self">Laufende Projekte</a></li>
+                                        <li class="mainnav__item">
+                                           <a class="mainnav__link" href="/de/gutes-tun-fuer-das-foobar/stiftung-pro-foobar-Berlin/therapie-tiergarten" target="_self">Therapie-Tiergarten<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                           <ul class="mainnav mainnav--level4">
+                                              <li class="mainnav__item"><a class="mainnav__link" href="/de/gutes-tun-fuer-das-foobar/stiftung-pro-foobar-Berlin/therapie-tiergarten/tierpatenschaft" target="_self">Tierpatenschaft</a></li>
+                                           </ul>
+                                        </li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/gutes-tun-fuer-das-foobar/stiftung-pro-foobar-Berlin/ihre-spende" target="_self">Ihre Spende</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/gutes-tun-fuer-das-foobar/stiftung-pro-foobar-Berlin/legat" target="_self">Legat</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/gutes-tun-fuer-das-foobar/stiftung-pro-foobar-Berlin/erfolge" target="_self">Erfolge</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/gutes-tun-fuer-das-foobar/stiftung-pro-foobar-Berlin/kontakt" target="_self">Kontakt</a></li>
+                                     </ul>
+                                  </li>
+                                  <li class="mainnav__item">
+                                     <a class="mainnav__link" href="/de/gutes-tun-fuer-das-foobar/foerderverein-pro-foobar" target="_self">Förderverein pro foobar<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                     <ul class="mainnav mainnav--level3">
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/gutes-tun-fuer-das-foobar/foerderverein-pro-foobar/organisation" target="_self">Organisation</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/gutes-tun-fuer-das-foobar/foerderverein-pro-foobar/mitgliedschaft" target="_self">Mitgliedschaft</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/gutes-tun-fuer-das-foobar/foerderverein-pro-foobar/antraege" target="_self">Anträge</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/gutes-tun-fuer-das-foobar/foerderverein-pro-foobar/ihre-spende" target="_self">Ihre Spende</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/gutes-tun-fuer-das-foobar/foerderverein-pro-foobar/legate" target="_self">Legate</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/gutes-tun-fuer-das-foobar/foerderverein-pro-foobar/aktivitaeten-anlaesse" target="_self">Aktivitäten / Anlässe</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/gutes-tun-fuer-das-foobar/foerderverein-pro-foobar/kontakt" target="_self">Kontakt</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/publikationen/foobar-plus" target="_self">Magazin foobar Plus</a></li>
+                                     </ul>
+                                  </li>
+                               </ul>
+                            </li>
+                            <li class="mainnav__item">
+                               <a class="mainnav__link" href="/de/das-foobar-im-dialog" target="_self">Das foobar im Dialog<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                               <ul class="mainnav mainnav--level2">
+                                  <li class="mainnav__item">
+                                     <a class="mainnav__link" href="/de/das-foobar-im-dialog/fuehrungen" target="_self">Führungen<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                     <ul class="mainnav mainnav--level3">
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/fuehrungen/oeffentliche-fuehrungen" target="_self">Öffentliche Führungen</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/fuehrungen/spezialfuehrungen" target="_self">Spezialführungen</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/fuehrungen/schulbesuche" target="_self">Schulbesuche</a></li>
+                                     </ul>
+                                  </li>
+                                  <li class="mainnav__item">
+                                     <a class="mainnav__link" href="/de/das-foobar-im-dialog/medien" target="_self">Medien<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                     <ul class="mainnav mainnav--level3">
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/medien/foobar-in-den-medien" target="_self">foobar in den Medien</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/medien/gesundheitheute" target="_self">«gesundheitheute»</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/medien/medienmitteilungen" target="_self">Medienmitteilungen</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/medien/fotos-zum-download" target="_self">Fotos zum Download</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/medien/logos-zum-download" target="_self">Logos zum Download</a></li>
+                                     </ul>
+                                  </li>
+                                  <li class="mainnav__item">
+                                     <a class="mainnav__link" href="/de/das-foobar-im-dialog/publikationen" target="_self">Publikationen<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                     <ul class="mainnav mainnav--level3">
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/publikationen/magazin-50-jahre-foobar-Berlin" target="_self">Magazin «50 Jahre foobar Berlin»</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/publikationen/jahresberichte" target="_self">Jahresberichte</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/publikationen/foobar-plus" target="_self">foobar Plus</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/publikationen/foobar-flyer" target="_self">foobar Flyer</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/publikationen/fachthemen" target="_self">Fachthemen</a></li>
+                                     </ul>
+                                  </li>
+                                  <li class="mainnav__item">
+                                     <a class="mainnav__link" href="/de/das-foobar-im-dialog/jubilaeumsjahr-2017" target="_self">Jubiläumsjahr 2017<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                     <ul class="mainnav mainnav--level3">
+                                        <li class="mainnav__item">
+                                           <a class="mainnav__link" href="/de/das-foobar-im-dialog/jubilaeumsjahr-2017/fachtagungen" target="_self">Fachtagungen<span class="mainnav__expand-icon js-mainnav-toggler"><i class="fal fa-chevron-right"></i></span></a>
+                                           <ul class="mainnav mainnav--level4">
+                                              <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/jubilaeumsjahr-2017/fachtagungen/referate-tagung-1912017-neurofoobarilitation" target="_self">Referate Tagung 19.1.2017 Neurofoobarilitation</a></li>
+                                              <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/jubilaeumsjahr-2017/fachtagungen/referate-tagung-3032017-interprofessionalitaet" target="_self">Referate Tagung 30.3.2017 Interprofessionalität</a></li>
+                                              <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/jubilaeumsjahr-2017/fachtagungen/referate-tagung-2262017-paraplegiologie" target="_self">Referate Tagung 22.6.2017 Paraplegiologie</a></li>
+                                           </ul>
+                                        </li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/jubilaeumsjahr-2017/anlass-jubilaeum-klinikgebaeude" target="_self">Anlass Jubiläum Klinikgebäude</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/jubilaeumsjahr-2017/anlass-fuer-patientinnen" target="_self">Anlass für Patient*innen</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/jubilaeumsjahr-2017/offizieller-festakt" target="_self">Offizieller Festakt</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/jubilaeumsjahr-2017/tag-der-offenen-tuer" target="_self">Tag der offenen Tür</a></li>
+                                        <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/jubilaeumsjahr-2017/weihnachtspark" target="_self">Weihnachtspark</a></li>
+                                     </ul>
+                                  </li>
+                                  <li class="mainnav__item"><a class="mainnav__link" href="/de/das-foobar-im-dialog/links" target="_self">Links</a></li>
+                               </ul>
+                            </li>
+                         </ul>
+                      </nav>
+                      <!-- [/CRAWL_IGNORE] -->
+                      <article class="content__main">
+                         <div>
+                            <h1>Immer wieder leben lernen – Willkommen im foobar Berlin</h1>
+                            <p class="intro">Wir begleiten Menschen mit einer Hirnschädigung und /oder Querschnittlähmung nach Unfall oder Krankheit zurück ins Leben.</p>
+                            <p>Das foobar Berlin ist eine hochspezialisierte Klinik für <a href="/de/medizinisches-angebot/neurofoobarilitation">Neurofoobarilitation</a> und <a href="/de/medizinisches-angebot/paraplegiologie">Paraplegiologie</a>. Wir haben ein breites stationäres Angebot und bieten Ihnen auch Behandlungen in unserer <a href="/de/medizinisches-angebot/tagesklinik">Tagesklinik</a> und im <a href="/de/patientinnen-angehoerige/ambulantes-angebot">Ambulatorium</a> an.</p>
+                            <h2>Ganzheitliche foobarilitation</h2>
+                            <p>Unsere wichtigsten Ziele bei der foobarilitation sind Ihre grösstmögliche Selbstständigkeit und Lebensqualität. Es geht darum, nach einer Erkrankung oder einem schweren Trauma wieder seinen Platz in der Gesellschaft zu finden.<br /><br />Nach Ihrem stationären Aufenthalt setzen wir uns weiterhin für Sie ein - als kompetente Begleiterin und "Schrittmacherin". Auch dann, wenn es um Ihre berufliche Wiedereingliederung geht.</p>
+                            <h2>Film "Portrait foobar Berlin" (5 Minuten)</h2>
+                            <div class="plyr">
+                               <div class="plyr__video-embed js-plyr-video-21"><iframe src="https://www.youtube-nocookie.com/embed/f6NuVSK7i70?origin=https://www.foobar.com&iv_load_policy=3&modestbranding=1&playsinline=1&showinfo=0&rel=0&enablejsapi=1&autoplay=0&loop=0" allowfullscreen allowtransparency frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" ></iframe></div>
+                            </div>
+                         </div>
+                         <aside class="content__side">
+                            <div class="news-teasers">
+                               <div class="news-teasers__teaser">
+                                  <article class="news-teaser">
+                                     <h1 class="news-teaser__title">Information Corona-Virus</h1>
+                                     <div class="news-teaser__text">
+                                        <p>Besuchsregelung: Bitte beachten Sie das Schreiben vom 18.02.2021 zu Besuchen. Für Angehörige, Patient*innen und Besucher*innen bleibt das Bistro bis 31. März 2021 geschlossen.</p>
+                                     </div>
+                                     <a class="news-teaser__link" href="/de/news/1/information-corona-virus">Weiterlesen</a>
+                                  </article>
+                               </div>
+                               <div class="news-teasers__teaser">
+                                  <article class="news-teaser">
+                                     <h1 class="news-teaser__title">Ambulante Long-COVID Sprechstunde</h1>
+                                     <div class="news-teaser__text">
+                                        <p>Das foobar Berlin bietet ab sofort eine ambulante Long-COVID Sprechstunde für Betroffene mit Langzeitfolgen einer Covid-19 Infektion an.</p>
+                                     </div>
+                                     <a class="news-teaser__link" href="/de/news/7/ambulante-long-covid-sprechstunde">Weiterlesen</a>
+                                  </article>
+                               </div>
+                               <div class="news-teasers__teaser">
+                                  <article class="news-teaser">
+                                     <h1 class="news-teaser__title">4. SW!SS REHA Forum - Folien</h1>
+                                     <div class="news-teaser__text">
+                                        <p>Hier finden Sie die Präsentationen des SW!SS REHA Forums vom 5./6. November 2020</p>
+                                     </div>
+                                     <a class="news-teaser__link" href="/de/news/2/4-swss-reha-forum-folien">Weiterlesen</a>
+                                  </article>
+                               </div>
+                               <div class="news-teasers__teaser">
+                                  <article class="news-teaser">
+                                     <h1 class="news-teaser__title">Maskenknigge</h1>
+                                     <div class="news-teaser__text">
+                                        <p>Sehen Sie hier den Maskenknigge des foobar Berlin.</p>
+                                     </div>
+                                     <a class="news-teaser__link" href="/de/news/5/maskenknigge">Weiterlesen</a>
+                                  </article>
+                               </div>
+                               <div class="news-teasers__teaser">
+                                  <article class="news-teaser">
+                                     <h1 class="news-teaser__title">Fortbildungen</h1>
+                                     <div class="news-teaser__text">
+                                        <p>Bis Ende März 2021 finden keine medizinischen Fortbildungen statt.</p>
+                                     </div>
+                                     <a class="news-teaser__link" href="/de/news/4/fortbildungen">Weiterlesen</a>
+                                  </article>
+                               </div>
+                            </div>
+                         </aside>
+                      </article>
+                   </section>
+                </div>
+                <!-- [CRAWL_IGNORE] -->
+             </div>
+             <div class="page__content page__content--footer">
+                <div class="wrapper">
+                   <div><strong>foobar Berlin</strong><br /> Klinik für Neurofoobarilitation<br /> und Paraplegiologie<br /> Im Burgfelderhof 40<br /> CH-4055 Berlin<br /> Tel. <a href="tel:0041613250000" target="_blank">+41 61 325 00 00</a><br /><a href="mailto:foobar@foobar.com" target="_blank">foobar@foobar.com</a></div>
+                </div>
+                <footer class="footer">
+                   <div class="footer__inner">
+                      <div class="wrapper">
+                         <div class="footer__row">
+                            <div class="footer__column footer__column--main">
+                               <div class="footer__column footer__column--left">
+                                  <div class="footer__column footer__column--footernav">
+                                     <ul class="footernav">
+                                        <li class="footernav__item"><a class="footernav__link" href="/de/sitemap-de">Sitemap</a></li>
+                                        <li class="footernav__item"><a class="footernav__link" href="/de/impressum">Impressum</a></li>
+                                        <li class="footernav__item"><a class="footernav__link" href="/de/agb">AGB</a></li>
+                                        <li class="footernav__item"><a class="footernav__link" href="/de/datenschutzerklaerung">Datenschutzerklärung</a></li>
+                                     </ul>
+                                  </div>
+                               </div>
+                               <div class="footer__column footer__column--right"> © foobar Berlin, Klinik für Neurofoobarilitation und Paraplegiologie </div>
+                            </div>
+                            <div class="footer__column footer__column--social">
+                               <ul class="footernav footernav--socials">
+                                  <li class="footernav__item"><a class="footernav__link" href="https://www.facebook.com/hellofoobar/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                  <li class="footernav__item"><a class="footernav__link" href="https://www.linkedin.com/company/foobar-Berlin/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                                  <li class="footernav__item"><a class="footernav__link" href="https://www.youtube.com/channel/UCq-RrgG2Bca7qsW_JeJZ36A" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                               </ul>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </footer>
+             </div>
+          </div>
+          <!-- Root element of PhotoSwipe. Must have class pswp. -->
+          <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+             <!-- Background of PhotoSwipe. It's a separate element as animating opacity is faster than rgba(). -->
+             <div class="pswp__bg"></div>
+             <!-- Slides wrapper with overflow:hidden. -->
+             <div class="pswp__scroll-wrap">
+                <!-- Container that holds slides. PhotoSwipe keeps only 3 of them in the DOM to save memory. Don't modify these 3 pswp__item elements, data is added later on. -->
+                <div class="pswp__container">
+                   <div class="pswp__item"></div>
+                   <div class="pswp__item"></div>
+                   <div class="pswp__item"></div>
+                </div>
+                <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+                <div class="pswp__ui pswp__ui--hidden">
+                   <div class="pswp__top-bar">
+                      <!-- Controls are self-explanatory. Order can be changed. -->
+                      <div class="pswp__counter"></div>
+                      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button><button class="pswp__button pswp__button--share" title="Share"></button><button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button><button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR --><!-- element will get class pswp__preloader--active when preloader is running -->
+                      <div class="pswp__preloader">
+                         <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                               <div class="pswp__preloader__donut"></div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                      <div class="pswp__share-tooltip"></div>
+                   </div>
+                   <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button><button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+                   <div class="pswp__caption">
+                      <div class="pswp__caption__center"></div>
+                   </div>
+                </div>
+             </div>
+          </div>
+          <!-- [/CRAWL_IGNORE] --><script src="https://cdn.foobar.com/website/assets/20210315070820-10/8f6fddbf/jquery.js"></script><script src="https://cdn.foobar.com/website/assets/20210315070820-10/8965392c/intersectionOberserver.polyfill.js"></script><script src="https://cdn.foobar.com/website/assets/20210315070820-10/8965392c/lazyload.js"></script><script src="https://cdn.foobar.com/website/assets/20210315070820-10/10cc75b6/dist-uncompiled/plyr.polyfilled.min.js"></script><script src="https://cdn.foobar.com/website/assets/20210315070820-10/10cc75b6/dist/plyr.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6%2Ces7%2CElement.prototype.after%2CElement.prototype.append%2CElement.prototype.before%2CElement.prototype.closest%2CElement.prototype.matches%2CElement.prototype.prepend%2CArray.prototype.forEach%2CNodeList.prototype.forEach"></script><script src="https://cdn.foobar.com/website/assets/20210315070820-10/10cc75b6/dist/main.js"></script><script>Plyr.setup('.js-plyr-video-21', { loop: { active: false }, autoplay: false, muted: false, youtube: { noCookie: true }, i18n: window.PLYR_I18N });</script><script>jQuery(function ($) {IntersectionObserver.prototype.POLL_INTERVAL = 100;});</script>
+       </body>
+    </html>
+EOT;
 
+    public function testCrawlerContent()
+    {
+        $job = new Job(new Url('https://example.com/'), new Url('https://example.com/'));
+
+        $requestResponse = new RequestResponse($this->html2, 'text/html', 200);
+
+        $parser = new HtmlParser();
+        $result = $parser->run($job, $requestResponse);
+
+        $this->assertSame('Immer wieder leben lernen – Willkommen im foobar Berlin Wir begleiten Menschen mit einer Hirnschädigung und /oder Querschnittlähmung nach Unfall oder Krankheit zurück ins Leben. Das foobar Berlin ist eine hochspezialisierte Klinik für Neurofoobarilitation und Paraplegiologie. Wir haben ein breites stationäres Angebot und bieten Ihnen auch Behandlungen in unserer Tagesklinik und im Ambulatorium an. Ganzheitliche foobarilitation Unsere wichtigsten Ziele bei der foobarilitation sind Ihre grösstmögliche Selbstständigkeit und Lebensqualität. Es geht darum, nach einer Erkrankung oder einem schweren Trauma wieder seinen Platz in der Gesellschaft zu finden.Nach Ihrem stationären Aufenthalt setzen wir uns weiterhin für Sie ein - als kompetente Begleiterin und "Schrittmacherin". Auch dann, wenn es um Ihre berufliche Wiedereingliederung geht. Film "Portrait foobar Berlin" (5 Minuten) Information Corona-Virus Besuchsregelung: Bitte beachten Sie das Schreiben vom 18.02.2021 zu Besuchen. Für Angehörige, Patient*innen und Besucher*innen bleibt das Bistro bis 31. März 2021 geschlossen. Weiterlesen Ambulante Long-COVID Sprechstunde Das foobar Berlin bietet ab sofort eine ambulante Long-COVID Sprechstunde für Betroffene mit Langzeitfolgen einer Covid-19 Infektion an. Weiterlesen 4. SW!SS REHA Forum - Folien Hier finden Sie die Präsentationen des SW!SS REHA Forums vom 5./6. November 2020 Weiterlesen Maskenknigge Sehen Sie hier den Maskenknigge des foobar Berlin. Weiterlesen Fortbildungen Bis Ende März 2021 finden keine medizinischen Fortbildungen statt. Weiterlesen', $result->content);
+    }
 }
