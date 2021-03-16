@@ -935,9 +935,6 @@ EOT;
                             <h2>Ganzheitliche foobarilitation</h2>
                             <p>Unsere wichtigsten Ziele bei der foobarilitation sind Ihre grösstmögliche Selbstständigkeit und Lebensqualität. Es geht darum, nach einer Erkrankung oder einem schweren Trauma wieder seinen Platz in der Gesellschaft zu finden.<br /><br />Nach Ihrem stationären Aufenthalt setzen wir uns weiterhin für Sie ein - als kompetente Begleiterin und "Schrittmacherin". Auch dann, wenn es um Ihre berufliche Wiedereingliederung geht.</p>
                             <h2>Film "Portrait foobar Berlin" (5 Minuten)</h2>
-                            <div class="plyr">
-                               <div class="plyr__video-embed js-plyr-video-21"><iframe src="https://www.youtube-nocookie.com/embed/f6NuVSK7i70?origin=https://www.foobar.com&iv_load_policy=3&modestbranding=1&playsinline=1&showinfo=0&rel=0&enablejsapi=1&autoplay=0&loop=0" allowfullscreen allowtransparency frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" ></iframe></div>
-                            </div>
                          </div>
                          <aside class="content__side">
                             <div class="news-teasers">
@@ -1018,7 +1015,6 @@ EOT;
                                <ul class="footernav footernav--socials">
                                   <li class="footernav__item"><a class="footernav__link" href="https://www.facebook.com/hellofoobar/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
                                   <li class="footernav__item"><a class="footernav__link" href="https://www.linkedin.com/company/foobar-Berlin/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-                                  <li class="footernav__item"><a class="footernav__link" href="https://www.youtube.com/channel/UCq-RrgG2Bca7qsW_JeJZ36A" target="_blank"><i class="fab fa-youtube"></i></a></li>
                                </ul>
                             </div>
                          </div>
