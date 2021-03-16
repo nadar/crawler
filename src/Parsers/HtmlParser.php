@@ -2,6 +2,7 @@
 
 namespace Nadar\Crawler\Parsers;
 
+use DOMElement;
 use DOMDocument;
 use Nadar\Crawler\Interfaces\ParserInterface;
 use Nadar\Crawler\Job;
@@ -18,7 +19,18 @@ use Nadar\Crawler\Url;
  */
 class HtmlParser implements ParserInterface
 {
+    /**
+     * @var boolean Whether the HTML tags should be stripped from $result->content variable or not.
+     */
     public $stripTags = true;
+
+    /**
+     * @var array A list of values for the `rel="..."` tag which should be ignored. This means that links with one
+     * of the following rel values would not be followed and does not appear in the list of $result->links list.
+     * @since 1.6.0
+     * @see https://www.w3schools.com/tags/att_a_rel.asp
+     */
+    public $ignoreRels = ['nofollow', 'external'];
 
     /**
      * {@inheritDoc}
@@ -33,17 +45,10 @@ class HtmlParser implements ParserInterface
         $dom = $this->generateDomDocument($content);
 
         // follow links
-        $links = $dom->getElementsByTagName('a');
-        $refs = [];
-        foreach ($links as $link) {
-            $refs[$link->getAttribute('href')] = trim($link->nodeValue);
-        }
+        $links = $this->getDomLinks($dom, $this->ignoreRels);
 
         // body content
-        $body = $this->getDomBodyContent($dom);
-        if (!empty($body)) {
-            $content = $body;
-        }
+        $content = $this->getDomBodyContent($dom);
 
         
         $content = $this->stripCrawlIgnore($content);
@@ -52,13 +57,13 @@ class HtmlParser implements ParserInterface
         $jobResult = new ParserResult();
         $jobResult->content = $jobResult->trim($content); // get only the content between "body" tags
         $jobResult->title = $jobResult->trim($this->getDomTitle($dom));
-        $jobResult->links = $refs;
+        $jobResult->links = $links;
         $jobResult->language = $this->getDomLanguage($dom);
         $jobResult->keywords = $this->getDomKeywords($dom);
         $jobResult->description = $this->getDomDescription($dom);
         $jobResult->group = $this->getCrawlGroup($content);
         
-        unset($dom, $links, $refs, $link, $requestResponse, $content, $body);
+        unset($dom, $links, $content);
 
         return $jobResult;
     }
@@ -218,6 +223,7 @@ class HtmlParser implements ParserInterface
         $html = $dom->getElementsByTagName('html');
 
         if ($html->length > 0) {
+            /** @var DOMElement $tag */
             $tag = $html->item(0);
             return $tag->hasAttribute('lang') ? $tag->getAttribute('lang') : null;
         }
@@ -261,5 +267,27 @@ class HtmlParser implements ParserInterface
         }
 
         return null;
+    }
+
+    /**
+     * Returns all found Links
+     *
+     * @param DOMDocument $dom
+     * @param array $ignoreRels An example would be `['nofollow']`.
+     * @return array An array with all links
+     * @since 1.6.0
+     */
+    public function getDomLinks(DOMDocument $dom, $ignoreRels = [])
+    {
+        $links = $dom->getElementsByTagName('a');
+        $refs = [];
+        foreach ($links as $link) {
+            if (!in_array($link->getAttribute('rel'), $ignoreRels)) {
+                $refs[$link->getAttribute('href')] = trim($link->nodeValue);
+            }
+        }
+
+        unset ($links);
+        return $refs;
     }
 }

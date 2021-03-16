@@ -3,11 +3,15 @@
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 In order to read more about upgrading and BC breaks have a look at the [UPGRADE Document](UPGRADE.md).
 
-## 1.5.0 (13. January 2020)
+## 1.6.0 (16. March 2021)
+
++ [#16](https://github.com/nadar/crawler/issues/16) Do not follow links which have `rel="nofollow"` by default. This can be configured in the `HtmlParser::$ignoreRels` property.
+
+## 1.5.0 (13. January 2021)
 
 + [#14](https://github.com/nadar/crawler/pull/14) Pass the StatusCode of the response into the parsers and process only HTML and PDFs with code 200 (OK).
 
-## 1.4.0 (13. January 2020)
+## 1.4.0 (13. January 20201
 
 + [#13](https://github.com/nadar/crawler/pull/13) New Crawler method `getCycles()` returns the number of times the `run()` method was called.
 

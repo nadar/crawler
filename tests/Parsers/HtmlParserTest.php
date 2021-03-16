@@ -6,6 +6,7 @@ use DOMDocument;
 use Nadar\Crawler\Crawler;
 use Nadar\Crawler\Handlers\DebugHandler;
 use Nadar\Crawler\Job;
+use Nadar\Crawler\ParserIgnoreResult;
 use Nadar\Crawler\Parsers\HtmlParser;
 use Nadar\Crawler\RequestResponse;
 use Nadar\Crawler\Runners\LoopRunner;
@@ -180,5 +181,32 @@ class HtmlParserTest extends CrawlerTestCase
         $parser = new HtmlParser;
     
         $this->assertSame('<div><p>hallo</p><!--  --></div>', $parser->stripCrawlIgnore($html));
+    }
+
+    public function testFullIngoreResult()
+    {
+        $parser = new HtmlParser;
+        $requestResponse = new RequestResponse('<html>[CRAWL_FULL_IGNORE]</html>', 'text/html', 200);
+        $job = new Job(new Url('https://example.com/'), new Url('https://example.com/'));
+
+        $this->assertInstanceOf(ParserIgnoreResult::class, $parser->run($job, $requestResponse));
+    }
+
+    public function testNoFollowLinks()
+    {
+        $html = '<ul>
+            <li><a href="https://luya.io" target="_blank">luya.io</a></li>
+            <li><a href="https://nadar.io" rel="nofollow">nadar.io</a>></li>
+        </ul>';
+
+        $parser = new HtmlParser;
+        $requestResponse = new RequestResponse($html, 'text/html', 200);
+
+        $job = new Job(new Url('https://example.com/'), new Url('https://example.com/'));
+        $result = $parser->run($job, $requestResponse);
+
+        $this->assertSame([
+            'https://luya.io' => 'luya.io',
+        ], $result->links);
     }
 }
