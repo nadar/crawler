@@ -5,7 +5,7 @@ In order to read more about upgrading and BC breaks have a look at the [UPGRADE 
 
 ## 1.6.1 (16. April 2021)
 
-+ []() Fixed issue where crawler group is not generated correctly.
++ [#17](https://github.com/nadar/crawler/pull/17) Fixed issue where crawler group is not generated correctly.
 
 ## 1.6.0 (16. March 2021)
 
