@@ -93,10 +93,11 @@ class HtmlParser implements ParserInterface
     public function generateDomDocument($content)
     {
         $dom = new DOMDocument();
+        $dom->encoding = 'utf-8';
 
         // Parse the HTML. The @ is used to suppress any parsing errors
         // that will be thrown if the $html string isn't valid XHTML.
-        @$dom->loadHTML($content);
+        @$dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
 
         return $dom;
     }

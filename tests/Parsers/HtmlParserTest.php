@@ -36,6 +36,55 @@ class HtmlParserTest extends CrawlerTestCase
         );
     }
 
+    public function testValidUtf8HeaderWithoutHeaderSpecialChar()
+    {
+        $parser = new HtmlParser;
+        $dom = $parser->generateDomDocument('
+        <!DOCTYPE html><html lang="de">
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="robots" content="index, follow" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        </head>    
+        <body>Zurück</body></html>'
+        );
+
+        $this->assertSame('<body>Zurück</body>', $parser->getDomBodyContent($dom));
+    }
+
+    public function testUtf8CharsInsideTitle()
+    {
+        $parser = new HtmlParser;
+
+        $dom = $parser->generateDomDocument('
+        <!DOCTYPE html><html lang="de">
+        <head>
+            <title>Home | Geschäftsbericht</title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta http-equiv="x-ua-compatible" content="ie=edge">
+        </head>
+        <body>Rückblick</body></html>');
+
+        $this->assertSame('<body>Rückblick</body>', $parser->getDomBodyContent($dom));
+
+    }
+
+    public function testMissingUtf8Information()
+    {
+        $parser = new HtmlParser;
+        $dom = $parser->generateDomDocument('
+        <!DOCTYPE html><html lang="de">
+        <head>
+            <meta name="robots" content="index, follow" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        </head>    
+        <body>Zurück</body></html>'
+        );
+
+        $this->assertSame('<body>Zurück</body>', $parser->getDomBodyContent($dom));
+    }
+
     public function testFullIgnoreTag()
     {
         $parser = new HtmlParser;
