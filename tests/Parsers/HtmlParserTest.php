@@ -85,6 +85,7 @@ class HtmlParserTest extends CrawlerTestCase
         $parser = new HtmlParser;
         $this->assertSame('hello  are you?', $parser->stripCrawlIgnore('hello [CRAWL_IGNORE]how[/CRAWL_IGNORE] are you?'));
         $this->assertSame('the', $parser->getCrawlGroup('this is [CRAWL_GROUP]the[/CRAWL_GROUP] group'));
+        $this->assertSame('2020', $parser->getCrawlGroup('this is [CRAWL_GROUP]2020[/CRAWL_GROUP] group'));
     }
 
     public function testGetContent()

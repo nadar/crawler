@@ -10,6 +10,20 @@ use Nadar\Crawler\Url;
 
 class HtmlParserExampleTest extends CrawlerTestCase
 {
+   public function testGroupContent()
+    {
+        $job = new Job(new Url('https://example.com/'), new Url('https://example.com/'));
+
+      $html = '<body><!-- [CRAWL_GROUP]2020[/CRAWL_GROUP] --><!-- [CRAWL_IGNORE] --><input type="checkbox" id="mainnav__toggler" name="mainnav__toggler" /><div class="container"><div class="mainnav"><label class="mainnav__close" for="mainnav__toggler"><span class="pictogram pictogram-schliessen"></span></label><div class="mainnav__inner"><ul class="mainnav__list"><li class="mainnav__item"><a class="mainnav__link" href="/">Home</a></li><li class="mainnav__item"><a class="mainnav__link" href="/de/2020/rueckblick">Rückblick</a></li><li class="mainnav__item"><a class="mainnav__link" href="/de/2020/wichtigste-zahlen-2020">Wichtigste Zahlen 2020</a></li><li class="mainnav__item"><a class="mainnav__link" href="/de/2020/lagebericht">Lagebericht</a></li><li class="mainnav__item"><a class="mainnav__link" href="/de/2020/jahresrechnung">Jahresrechnung</a></li><li class="mainnav__item mainnav__item--dropdown"><span class="mainnav__icon-dropdown pictogram pictogram-vor"></span><a class="mainnav__link" href="/de/2020/anhang-zur-jahresrechnung/anhangstabellen">Anhang zur Jahresrechnung</a><ul class="mainnav__sub"><li class="mainnav__subitem"><a href="/de/2020/anhang-zur-jahresrechnung/bilanzierungs-und-bewertungsgrundsaetze" class="mainnav__sublink">Bilanzierungs- und Bewertungsgrundsätze</a></li><li class="mainnav__subitem"><a href="/de/2020/anhang-zur-jahresrechnung/erlauterun</body>';
+
+        $requestResponse = new RequestResponse($html, 'text/html', 200);
+
+        $parser = new HtmlParser();
+        $result = $parser->run($job, $requestResponse);
+
+        $this->assertSame('2020', $result->group);
+    }
+
     public function testFullIgnoreResult()
     {
         $job = new Job(new Url('https://example.com/'), new Url('https://example.com/'));

@@ -48,10 +48,10 @@ class HtmlParser implements ParserInterface
         $links = $this->getDomLinks($dom, $this->ignoreRels);
 
         // body content
-        $content = $this->getDomBodyContent($dom);
+        $body = $this->getDomBodyContent($dom);
 
         
-        $content = $this->stripCrawlIgnore($content);
+        $content = $this->stripCrawlIgnore($body);
         $content = $this->stripTags ? strip_tags($content) : $content;
 
         $jobResult = new ParserResult();
@@ -61,9 +61,9 @@ class HtmlParser implements ParserInterface
         $jobResult->language = $this->getDomLanguage($dom);
         $jobResult->keywords = $this->getDomKeywords($dom);
         $jobResult->description = $this->getDomDescription($dom);
-        $jobResult->group = $this->getCrawlGroup($content);
+        $jobResult->group = $this->getCrawlGroup($body);
         
-        unset($dom, $links, $content);
+        unset($dom, $links, $content, $body);
 
         return $jobResult;
     }
