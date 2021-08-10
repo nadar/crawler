@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 In order to read more about upgrading and BC breaks have a look at the [UPGRADE Document](UPGRADE.md).
 
+## 1.7.0.
+
++ []() Improve the strip tags for html parser in order to generate a more clean and readable output when `$stripTags` is enabled.
+
 ## 1.6.2 (16. April 2021)
 
 + [#18](https://github.com/nadar/crawler/pull/18) Fix issue with pages where utf8 chars are in title tag.

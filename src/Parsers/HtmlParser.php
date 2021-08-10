@@ -20,7 +20,9 @@ use Nadar\Crawler\Url;
 class HtmlParser implements ParserInterface
 {
     /**
-     * @var boolean Whether the HTML tags should be stripped from $result->content variable or not.
+     * @var boolean Whether the HTML tags should be stripped from $result->content variable or not. Since version 1.7.0 also spaces will be added in certain circumstances.
+     * For example space boundings `Hello<br />World` will be `Hello World` instead of `HelloWorld`. In order to recieved the original content from the web request, disable
+     * $stripTags. The space bounding can also lead to wrong spaces, for example `<a href="#">foobar</a>.` will be `foobar .` instead of `foobar.` as `.` is a normal char.
      */
     public $stripTags = true;
 
@@ -52,7 +54,7 @@ class HtmlParser implements ParserInterface
 
         
         $content = $this->stripCrawlIgnore($body);
-        $content = $this->stripTags ? strip_tags($content) : $content;
+        $content = $this->stripTags ? $this->formatContent($content) : $content;
 
         $jobResult = new ParserResult();
         $jobResult->content = $jobResult->trim($content); // get only the content between "body" tags
@@ -290,5 +292,39 @@ class HtmlParser implements ParserInterface
 
         unset ($links);
         return $refs;
+    }
+
+    /**
+     * Format Content
+     * 
+     * + Remove tags
+     * + Remove unneccsary whitespaces (like double whitespaces)
+     * + make spaces between words when they are seperated by tags (`<p>foo</p><p>bar</p>` will be `foo bar` instead of `foobar`)
+     * + Ensure no spaces before punctuation marks.
+     *
+     * @param string $content The content to format
+     * @return string The striped and formated content
+     * @see https://www.php.net/manual/de/function.strip-tags.php#110280
+     * @since 1.7.0
+     */
+    public function formatContent($content)
+    {
+        // remove HTML TAGs
+        $string = preg_replace ('/<[^>]*>/', ' ', $content);
+        
+        // remove control characters
+        $string = str_replace("\r", '', $string); // --- replace with empty space
+        $string = str_replace("\n", ' ', $string); // --- replace with space
+        $string = str_replace("\t", ' ', $string); // --- replace with space
+        
+        // remove multiple spaces
+        $string = trim(preg_replace('/ {2,}/', ' ', $string));
+        
+        // handle wrong control char spacings
+        $string = preg_replace('/(\s)([\!\,\.\?])/', '$2', $string);
+
+        // for security reasons, add strip tags
+        // https://www.php.net/manual/de/function.strip-tags.php#118183
+        return strip_tags($string);
     }
 }
