@@ -3,9 +3,9 @@
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 In order to read more about upgrading and BC breaks have a look at the [UPGRADE Document](UPGRADE.md).
 
-## 1.7.0.
+## 1.7.0 (10. August 2021)
 
-+ []() Improve the strip tags for html parser in order to generate a more clean and readable output when `$stripTags` is enabled.
++ [#20](https://github.com/nadar/crawler/pull/20) Improve the strip tags for html parser in order to generate a more clean and readable output when `$stripTags` is enabled. Things like `<p>foo</p><p>bar</p>` are now handled as `foo bar` instead of `foobar`.
 
 ## 1.6.2 (16. April 2021)
 
