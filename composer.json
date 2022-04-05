@@ -24,7 +24,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^8.0",
-        "smalot/pdfparser": "^0.16.1"
+        "smalot/pdfparser": "^2.1"
     },
     "suggest": {
         "smalot/pdfparser" : "In order to use the PdfParser the smalot/pdfparser library is required."
