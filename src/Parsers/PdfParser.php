@@ -51,7 +51,9 @@ class PdfParser implements ParserInterface
             foreach ($pdf->getPages() as $page) {
                 $content .= $page->getText();
             }
-        } catch (Exception $exception) {
+        } catch (Throwable $t) { // Executed only in PHP 7, will not match in PHP 5.x
+            return new ParserIgnoreResult();
+        } catch (Exception $exception) { // Executed only in PHP 5.x, will not be reached in PHP 7
             return new ParserIgnoreResult();
         }
 
