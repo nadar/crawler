@@ -2,6 +2,8 @@
 
 namespace Nadar\Crawler;
 
+use CurlHandle;
+
 /**
  * Job for an URL.
  *
@@ -54,7 +56,7 @@ class Job
     /**
      * Generate curl resource
      *
-     * @return resource
+     * @return CurlHandle
      */
     public function generateCurl()
     {
