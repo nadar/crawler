@@ -27,7 +27,7 @@ interface ParserInterface
      * Validate the URL to match the Parsers Format.
      *
      * @param Url $url
-     * @return boolean Whether the validation is sucessfull or not, if not the parsers will be ignored at this point for the given url.
+     * @return boolean Whether the validation is successful or not, if not the parsers will be ignored at this point for the given url.
      */
     public function validateUrl(Url $url): bool;
 
@@ -35,7 +35,7 @@ interface ParserInterface
      * Validate the URLs request response body
      *
      * @param RequestResponse $requestResponse
-     * @return boolean Whether the validation is sucessfull or not, if not the parsers will be ignored at this point for the given url.
+     * @return boolean Whether the validation is successful or not, if not the parsers will be ignored at this point for the given url.
      */
     public function validateRequestResponse(RequestResponse $requestResponse): bool;
 

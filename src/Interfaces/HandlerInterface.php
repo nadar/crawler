@@ -15,9 +15,9 @@ use Nadar\Crawler\Result;
 interface HandlerInterface extends CrawlerCycleInterface
 {
     /**
-     * This method is running after each page has been successfull crawled.
+     * This method is running after each page has been successful crawled.
      *
-     * The result contains the result from a successfull crawl of ANY parsers. This means
+     * The result contains the result from a successful crawl of ANY parsers. This means
      * its possible, for whatever reason, that two parsers might return the same url, maybe with
      * different content.
      *
