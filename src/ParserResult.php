@@ -14,7 +14,8 @@ class ParserResult
 
     /**
      * @var boolean Whether the result should be ignored for any further processing. Ignored
-     * ParserResult will also not pushed to the `HandlerInterface::afterRun()` method.
+     * ParserResult will also not pushed to the `HandlerInterface::afterRun()` method. For example
+     * this could be true, if the Html Parser finds a `[CRAWL_FULL_IGNORE]` tag.
      */
     public $ignore = false;
 
