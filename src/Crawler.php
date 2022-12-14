@@ -153,7 +153,7 @@ class Crawler
      * @return HandlerInterface[]
      * @see {{addHandler()}}
      */
-    public function getHandlers() : array
+    public function getHandlers(): array
     {
         return $this->handlers;
     }
@@ -174,7 +174,7 @@ class Crawler
      * @return ParserInterface[]
      * @see {{addParser()}}
      */
-    public function getParsers() : array
+    public function getParsers(): array
     {
         return $this->parsers;
     }
@@ -205,7 +205,7 @@ class Crawler
 
         return $jobs;
     }
-    
+
     /**
      * Setup the Crawler
      */
@@ -264,7 +264,7 @@ class Crawler
                 $this->storage->markChecksumAsDone($checksum);
             }
             unset($checksum);
-           
+
             curl_multi_remove_handle($multiCurl, $ch);
         }
 

@@ -22,7 +22,7 @@ class DebugHandler implements HandlerInterface
     public $counter = 0;
 
     /**
-     * @var integer Starttime
+     * @var float Starttime
      */
     public $start;
 
@@ -37,7 +37,7 @@ class DebugHandler implements HandlerInterface
     /**
      * Returns the current elapsed time from start
      *
-     * @return integer
+     * @return float
      */
     public function elapsedTime()
     {
@@ -77,7 +77,7 @@ class DebugHandler implements HandlerInterface
         } elseif ($memory < 1048576) {
             return round($memory/1024, 2)." kilobytes";
         }
-        
+
         return round($memory/1048576, 2)." megabytes";
     }
 

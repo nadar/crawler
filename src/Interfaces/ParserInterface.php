@@ -29,7 +29,7 @@ interface ParserInterface
      * @param Url $url
      * @return boolean Whether the validation is sucessfull or not, if not the parsers will be ignored at this point for the given url.
      */
-    public function validateUrl(Url $url) : bool;
+    public function validateUrl(Url $url): bool;
 
     /**
      * Validate the URLs request response body
@@ -46,5 +46,5 @@ interface ParserInterface
      * @param RequestResponse $requestResponse
      * @return ParserResult
      */
-    public function run(Job $job, RequestResponse $requestResponse) : ParserResult;
+    public function run(Job $job, RequestResponse $requestResponse): ParserResult;
 }

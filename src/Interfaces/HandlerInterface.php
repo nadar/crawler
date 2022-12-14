@@ -2,8 +2,7 @@
 
 namespace Nadar\Crawler\Interfaces;
 
-use Nadar\Crawler\Crawler;
-use \Nadar\Crawler\Result;
+use Nadar\Crawler\Result;
 
 /**
  * Handler Interface

@@ -40,7 +40,7 @@ class Job
      * @param Crawler $crawler
      * @return boolean
      */
-    public function validate(Crawler $crawler) : bool
+    public function validate(Crawler $crawler): bool
     {
         foreach ($crawler->getParsers() as $handler) {
             if ($handler->validateUrl($this->url)) {
@@ -90,7 +90,7 @@ class Job
                         $crawler->push($job);
                         unset($job);
                     }
-                    
+
                     unset($url);
                 }
 

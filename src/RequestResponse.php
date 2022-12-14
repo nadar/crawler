@@ -14,7 +14,7 @@ class RequestResponse
      * @var string Contains the response content.
      */
     protected $content;
-    
+
     /**
      * @var string Contains the response content type
      */

@@ -43,7 +43,7 @@ class ArrayStorage implements StorageInterface
     /**
      * {@inheritDoc}
      */
-    public function isUrlDone($url) : bool
+    public function isUrlDone($url): bool
     {
         return in_array($url, $this->done, true);
     }
@@ -59,7 +59,7 @@ class ArrayStorage implements StorageInterface
     /**
      * {@inheritDoc}
      */
-    public function isChecksumDone($checksum) : bool
+    public function isChecksumDone($checksum): bool
     {
         return in_array($checksum, $this->checksums);
     }

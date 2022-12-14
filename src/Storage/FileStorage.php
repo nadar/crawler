@@ -18,7 +18,7 @@ use Nadar\Crawler\QueueItem;
 class FileStorage implements StorageInterface
 {
     protected $folder;
-    
+
     public $doneFileName = 'done.txt';
     public $checksumFileName = 'checksum.txt';
     public $queueFileName = 'queue.txt';
@@ -37,7 +37,7 @@ class FileStorage implements StorageInterface
     public function fileToArray($file)
     {
         $array = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        
+
         return $array;
     }
 
@@ -64,7 +64,7 @@ class FileStorage implements StorageInterface
     /**
      * {@inheritDoc}
      */
-    public function isUrlDone($url) : bool
+    public function isUrlDone($url): bool
     {
         return in_array($url, $this->fileToArray($this->folder . $this->doneFileName));
     }
@@ -80,7 +80,7 @@ class FileStorage implements StorageInterface
     /**
      * {@inheritDoc}
      */
-    public function isChecksumDone($checksum) : bool
+    public function isChecksumDone($checksum): bool
     {
         return in_array($checksum, $this->fileToArray($this->folder . $this->checksumFileName));
     }

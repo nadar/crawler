@@ -8,18 +8,18 @@ namespace Nadar\Crawler;
  * In order to retrieve the url from an object use `getNormalized()`. This value is mainly used to identife and store.
  *
  * An example where the url is checked for relative path, merge otherwise and validate:
- * 
+ *
  * ```php
  * $url = new Url('/about/me');
  * if ($url->isRelative()) {
  *     $url->merge(new Url('https://luya.io'));
  * }
- * 
+ *
  * if ($url->isValid()) {
  *     echo $url->getNormalized(); // outputs https://luya.io/about/me
  * }
  * ```
- * 
+ *
  * @author Basil Suter <git@nadar.io>
  * @since 1.0.0
  */
@@ -163,7 +163,7 @@ class Url
     {
         return !in_array($this->getScheme(), ['mailto', 'tel', 'ftp']);
     }
-    
+
     /**
      * Whether the original url is a relative url or not
      *
@@ -177,15 +177,15 @@ class Url
 
     /**
      * If the current URL is missing informations, it cain obtain informations from the merge url.
-     * 
+     *
      * > By `current URL` it means the value from $this->url.
-     * 
+     *
      * The following parts will be merged:
-     * 
+     *
      * + host: If missing in current URL
      * + scheme: If missing in current URL
      * + path: If the current URL is a query parameter only, the path can be merged
-     * 
+     *
      * @param Url $url
      * @return static
      */

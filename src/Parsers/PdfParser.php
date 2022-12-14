@@ -10,6 +10,7 @@ use Nadar\Crawler\ParserResult;
 use Nadar\Crawler\RequestResponse;
 use Nadar\Crawler\Url;
 use Smalot\PdfParser\Parser;
+use Throwable;
 
 /**
  * PDF Parser
@@ -42,7 +43,7 @@ class PdfParser implements ParserInterface
     /**
      * {@inheritDoc}
      */
-    public function run(Job $job, RequestResponse $requestResponse) : ParserResult
+    public function run(Job $job, RequestResponse $requestResponse): ParserResult
     {
         try {
             $parser = new Parser();
@@ -68,7 +69,7 @@ class PdfParser implements ParserInterface
     /**
      * {@inheritDoc}
      */
-    public function validateUrl(Url $url) : bool
+    public function validateUrl(Url $url): bool
     {
         return in_array($url->getPathExtension(), ['pdf']);
     }

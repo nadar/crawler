@@ -2,8 +2,8 @@
 
 namespace Nadar\Crawler\Parsers;
 
-use DOMElement;
 use DOMDocument;
+use DOMElement;
 use Nadar\Crawler\Interfaces\ParserInterface;
 use Nadar\Crawler\Job;
 use Nadar\Crawler\ParserIgnoreResult;
@@ -37,12 +37,12 @@ class HtmlParser implements ParserInterface
     /**
      * {@inheritDoc}
      */
-    public function run(Job $job, RequestResponse $requestResponse) : ParserResult
+    public function run(Job $job, RequestResponse $requestResponse): ParserResult
     {
         if ($this->isCrawlFullIgnore($requestResponse->getContent())) {
             return new ParserIgnoreResult();
         }
-        
+
         $content = $requestResponse->getContent();
         $dom = $this->generateDomDocument($content);
 
@@ -52,7 +52,7 @@ class HtmlParser implements ParserInterface
         // body content
         $body = $this->getDomBodyContent($dom);
 
-        
+
         $content = $this->stripCrawlIgnore($body);
         $content = $this->stripTags ? $this->formatContent($content) : $content;
 
@@ -64,7 +64,7 @@ class HtmlParser implements ParserInterface
         $jobResult->keywords = $this->getDomKeywords($dom);
         $jobResult->description = $this->getDomDescription($dom);
         $jobResult->group = $this->getCrawlGroup($body);
-        
+
         unset($dom, $links, $content, $body);
 
         return $jobResult;
@@ -73,7 +73,7 @@ class HtmlParser implements ParserInterface
     /**
      * {@inheritDoc}
      */
-    public function validateUrl(Url $url) : bool
+    public function validateUrl(Url $url): bool
     {
         return in_array($url->getPathExtension(), ['', 'html', 'php', 'htm']);
     }
@@ -125,7 +125,7 @@ class HtmlParser implements ParserInterface
      * Get the crawl title
      *
      * @param string $content
-     * @return string
+     * @return string|null
      */
     public function getCrawlTitle($content)
     {
@@ -142,7 +142,7 @@ class HtmlParser implements ParserInterface
      * Get the crawler group from content
      *
      * @param string $content
-     * @return string
+     * @return string|null
      */
     public function getCrawlGroup($content)
     {
@@ -177,7 +177,7 @@ class HtmlParser implements ParserInterface
      * Get Body from DOMDocument
      *
      * @param DOMDocument $dom
-     * @return string
+     * @return string|null
      */
     public function getDomBodyContent(DOMDocument $dom)
     {
@@ -195,7 +195,7 @@ class HtmlParser implements ParserInterface
             $node = $body->item(0);
             return $dom->saveHTML($node);
         }
-        
+
         return null;
     }
 
@@ -203,7 +203,7 @@ class HtmlParser implements ParserInterface
      * Get Title from DOMDocument
      *
      * @param DomDocument $dom
-     * @return string
+     * @return string|null
      */
     public function getDomTitle(DomDocument $dom)
     {
@@ -219,7 +219,7 @@ class HtmlParser implements ParserInterface
      * Get language info from DOMDocument
      *
      * @param DOMDocument $dom
-     * @return string
+     * @return string|null
      */
     public function getDomLanguage(DOMDocument $dom)
     {
@@ -238,7 +238,7 @@ class HtmlParser implements ParserInterface
      * Get Description from DOMDocument
      *
      * @param DOMDocument $dom
-     * @return string
+     * @return string|null
      */
     public function getDomDescription(DOMDocument $dom)
     {
@@ -257,7 +257,7 @@ class HtmlParser implements ParserInterface
      * Get keywords from DOMDocument
      *
      * @param DOMDocument $dom
-     * @return string
+     * @return string|null
      */
     public function getDomKeywords(DOMDocument $dom)
     {
@@ -290,13 +290,13 @@ class HtmlParser implements ParserInterface
             }
         }
 
-        unset ($links);
+        unset($links);
         return $refs;
     }
 
     /**
      * Format Content
-     * 
+     *
      * + Remove tags
      * + Remove unneccsary whitespaces (like double whitespaces)
      * + make spaces between words when they are seperated by tags (`<p>foo</p><p>bar</p>` will be `foo bar` instead of `foobar`)
@@ -310,16 +310,16 @@ class HtmlParser implements ParserInterface
     public function formatContent($content)
     {
         // remove HTML TAGs
-        $string = preg_replace ('/<[^>]*>/', ' ', $content);
-        
+        $string = preg_replace('/<[^>]*>/', ' ', $content);
+
         // remove control characters
         $string = str_replace("\r", '', $string); // --- replace with empty space
         $string = str_replace("\n", ' ', $string); // --- replace with space
         $string = str_replace("\t", ' ', $string); // --- replace with space
-        
+
         // remove multiple spaces
         $string = trim(preg_replace('/ {2,}/', ' ', $string));
-        
+
         // handle wrong control char spacings
         $string = preg_replace('/(\s)([\!\,\.\?])/', '$2', $string);
 

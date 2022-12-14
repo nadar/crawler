@@ -15,7 +15,7 @@ use Nadar\Crawler\Interfaces\ParserInterface;
 class Result
 {
     use ResultPropertiesTrait;
-    
+
     /**
      * @var Url $url
      */

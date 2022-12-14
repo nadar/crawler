@@ -13,9 +13,9 @@ $handler = new DebugHandler();
 $storage = new FileStorage(dirname(__FILE__) . '/runtime');
 //$storage = new ArrayStorage;
 
-$crawler = new Crawler('https://luya.io/', $storage, new LoopRunner);
+$crawler = new Crawler('https://luya.io/', $storage, new LoopRunner());
 $crawler->concurrentJobs = 30;
-$crawler->addParser(new HtmlParser);
+$crawler->addParser(new HtmlParser());
 //$crawler->addParser(new PdfParser);
 $crawler->addHandler($handler);
 $crawler->setup();

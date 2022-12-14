@@ -11,7 +11,7 @@ namespace Nadar\Crawler;
 class ParserResult
 {
     use ResultPropertiesTrait;
-    
+
     /**
      * @var boolean Whether the result should be ignored for any further processing. Ignored
      * ParserResult will also not pushed to the `HandlerInterface::afterRun()` method.
